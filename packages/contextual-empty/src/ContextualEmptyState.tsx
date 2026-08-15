@@ -8,7 +8,7 @@
  * It relies entirely on standard HTML semantics and data-attributes for true headless flexibility.
  */
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 // --- Types ---
 export interface ContextualEmptyStateProps {
