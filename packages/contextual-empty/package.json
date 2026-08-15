@@ -25,14 +25,20 @@
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly",
     "dev": "tsup --watch",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "test": "vitest run --environment jsdom",
+    "test:watch": "vitest --environment jsdom"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "jsdom": "^30.0.1",
     "tsup": "^8.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.10"
   }
 }

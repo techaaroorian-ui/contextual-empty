@@ -1,0 +1,33 @@
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main # Only run this when code is merged into the main branch
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🧪 Run Tests
+        run: npm run test -w @techaaroorian-ui/contextual-empty
+
+      - name: 🛠️ Build Package
+        run: npm run build -w @techaaroorian-ui/contextual-empty
+
+      - name: 🚀 Publish to NPM
+        run: npm publish -w @techaaroorian-ui/contextual-empty --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
