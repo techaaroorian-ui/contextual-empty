@@ -26,8 +26,8 @@
     "build": "tsup && tsc --emitDeclarationOnly",
     "dev": "tsup --watch",
     "lint": "eslint src/",
-    "test": "vitest run --environment jsdom",
-    "test:watch": "vitest --environment jsdom"
+    "test": "vitest run --environment happy-dom",
+    "test:watch": "vitest --environment happy-dom"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
-    "jsdom": "^30.0.1",
+    "happy-dom": "^20.11.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "vitest": "^4.1.10"
