@@ -1,122 +1,146 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+// Import your library just like a real user would!
+import {
+  SearchEmpty,
+  FirstUseEmpty,
+  ErrorEmpty,
+} from "@techaaroorian-ui/contextual-empty";
+// Import the compiled CSS
+import "@techaaroorian-ui/contextual-empty/dist/index.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [view, setView] = useState<"first-use" | "search" | "error">(
+    "first-use",
+  );
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div
+      style={{
+        maxWidth: "800px",
+        margin: "0 auto",
+        padding: "2rem",
+        fontFamily: "system-ui, sans-serif",
+      }}
+    >
+      <header
+        style={{
+          marginBottom: "2rem",
+          paddingBottom: "1rem",
+          borderBottom: "1px solid #e5e7eb",
+        }}
+      >
+        <h1 style={{ margin: "0 0 1rem 0" }}>Techaaroorian UI - Playground</h1>
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <button
+            onClick={() => setView("first-use")}
+            style={btnStyle(view === "first-use")}
+          >
+            First Use
+          </button>
+          <button
+            onClick={() => setView("search")}
+            style={btnStyle(view === "search")}
+          >
+            Search
+          </button>
+          <button
+            onClick={() => setView("error")}
+            style={btnStyle(view === "error")}
+          >
+            Error
+          </button>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
+      <main
+        style={{
+          padding: "4rem",
+          backgroundColor: "#f9fafb",
+          borderRadius: "12px",
+          minHeight: "400px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {view === "first-use" && (
+          <FirstUseEmpty
+            itemName="Dashboard widget"
+            onCreate={() => alert("Create action clicked!")}
+            icon={
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
+              </svg>
+            }
+          />
+        )}
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        {view === "search" && (
+          <SearchEmpty
+            query="quantum metrics"
+            onClear={() => alert("Filters cleared!")}
+            icon={
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            }
+          />
+        )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {view === "error" && (
+          <ErrorEmpty
+            onRetry={() => alert("Retrying fetch...")}
+            icon={
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            }
+          />
+        )}
+      </main>
+    </div>
+  );
 }
 
-export default App
+// Simple inline style helper for the playground buttons
+const btnStyle = (isActive: boolean) => ({
+  padding: "0.5rem 1rem",
+  cursor: "pointer",
+  borderRadius: "6px",
+  border: "1px solid #d1d5db",
+  backgroundColor: isActive ? "#111827" : "#ffffff",
+  color: isActive ? "#ffffff" : "#374151",
+  fontWeight: 500,
+});
+
+export default App;

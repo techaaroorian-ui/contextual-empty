@@ -1,22 +1,44 @@
 {
   "name": "@techaaroorian-ui/contextual-empty",
   "version": "0.1.0",
+  "description": "A contextual, composable empty-state system for React applications.",
+  "author": "Janarthanan Soundararajan (@TechAaroorian)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techaaroorian-ui/contextual-empty.git"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && tsc --emitDeclarationOnly",
     "dev": "tsup --watch",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "test": "vitest run --environment jsdom",
+    "test:watch": "vitest --environment jsdom"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "jsdom": "^30.0.1",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
+    "vitest": "^4.1.10"
   }
 }

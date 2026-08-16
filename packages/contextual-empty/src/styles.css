@@ -1,0 +1,84 @@
+/**
+ * @techaaroorian-ui/contextual-empty - Base Styles
+ * Pure CSS layout, spacing, and motion. Zero styling opinions.
+ */
+
+.contextual-empty-state {
+  /* Public API: CSS Variables developers can override */
+  --ce-gap: 1.5rem;
+  --ce-icon-size: 3rem;
+  --ce-icon-color: #9ca3af;
+  --ce-content-gap: 0.5rem;
+  --ce-anim-duration: 0.5s;
+  --ce-anim-easing: cubic-bezier(0.16, 1, 0.3, 1); /* Premium Radix-style ease-out */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+  gap: var(--ce-gap);
+  width: 100%;
+
+  /* Premium reveal animation */
+  animation: ce-enter var(--ce-anim-duration) var(--ce-anim-easing) both;
+}
+
+/* --- Sub-Components --- */
+
+.contextual-empty-icon {
+  width: var(--ce-icon-size);
+  height: var(--ce-icon-size);
+  color: var(--ce-icon-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure SVG icons scale perfectly inside the container */
+.contextual-empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.contextual-empty-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ce-content-gap);
+}
+
+/* Strip default margins from typography so our flex gap handles spacing */
+.contextual-empty-content > * {
+  margin: 0;
+}
+
+.contextual-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* --- Pure CSS Motion --- */
+
+@keyframes ce-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Accessibility (a11y) --- */
+/* Strict adherence to user OS preferences */
+@media (prefers-reduced-motion: reduce) {
+  .contextual-empty-state {
+    animation: none !important;
+  }
+}
