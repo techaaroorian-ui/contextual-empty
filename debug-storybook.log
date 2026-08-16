@@ -1,0 +1,19 @@
+[21:40:18.826] [INFO] [36mInitializing Storybook[39m
+[21:40:20.090] [DEBUG] Getting package.json info for C:/Users/Janarthanan/Jana/Projects/techaaroorian-ui/package.json...
+[21:40:20.090] [INFO] Package manager: npm
+[21:40:20.093] [DEBUG] Getting CLI versions from NPM for storybook...
+[21:40:20.093] [DEBUG] Executing command: npm info storybook version
+[21:40:20.096] [DEBUG] Resolved command variation: npm.cmd
+[21:40:21.510] [INFO] Adding Storybook version 10.5.8 to your project
+[21:40:21.510] [DEBUG] Executing command: npm config get min-release-age --workspaces=false --include-workspace-root
+[21:40:21.513] [DEBUG] Resolved command variation: npm.cmd
+[21:40:21.837] [DEBUG] Using cached package.json for C:\Users\Janarthanan\Jana\Projects\techaaroorian-ui\package.json...
+[21:40:21.839] [ERROR] Unable to initialize Storybook in this directory.
+
+Storybook couldn't detect a supported framework or configuration for your project. Make sure you're inside a framework project (e.g., React, Vue, Svelte, Angular, Next.js) and that its dependencies are installed.
+
+Tips:
+- Run init in an empty directory or create a new framework app first.
+- If this directory contains unrelated files, try a new directory for Storybook.
+[21:40:32.487] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":true}
+[21:40:32.494] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
