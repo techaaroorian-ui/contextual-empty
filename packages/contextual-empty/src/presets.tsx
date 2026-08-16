@@ -6,7 +6,7 @@
  * @repository https://github.com/techaaroorian-ui/contextual-empty
  */
 
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { ContextualEmptyState } from "./ContextualEmptyState";
 
 // --- Shared Base Props ---
