@@ -58,6 +58,16 @@ For a group, add `aar-stagger` to its parent and `style="--aar-order: 0"` (then 
 
 Customize `--aar-duration`, `--aar-duration-enter`, `--aar-ease`, `--aar-hover-offset`, `--aar-press-scale`, and `--aar-enter-offset`. Reduced-motion preferences zero durations and movement and disable entrance animations. Consumer motion overrides should also preserve that preference.
 
+## Headless component styling
+
+Import Aar Craft CSS once for the application. It styles headless markup without depending on the JavaScript packages:
+
+- Native dialogs: `aar-dialog`; optional `data-placement="end"` or `"bottom"` creates sheet placement.
+- Single-selection lists: `aar-picker` and `aar-picker-option`; `data-active`, `aria-selected`, and `aria-disabled` convey their distinct states.
+- Contextual Empty: pass `className="aar-contextual-empty"` to a preset or root. Skip its standalone CSS when using this adapter.
+
+Dialog focus behavior and picker keyboard interaction come from their headless packages or your own implementation. CSS alone does not supply those behaviors. See the collection's styling-boundaries guide for custom design system use.
+
 ## Visual review
 
 From the repository root run `npm run dev --workspace apps/docs`, then open the URL printed by Vite.

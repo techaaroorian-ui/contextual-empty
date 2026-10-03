@@ -1,5 +1,6 @@
 import { useOrderedCollection } from '@techaaroorian-ui/ordered-collection/react'
 import { useFileIntake } from '@techaaroorian-ui/file-intake/react'
+import InteractionExamples from './InteractionExamples'
 
 const initialItems = [{ id: 'cover', name: 'Cover' }, { id: 'details', name: 'Details' }]
 
@@ -46,6 +47,7 @@ const result = validateFiles(files, {
 // The React adapter is available from '/react'.`}</code></pre>
       <p className="aar-hint">MIME and extension checks use file metadata. Consumers own content validation, storage, URL cleanup, error localization, and accessible drop-zone behavior.</p>
     </section>
-    <section className="aar-panel package-setup"><h2 className="aar-heading">Independent of the design language</h2><p>These packages ship no CSS and do not depend on Aar Craft. This documentation applies Aar Craft as one example of consumer styling. Neither core accesses React or browser globals. Dialogs, workspace docking, and gesture-based widgets are future work.</p><p className="aar-hint">Until registry publication is verified, use workspace examples here. Alpha packages will be published under the alpha dist-tag rather than latest.</p></section>
+    <InteractionExamples />
+    <section className="aar-panel package-setup"><h2 className="aar-heading">Independent of the design language</h2><p>These packages ship no CSS and do not depend on Aar Craft. This documentation applies Aar Craft as one example of consumer styling. Collection and intake cores work without React or browser globals; dialog behavior uses native browser APIs. Workspace docking and gesture-based widgets are future work.</p><p className="aar-hint">Until registry publication is verified, use workspace examples here. Alpha packages will be published under the alpha dist-tag rather than latest.</p></section>
   </section>
 }

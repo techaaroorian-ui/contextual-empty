@@ -4,7 +4,7 @@ TechAaroorian UI is a collection, not one synchronized release. Aar Craft and Co
 
 ## Contract and stability
 
-The checkout now contains prepared alpha versions: Aar Craft, Ordered Collection, and File Intake at 0.2.0-alpha.0; Contextual Empty at 0.1.1-alpha.0. These are manifest versions, not proof of publication. Do not overwrite a published version.
+The checkout contains independently versioned alpha packages. The docs versioning page reads all six manifests directly, including Dialog and Collection Picker. These are manifest versions, not proof of publication. Do not overwrite a published version.
 
 SemVer treats 0.y.z as initial development: https://semver.org/.
 
@@ -28,6 +28,6 @@ After applying changesets, use `npm run release:ready` to inspect the prepared v
 
 ## Release checks
 
-Build all four public packages and docs, run component and core behavior tests and docs lint, and inspect dry-run package contents. Run browser smoke checks with the docs server for UI/theme and React adapter changes. Verify the CSS package has no runtime icon dependency and the headless cores import without React. Inspect the tarballs before publishing; a successful build is not proof that the right files are included.
+Build all six public packages and docs, run component and core behavior tests and docs lint, and inspect dry-run package contents. Run browser smoke checks with the docs server for UI/theme and React adapter changes, including dialog focus/dismissal and picker keyboard interaction. Verify the CSS package has no runtime icon dependency and the headless cores import without React. Inspect the tarballs before publishing; a successful build is not proof that the right files are included.
 
 No automatic publish on pushes to main. The workflow is manual and defaults to dry-run. Registry credentials are required only for publication. This task configures release tooling; it does not publish, create release tags, or claim that local versions are released.

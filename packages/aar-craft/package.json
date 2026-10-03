@@ -1,6 +1,6 @@
 {
   "name": "@techaaroorian-ui/aar-craft",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "description": "Aar Craft: a themeable, CSS-only design language for tools and workspaces.",
   "license": "MIT",
   "files": ["src", "dist", "scripts", "CHANGELOG.md"],

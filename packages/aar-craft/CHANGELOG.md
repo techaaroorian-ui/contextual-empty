@@ -1,5 +1,11 @@
 # @techaaroorian-ui/aar-craft
 
+## 0.2.0-alpha.1
+
+### Patch Changes
+
+- Add native modal dialog/sheet behavior and a filtered single-selection picker with framework-independent APIs and optional React hooks. Add Aar Craft dialog, sheet, picker, and opt-in Contextual Empty styling so headless consumers need only the design language stylesheet.
+
 ## 0.2.0-alpha.0
 
 ### Minor Changes

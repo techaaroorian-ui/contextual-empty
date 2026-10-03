@@ -24,9 +24,6 @@
 .package-setup { margin-bottom:1.25rem; display:flex; flex-direction:column; gap:1rem; }
 .package-setup pre { margin:0; padding:1rem; background:var(--aar-background); border:1px solid var(--aar-border); border-radius:var(--aar-radius-sm); overflow:auto; max-width:100%; font: .8125rem/1.7 var(--aar-font-mono); }
 .empty-demo { border:1px solid var(--aar-border); border-radius:var(--aar-radius-md); padding:1rem; }
-.empty-demo .contextual-empty-content { max-width:38rem; }
-.empty-demo .contextual-empty-content p { color:var(--aar-text-muted); }
-.empty-demo .contextual-empty-actions button { padding:.625rem 1rem; background:var(--aar-primary); color:var(--aar-on-primary); border:1px solid var(--aar-primary); border-radius:var(--aar-radius-sm); cursor:pointer; }
 .table-scroll { overflow:auto; }
 .docs-table { border-collapse:collapse; width:100%; text-align:left; font-size:.875rem; }
 .docs-table td,.docs-table th { border-bottom:1px solid var(--aar-border); padding:.75rem; }

@@ -9,7 +9,9 @@ The temporary Aar Craft integration in Yuwbrndr has been reverted. Yuwbrndr retu
 
 Both expose framework-independent ESM cores and optional `/react` hooks. This is headless state and behavior, not a complete accessible widget library. React examples use native labeled controls; framework-independent Node tests prove the cores load and operate without React or the DOM.
 
-Dialog/sheet focus management, collection keyboard navigation, resizable workspace panels, and async-action lifecycles require separate design and browser tests before extraction. They are not included in this alpha.
+The second extraction adds Dialog/Sheet and Collection Picker. Dialog uses native browser modality with explicit dismissal and focus restoration. Collection Picker adds filtering, disabled-option handling, keyboard navigation, typeahead, and explicit single selection. Both have optional React hooks and no CSS dependency. Browser interaction coverage lives in the docs smoke script. Resizable workspace panels and async-action lifecycles remain future work.
+
+Aar Craft supplies optional styles for these behaviors and an opt-in Contextual Empty adapter. See [styling boundaries](./styling-boundaries.md); Aar Craft applications do not need a separate visual stylesheet per headless package.
 
 ## Release and adoption
 
