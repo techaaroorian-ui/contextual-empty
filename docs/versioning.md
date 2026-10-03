@@ -4,7 +4,7 @@ TechAaroorian UI is a collection, not one synchronized release. Aar Craft and Co
 
 ## Contract and stability
 
-Both packages currently declare 0.1.0. These are manifest versions, not proof of publication. Keep existing versions until a release is prepared; do not invent retrospective release dates or overwrite a published version.
+The checkout now contains prepared alpha versions: Aar Craft, Ordered Collection, and File Intake at 0.2.0-alpha.0; Contextual Empty at 0.1.1-alpha.0. These are manifest versions, not proof of publication. Do not overwrite a published version.
 
 SemVer treats 0.y.z as initial development: https://semver.org/.
 
@@ -22,10 +22,12 @@ Aar Craft's public contract includes documented classes, attributes, tokens, exp
 
 Changesets usage: https://github.com/changesets/changesets/blob/main/docs/intro-to-using-changesets.md.
 
-For previews use `npm exec changeset pre enter next`, add changesets, and version normally; publish on the next dist-tag. Exit with `npm exec changeset pre exit` when preparing the stable release. Preview preparation must also be reviewed; it does not happen automatically on every merge.
+The current checkout is in Changesets prerelease mode with the alpha tag. For a new preview channel use `npm exec changeset pre enter alpha`, add changesets, and version normally; publish on the alpha dist-tag. Exit with `npm exec changeset pre exit` when preparing the stable release. Preview preparation must also be reviewed; it does not happen automatically on every merge.
+
+After applying changesets, use `npm run release:ready` to inspect the prepared versions and channel. `changeset:status` is for pending records; with Changesets 3 it can report missing records after a plan has been consumed while the branch still differs from main. The manual publish workflow uses release:ready instead and refuses unversioned pending records.
 
 ## Release checks
 
-Build both public packages and docs, run Contextual Empty tests and docs lint, and inspect dry-run package contents. Run browser smoke checks with the docs server for UI/theme changes. Verify the CSS package has no runtime icon dependency. Inspect the tarballs before publishing; a successful build is not proof that the right files are included.
+Build all four public packages and docs, run component and core behavior tests and docs lint, and inspect dry-run package contents. Run browser smoke checks with the docs server for UI/theme and React adapter changes. Verify the CSS package has no runtime icon dependency and the headless cores import without React. Inspect the tarballs before publishing; a successful build is not proof that the right files are included.
 
 No automatic publish on pushes to main. The workflow is manual and defaults to dry-run. Registry credentials are required only for publication. This task configures release tooling; it does not publish, create release tags, or claim that local versions are released.

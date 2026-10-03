@@ -117,6 +117,23 @@ try {
   await page.reload();
   await page.getByRole('heading', { name: 'Versions & releases', exact: true }).waitFor();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Version guide mobile overflow');
+  await page.getByRole('link', { name: 'Headless', exact: true }).click();
+  await page.getByRole('heading', { name: 'Headless building blocks', exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Duplicate selected', exact: true }).click();
+  await page.getByRole('button', { name: 'Cover copy', exact: true }).waitFor();
+  assert.equal(await page.getByRole('button', { name: 'Cover copy', exact: true }).getAttribute('aria-pressed'), 'true');
+  await page.getByRole('button', { name: 'Remove selected', exact: true }).click();
+  assert.equal(await page.getByRole('button', { name: 'Details', exact: true }).getAttribute('aria-pressed'), 'true');
+  await page.getByRole('button', { name: 'Move selected to start', exact: true }).click();
+  assert.equal(await page.locator('[aria-label="Collection items"] button').first().textContent(), 'Details');
+  await page.getByLabel('Choose images').setInputFiles({ name: 'cover.png', mimeType: 'image/png', buffer: Buffer.from('example') });
+  assert.match(await page.locator('#intake-result').textContent(), /Accepted 1 file/);
+  await page.getByLabel('Choose images').setInputFiles({ name: 'oversize.png', mimeType: 'image/png', buffer: Buffer.alloc(2 * 1024 * 1024 + 1) });
+  assert.match(await page.locator('#intake-result').textContent(), /exceeds/);
+  await page.getByRole('button', { name: 'Clear file result', exact: true }).click();
+  assert.match(await page.locator('#intake-result').textContent(), /No files selected/);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Headless guide mobile overflow');
+  await snapshot('headless-mobile.png');
   assert.deepEqual(errors, []);
   console.log('Visual smoke passed: interactions, nested themes, custom colors, system dark, density, focus, reduced motion, and mobile overflow. Screenshots: apps/docs/visual-artifacts/');
 } finally { await browser.close(); }

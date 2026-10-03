@@ -1,5 +1,7 @@
 # TechAaroorian UI
 
+Alpha release preparation now includes framework-independent Ordered Collection and File Intake packages with optional React hooks. Their [interactive examples](./apps/docs/src/HeadlessGuide.tsx) are at `#/headless`; see [extraction and release scope](./docs/headless-extraction.md). The workspace itself remains private; public packages publish independently.
+
 A CSS-only design language for thoughtful tools, with optional companion packages.
 
 The first Aar Craft study explores **clarity through layers**: semantic color, precise surfaces, purposeful typography, and consistent interaction states. Components use the `aar-` prefix and support custom theme colors.

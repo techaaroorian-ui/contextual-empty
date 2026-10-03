@@ -13,7 +13,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@techaaroorian-ui/contextual-empty": "*",
+    "@techaaroorian-ui/ordered-collection": "0.2.0-alpha.0",
+    "@techaaroorian-ui/file-intake": "0.2.0-alpha.0",
+    "@techaaroorian-ui/contextual-empty": "0.1.1-alpha.0",
     "lucide-react": "^1.51.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"

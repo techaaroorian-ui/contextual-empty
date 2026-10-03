@@ -29,8 +29,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: npm
       - run: npm ci
-      - name: Validate pending change records
-        run: npm run changeset:status
+      - name: Validate versioned release channel
+        run: npm run release:ready
       - name: Verify release contents
         run: npm run release:check
       - name: Publish reviewed versions

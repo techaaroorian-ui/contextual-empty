@@ -18,13 +18,15 @@ The framework earns its value through repeated use, understandable rules, and re
 
 ## 1. Yuwbrndr adoption: foundation
 
-Status: initial slice implemented and verified locally. See `yuwbrndr/docs/aar-craft-adoption.md` for the boundary and local dependency setup. Production build and 29 tests pass; browser checks cover the cases below. Lint completes with existing warnings in the application.
+Status: the initial local adoption slice was tested, then reverted at the user's request. Develop and publish the reusable alpha packages here before reintroducing them through registry dependencies. See [the extraction scope](./headless-extraction.md). Yuwbrndr's prior interface is the current baseline.
 
-Deliver a local CSS package integration, product-specific theme tokens, shell/toolbar styling, primary export treatment, focus, and reduced-motion handling. Yuwbrndr's interface uses Aar Craft and product CSS with no Tailwind compiler. A frozen legacy stylesheet preserves existing layouts while components migrate. Keep authored artwork and canvas palettes independent. Preserve existing controls and behavior.
+After publication, deliver a versioned registry integration, product-specific theme tokens, a redesigned shell/toolbar, primary export treatment, focus, and reduced-motion handling. Migrate Yuwbrndr's interface to Aar Craft and product CSS, then remove its Tailwind compiler. The previous frozen-stylesheet bridge has been reverted. Keep authored artwork and canvas palettes independent. Preserve existing controls and behavior while changing presentation.
 
 Exit evidence: production build without Tailwind installed, existing tests, browser checks for both app themes, toolbar actions, mobile overflow, preserved geometry, and artwork isolation.
 
 ## 2. Yuwbrndr adoption: component migration
+
+Direction updated: redesign the workspace using [the adaptive layout philosophy](./adaptive-layout.md). Yuwbrndr supplies real tasks and behavior requirements; its existing appearance and panel arrangement do not constrain the new language. First review a layout laboratory, then rebuild the shell and migrate its components. Spatial support is a separate future adapter, not a CSS breakpoint.
 
 Replace legacy utility class strings and color patches in the sidebar, slide strip, editor chrome, menus, dialogs, and notifications with Aar components, semantic roles, and named product compositions. Delete the frozen legacy stylesheet once all interface consumers migrate. Add consistent field/help/error patterns, pressed/expanded semantics, and keyboard overlay behavior. Leave syntax highlighting and authored canvas palettes as separate systems.
 

@@ -5,10 +5,11 @@
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "version:packages": "changeset version && npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
-    "build:packages": "npm run build --workspace packages/aar-craft && npm run build --workspace packages/contextual-empty",
-    "test:packages": "npm run test --workspace packages/contextual-empty",
-    "release:check": "npm run build:packages && npm run test:packages && npm run build --workspace apps/docs && npm run lint --workspace apps/docs && npm pack --workspace packages/aar-craft --dry-run --ignore-scripts && npm pack --workspace packages/contextual-empty --dry-run --ignore-scripts",
-    "release": "changeset publish"
+    "build:packages": "npm run build --workspace packages/aar-craft && npm run build --workspace packages/contextual-empty && npm run build --workspace packages/ordered-collection && npm run build --workspace packages/file-intake",
+    "test:packages": "npm run test --workspace packages/contextual-empty && npm run test --workspace packages/ordered-collection && npm run test --workspace packages/file-intake",
+    "release:check": "npm run build:packages && npm run test:packages && npm run build --workspace apps/docs && npm run lint --workspace apps/docs && npm pack --workspace packages/aar-craft --dry-run --ignore-scripts && npm pack --workspace packages/contextual-empty --dry-run --ignore-scripts && npm pack --workspace packages/ordered-collection --dry-run --ignore-scripts && npm pack --workspace packages/file-intake --dry-run --ignore-scripts",
+    "release:ready": "node scripts/release-ready.mjs",
+    "release": "npm run release:ready && changeset publish"
   },
   "workspaces": [
     "packages/*",
