@@ -13,11 +13,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@techaaroorian-ui/dialog": "0.2.0-alpha.0",
+    "@techaaroorian-ui/aar-craft": "0.2.0-alpha.2",
     "@techaaroorian-ui/collection-picker": "0.2.0-alpha.0",
-    "@techaaroorian-ui/ordered-collection": "0.2.0-alpha.0",
-    "@techaaroorian-ui/file-intake": "0.2.0-alpha.1",
     "@techaaroorian-ui/contextual-empty": "0.1.1-alpha.0",
+    "@techaaroorian-ui/dialog": "0.2.0-alpha.0",
+    "@techaaroorian-ui/file-intake": "0.2.0-alpha.1",
+    "@techaaroorian-ui/ordered-collection": "0.2.0-alpha.0",
+    "highlight.js": "^11.12.0",
     "lucide-react": "^1.51.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
@@ -41,6 +43,7 @@
     "eslint-plugin-storybook": "^10.5.8",
     "globals": "^17.7.0",
     "playwright": "latest",
+    "prettier": "^3.9.9",
     "storybook": "^10.5.8",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.65.0",

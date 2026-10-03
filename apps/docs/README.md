@@ -1,5 +1,13 @@
 # TechAaroorian UI documentation
 
+## Complete example sources
+
+Headless, Contextual Empty, and Lucide previews render standalone example modules. Their code blocks import those same files with Vite's `?raw` loader, so imports, state, handlers, and markup stay synchronized with the previews. The docs build type-checks the examples.
+
+Every code block has syntax highlighting, a filename/language label, a Copy button, and an expandable reading area. Copy writes plain source text, not highlighted HTML. Clipboard denial uses a text-selection fallback; if both paths fail, the block provides an explicit manual-copy message. Long code scrolls inside its own frame on narrow screens.
+
+The headless page includes installation instructions, a React entry file, and the small shared example-layout stylesheet. Aar Craft's getting-started guide provides complete plain HTML and CSS files. Highlight.js and Prettier are docs-only dependencies; public packages remain independent of them.
+
 One collection site with independent package pages:
 
 - `#/` — collection overview and TechAaroorian UI identity.

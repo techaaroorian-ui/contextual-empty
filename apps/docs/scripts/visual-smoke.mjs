@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 
@@ -10,6 +10,7 @@ await mkdir(out, { recursive: true });
 const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(url).origin });
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(url);
@@ -119,6 +120,31 @@ try {
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Version guide mobile overflow');
   await page.getByRole('link', { name: 'Headless', exact: true }).click();
   await page.getByRole('heading', { name: 'Headless building blocks', exact: true }).waitFor();
+  for (const name of ['OrderedCollectionExample.tsx', 'FileIntakeExample.tsx', 'DialogExample.tsx', 'CollectionPickerExample.tsx']) {
+    const source = (await readFile(new URL(`../src/${name}`, import.meta.url), 'utf8')).replace(/\r\n/g, '\n').trimEnd();
+    const block = page.locator('.docs-code').filter({ has: page.getByRole('button', { name: `Copy ${name}`, exact: true }) });
+    assert.equal(await block.locator('pre code').textContent(), source, `${name} matches live preview source`);
+    assert.ok(await block.locator('.hljs-keyword').count() > 0, `${name} is syntax highlighted`);
+    assert.equal(await block.locator('code script').count(), 0, 'Highlighted markup remains inert text');
+    await block.getByRole('button', { name: `Copy ${name}`, exact: true }).click();
+    await page.waitForFunction(expected => navigator.clipboard.readText().then(text => text.replace(/\r\n/g, '\n') === expected), source);
+    assert.equal((await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n'), source, 'Copies complete source without highlighting markup');
+  }
+  const fileCode = page.locator('.docs-code').filter({ has: page.getByRole('button', { name: 'Copy FileIntakeExample.tsx', exact: true }) });
+  await fileCode.getByRole('button', { name: 'Expand code area', exact: true }).click();
+  assert.equal(await fileCode.getAttribute('data-expanded'), 'true');
+  await fileCode.getByRole('button', { name: 'Collapse code area', exact: true }).click();
+  await page.evaluate(() => { Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, value: () => Promise.reject(new Error('Test clipboard denial')) }); });
+  await fileCode.getByRole('button', { name: 'Copy FileIntakeExample.tsx', exact: true }).click();
+  await fileCode.getByText('Copied', { exact: true }).waitFor();
+  await page.waitForFunction(expected => navigator.clipboard.readText().then(text => text.replace(/\r\n/g, '\n') === expected), await fileCode.locator('pre code').textContent());
+  assert.equal((await page.evaluate(() => navigator.clipboard.readText())).replace(/\r\n/g, '\n'), await fileCode.locator('pre code').textContent(), 'Clipboard fallback copies full text');
+  await page.evaluate(() => { Object.defineProperty(document, 'execCommand', { configurable: true, value: () => false }); });
+  await fileCode.getByRole('button', { name: 'Copy FileIntakeExample.tsx', exact: true }).click();
+  await fileCode.getByText('Copy failed. Select the code below and copy it manually.', { exact: true }).waitFor();
+  await page.evaluate(() => { delete navigator.clipboard.writeText; delete document.execCommand; });
+  await fileCode.getByRole('button', { name: 'Copy FileIntakeExample.tsx', exact: true }).click();
+  await fileCode.getByText('Copied', { exact: true }).waitFor();
   await page.getByRole('button', { name: 'Duplicate selected', exact: true }).click();
   await page.getByRole('button', { name: 'Cover copy', exact: true }).waitFor();
   assert.equal(await page.getByRole('button', { name: 'Cover copy', exact: true }).getAttribute('aria-pressed'), 'true');
@@ -234,5 +260,5 @@ try {
   await page.getByRole('heading', { name: 'TechAaroorian UI', exact: true }).waitFor();
   assert.equal(await page.locator('dialog[open]').count(), 0);
   assert.deepEqual(errors, []);
-  console.log('Visual smoke passed: themes, focus, motion, mobile layouts, file intake, collection operations, picker keyboard/filtering, and native/nested dialog dismissal. Screenshots: apps/docs/visual-artifacts/');
+  console.log('Visual smoke passed: complete highlighted source, copy/fallback/error handling, mobile layouts, themes, file intake, picker keyboard/filtering, and native/nested dialogs. Screenshots: apps/docs/visual-artifacts/');
 } finally { await browser.close(); }

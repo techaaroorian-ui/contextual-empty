@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aar Craft workspace</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="aar-root" data-theme="light">
+      <section class="aar-panel">
+        <p class="aar-eyebrow">Your workspace</p>
+        <h1 class="aar-title">Build something useful.</h1>
+        <p class="aar-hint">
+          A complete plain HTML example. No React required.
+        </p>
+        <label class="aar-field" for="project-name"
+          >Project name
+          <input class="aar-input" id="project-name" value="My project" />
+        </label>
+        <div class="aar-toolbar">
+          <button class="aar-button" data-variant="primary" id="create">
+            Create project
+          </button>
+          <button class="aar-button" id="theme">Switch theme</button>
+        </div>
+        <p class="aar-hint" role="status" id="message">Ready to create.</p>
+      </section>
+    </main>
+    <script type="module">
+      const root = document.querySelector("main");
+      const message = document.querySelector("#message");
+      document.querySelector("#theme").addEventListener("click", () => {
+        root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+      });
+      document.querySelector("#create").addEventListener("click", () => {
+        const name = document.querySelector("#project-name").value.trim();
+        message.textContent = name
+          ? `Created ${name}.`
+          : "Enter a project name.";
+      });
+    </script>
+  </body>
+</html>
