@@ -1,0 +1,98 @@
+@layer components {
+  /* Explicit opt-in scope; no global reset or body styles. */
+  .aar-root {
+    font-family: var(--aar-font-sans);
+    color: var(--aar-text);
+    background: var(--aar-background);
+    line-height: 1.5;
+    color-scheme: light;
+    transition: background-color var(--aar-duration) var(--aar-ease), color var(--aar-duration) var(--aar-ease);
+  }
+  .aar-root[data-theme="dark"] { color-scheme: dark; }
+  @media (prefers-color-scheme: dark) {
+    .aar-root[data-theme="system"] { color-scheme: dark; }
+  }
+  .aar-root, .aar-root *, .aar-root *::before, .aar-root *::after { box-sizing: border-box; }
+  .aar-root :where(button, input, select, textarea) { font: inherit; }
+  .aar-root :where(h1, h2, h3, p) { margin: 0; }
+  .aar-root :where(button, a, input, select, textarea, summary):focus-visible {
+    outline: 3px solid var(--aar-focus);
+    outline-offset: 3px;
+  }
+  .aar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--aar-space-2);
+    min-height: var(--aar-control-height);
+    padding: .5rem var(--aar-control-padding);
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-sm);
+    background: var(--aar-surface);
+    color: var(--aar-text);
+    font-family: var(--aar-font-sans);
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--aar-duration) var(--aar-ease), color var(--aar-duration) var(--aar-ease), border-color var(--aar-duration) var(--aar-ease), box-shadow var(--aar-duration) var(--aar-ease), translate var(--aar-duration) var(--aar-ease), scale var(--aar-duration) var(--aar-ease);
+  }
+  .aar-button[data-variant="primary"] {
+    background: var(--aar-primary);
+    color: var(--aar-on-primary);
+    border-color: var(--aar-primary);
+  }
+  .aar-button[data-variant="quiet"] { background: transparent; border-color: transparent; }
+  .aar-button[data-variant="danger"] { background: var(--aar-danger-surface); color: var(--aar-danger); border-color: var(--aar-danger); }
+  .aar-button:hover:not(:disabled) { background: var(--aar-surface-subtle); border-color: var(--aar-text-muted); }
+  .aar-button[data-variant="primary"]:hover:not(:disabled) { background: color-mix(in srgb, var(--aar-primary) 88%, var(--aar-on-primary)); border-color: var(--aar-primary); }
+  .aar-button[data-variant="danger"]:hover:not(:disabled) { background: color-mix(in srgb, var(--aar-danger-surface) 90%, var(--aar-danger)); }
+  @media (hover: hover) and (pointer: fine) {
+    .aar-button:hover:not(:disabled) { translate: 0 var(--aar-hover-offset); }
+  }
+  .aar-button:active:not(:disabled) { translate: 0 0; scale: var(--aar-press-scale); box-shadow: inset 0 0 0 1px currentColor; }
+  .aar-button:disabled { opacity: .45; cursor: not-allowed; }
+  .aar-button[aria-pressed="true"] { background: var(--aar-primary); color: var(--aar-on-primary); border-color: var(--aar-primary); }
+  .aar-button[aria-pressed="true"]:hover:not(:disabled) { background: color-mix(in srgb, var(--aar-primary) 90%, var(--aar-on-primary)); border-color: var(--aar-primary); }
+  .aar-button { touch-action: manipulation; }
+  @media (pointer: coarse) {
+    .aar-button, .aar-input { min-height: max(44px, var(--aar-control-height)); }
+  }
+  .aar-field { display: grid; gap: var(--aar-space-2); font-size: .875rem; font-weight: 600; }
+  .aar-input {
+    width: 100%; min-width: 0; min-height: var(--aar-control-height);
+    padding: .5rem var(--aar-control-padding);
+    border: 1px solid var(--aar-border); border-radius: var(--aar-radius-sm);
+    color: var(--aar-text); background: var(--aar-surface); font-weight: 400;
+    transition: background-color var(--aar-duration) var(--aar-ease), color var(--aar-duration) var(--aar-ease), border-color var(--aar-duration) var(--aar-ease), box-shadow var(--aar-duration) var(--aar-ease);
+  }
+  .aar-input::placeholder { color: var(--aar-text-muted); opacity: 1; }
+  .aar-input:hover:not(:disabled) { border-color: var(--aar-text-muted); }
+  .aar-input:focus { border-color: var(--aar-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--aar-focus) 12%, transparent); }
+  .aar-input[aria-invalid="true"] { border-color: var(--aar-danger); }
+  .aar-input:disabled { opacity: .55; cursor: not-allowed; }
+  .aar-hint { color: var(--aar-text-muted); font-size: .8125rem; font-weight: 400; }
+  .aar-hint[data-tone="danger"] { color: var(--aar-danger); }
+  .aar-panel { padding: var(--aar-panel-padding); border: 1px solid var(--aar-border); border-radius: var(--aar-radius-md); background: var(--aar-surface); }
+  .aar-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--aar-space-2); }
+  .aar-badge { display: inline-flex; align-items: center; gap: .375rem; padding: .25rem .625rem; border: 1px solid var(--aar-border); border-radius: 100px; background: var(--aar-surface-subtle); color: var(--aar-text-muted); font-size: .75rem; font-weight: 600; }
+  .aar-badge[data-tone="success"] { background: var(--aar-success-surface); color: var(--aar-success); border-color: transparent; }
+  .aar-badge[data-tone="danger"] { background: var(--aar-danger-surface); color: var(--aar-danger); border-color: transparent; }
+  .aar-title { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 600; line-height: 1.12; letter-spacing: -.04em; }
+  .aar-heading { font-size: 1.25rem; font-weight: 600; line-height: 1.3; letter-spacing: -.025em; }
+  .aar-eyebrow { font: 500 .6875rem/1.5 var(--aar-font-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--aar-text-muted); }
+  .aar-empty { display: grid; justify-items: center; gap: var(--aar-space-3); padding: var(--aar-space-8); text-align: center; border: 1px dashed var(--aar-border); border-radius: var(--aar-radius-md); }
+  .aar-panel, .aar-badge { transition: background-color var(--aar-duration) var(--aar-ease), color var(--aar-duration) var(--aar-ease), border-color var(--aar-duration) var(--aar-ease); }
+  /* Opt in on newly inserted content, rather than animating every element. */
+  .aar-enter { animation: aar-reveal var(--aar-duration-enter) var(--aar-ease) both; }
+  /* Cap group delays at 140 ms so long lists never hold up the task. */
+  .aar-stagger > .aar-enter { animation-delay: calc(var(--aar-stagger-step) * min(var(--aar-order, 0), 4)); }
+  @keyframes aar-reveal {
+    from { opacity: 0; translate: 0 var(--aar-enter-offset); }
+    to { opacity: 1; translate: 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .aar-enter { animation: none; }
+  }
+}

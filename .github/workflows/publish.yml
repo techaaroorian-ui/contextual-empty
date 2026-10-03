@@ -1,33 +1,40 @@
-name: Publish to NPM
+name: Package release
 
 on:
-  push:
-    branches:
-      - main # Only run this when code is merged into the main branch
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Verify packages without publishing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: package-release
+  cancel-in-progress: false
 
 jobs:
-  build-and-publish:
+  release:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Checkout Code
-        uses: actions/checkout@v4
-
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org/"
-
-      - name: 📦 Install Dependencies
-        run: npm ci
-
-      - name: 🧪 Run Tests
-        run: npm run test -w @techaaroorian-ui/contextual-empty
-
-      - name: 🛠️ Build Package
-        run: npm run build -w @techaaroorian-ui/contextual-empty
-
-      - name: 🚀 Publish to NPM
-        run: npm publish -w @techaaroorian-ui/contextual-empty --access public
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+      - run: npm ci
+      - name: Validate pending change records
+        run: npm run changeset:status
+      - name: Verify release contents
+        run: npm run release:check
+      - name: Publish reviewed versions
+        if: ${{ !inputs.dry_run }}
+        run: npm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,146 +1,29 @@
-import { useState } from "react";
-// Import your library just like a real user would!
-import {
-  SearchEmpty,
-  FirstUseEmpty,
-  ErrorEmpty,
-} from "@techaaroorian-ui/contextual-empty";
-// Import the compiled CSS
-import "@techaaroorian-ui/contextual-empty/dist/index.css";
+import { useEffect, useSyncExternalStore } from 'react'
+import './App.css'
+import './CollectionDocs.css'
+import '../../../packages/aar-craft/src/index.css'
+import AarCraftDocs from './AarCraftDocs'
+import ContextualEmptyDocs from './ContextualEmptyDocs'
+import IconGuide from './IconGuide'
+import VersioningGuide from './VersioningGuide'
 
-function App() {
-  const [view, setView] = useState<"first-use" | "search" | "error">(
-    "first-use",
-  );
-
-  return (
-    <div
-      style={{
-        maxWidth: "800px",
-        margin: "0 auto",
-        padding: "2rem",
-        fontFamily: "system-ui, sans-serif",
-      }}
-    >
-      <header
-        style={{
-          marginBottom: "2rem",
-          paddingBottom: "1rem",
-          borderBottom: "1px solid #e5e7eb",
-        }}
-      >
-        <h1 style={{ margin: "0 0 1rem 0" }}>Techaaroorian UI - Playground</h1>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <button
-            onClick={() => setView("first-use")}
-            style={btnStyle(view === "first-use")}
-          >
-            First Use
-          </button>
-          <button
-            onClick={() => setView("search")}
-            style={btnStyle(view === "search")}
-          >
-            Search
-          </button>
-          <button
-            onClick={() => setView("error")}
-            style={btnStyle(view === "error")}
-          >
-            Error
-          </button>
-        </div>
-      </header>
-
-      <main
-        style={{
-          padding: "4rem",
-          backgroundColor: "#f9fafb",
-          borderRadius: "12px",
-          minHeight: "400px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {view === "first-use" && (
-          <FirstUseEmpty
-            itemName="Dashboard widget"
-            onCreate={() => alert("Create action clicked!")}
-            icon={
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                />
-              </svg>
-            }
-          />
-        )}
-
-        {view === "search" && (
-          <SearchEmpty
-            query="quantum metrics"
-            onClear={() => alert("Filters cleared!")}
-            icon={
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            }
-          />
-        )}
-
-        {view === "error" && (
-          <ErrorEmpty
-            onRetry={() => alert("Retrying fetch...")}
-            icon={
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            }
-          />
-        )}
-      </main>
-    </div>
-  );
+function subscribe(listener: () => void) {
+  window.addEventListener('hashchange', listener)
+  return () => window.removeEventListener('hashchange', listener)
 }
+const snapshot = () => window.location.hash || '#/'
+const pages = [['#/', 'Overview'], ['#/aar-craft', 'Aar Craft'], ['#/contextual-empty', 'Contextual Empty'], ['#/guides/icons', 'Icons'], ['#/guides/versioning', 'Versioning']]
 
-// Simple inline style helper for the playground buttons
-const btnStyle = (isActive: boolean) => ({
-  padding: "0.5rem 1rem",
-  cursor: "pointer",
-  borderRadius: "6px",
-  border: "1px solid #d1d5db",
-  backgroundColor: isActive ? "#111827" : "#ffffff",
-  color: isActive ? "#ffffff" : "#374151",
-  fontWeight: 500,
-});
-
-export default App;
+export default function App() {
+  const route = useSyncExternalStore(subscribe, snapshot)
+  const known = pages.some(([path]) => path === route)
+  const title = pages.find(([path]) => path === route)?.[1] || 'Page not found'
+  useEffect(() => { document.title = `${title} · TechAaroorian UI` }, [title])
+  return <div className="aar-root collection" data-theme="light">
+    <a className="aar-button skip-link" href="#docs-content" onClick={event => { event.preventDefault(); const content = document.getElementById('docs-content'); content?.focus(); content?.scrollIntoView(); }}>Skip to documentation</a>
+    <header className="collection-header"><a className="collection-brand" href="#/"><span className="collection-icon"><img src={`${import.meta.env.BASE_URL}brand/techaaroorian-ui.png`} alt="" /></span><span>TechAaroorian <b>UI</b></span></a><nav aria-label="Documentation packages">{pages.map(([path, label]) => <a key={path} className="aar-button" data-variant="quiet" href={path} aria-current={route === path ? 'page' : undefined}>{label}</a>)}</nav></header>
+    <main id="docs-content" tabIndex={-1}>
+      {route === '#/guides/icons' ? <IconGuide /> : route === '#/guides/versioning' ? <VersioningGuide /> : route === '#/aar-craft' ? <AarCraftDocs /> : route === '#/contextual-empty' ? <ContextualEmptyDocs /> : known ? <section className="lab-content collection-home"><div className="intro"><div><p className="aar-eyebrow">Tools for building thoughtful interfaces</p><h1 className="aar-title">TechAaroorian UI</h1></div><div className="intro-copy"><p>A collection of focused UI packages. Choose a design language, a composable component, or both.</p><p className="aar-hint">Each package has its own purpose and documentation.</p></div></div><div className="package-grid"><article className="aar-panel package-card"><div className="package-logo"><img src={`${import.meta.env.BASE_URL}brand/aar-craft.png`} alt="Aar Craft logo" /></div><p className="aar-eyebrow">CSS design language</p><h2 className="aar-heading">Aar Craft</h2><p>Opinionated components with custom themes, purposeful motion, and no runtime dependency.</p><code>@techaaroorian-ui/aar-craft</code><a className="aar-button" data-variant="primary" href="#/aar-craft">Explore Aar Craft →</a></article><article className="aar-panel package-card"><span className="empty-package-mark" aria-hidden="true">[ + ]</span><p className="aar-eyebrow">Composable React component</p><h2 className="aar-heading">Contextual Empty</h2><p>Explain first use, missing results, errors, and other empty states with a useful next action.</p><code>@techaaroorian-ui/contextual-empty</code><a className="aar-button" href="#/contextual-empty">Explore Contextual Empty →</a></article></div><section className="collection-note"><h2 className="aar-heading">Independent packages. One collection.</h2><p>Contextual Empty can use your existing styles. Aar Craft works with plain HTML and any application framework. Combine them when they fit your product.</p></section></section> : <section className="lab-content package-docs"><h1 className="aar-title">Page not found</h1><a className="aar-button" href="#/">Return to overview</a></section>}
+    </main><footer className="collection-footer"><span>TechAaroorian UI</span><span>Design languages & composable components</span></footer>
+  </div>
+}

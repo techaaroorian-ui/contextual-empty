@@ -1,10 +1,28 @@
 # TechAaroorian UI
 
-A collection of accessible, highly-composable, headless-first React UI components designed for enterprise applications.
+A CSS-only design language for thoughtful tools, with optional companion packages.
+
+The first Aar Craft study explores **clarity through layers**: semantic color, precise surfaces, purposeful typography, and consistent interaction states. Components use the `aar-` prefix and support custom theme colors.
+
+## Documentation
+
+Run `npm run dev --workspace apps/docs` and open the Vite URL. The collection overview links to dedicated package documentation: `#/aar-craft` for the CSS language and visual lab, and `#/contextual-empty` for React installation, presets, composition, styling, and live examples. Hash routes support direct links and reloads on static hosting.
+
+Collection guides: `#/guides/icons` covers optional Lucide integration, and `#/guides/versioning` explains independent package releases. Lucide is a docs dependency, not an Aar Craft dependency. See [release policy](./docs/versioning.md) for Changesets commands and public contracts.
+
+With the server running, run `npm run test:visual --workspace apps/docs` to check browser behavior and capture review screenshots in `apps/docs/visual-artifacts/`. Screenshots are review artifacts, not approved regression baselines.
+
+Start with the [CSS package guide](./packages/aar-craft/README.md) and [design concepts](./docs/design-language.md). The CSS foundation has no runtime dependency. React powers only the documentation playground and existing companion component.
+
+The [roadmap](./docs/roadmap.md) starts with Yuwbrndr adoption, followed by component migration, refinement through real workflows, a second product, and a versioned release. With Yuwbrndr running on port 5174, run `node apps/docs/scripts/yuwbrndr-smoke.mjs` for integration checks and screenshots.
 
 This repository is managed as a Monorepo using NPM Workspaces.
 
 ## 📦 Packages
+
+### [`@techaaroorian-ui/aar-craft`](./packages/aar-craft)
+
+Theme tokens, buttons, fields, panels, toolbars, badges, typography, and empty-state styling. Light/dark/system appearance, forest/iris palettes, and compact density. Consumer overrides define custom themes.
 
 ### [`@techaaroorian-ui/contextual-empty`](./packages/contextual-empty)
 
@@ -14,7 +32,7 @@ A contextual, composable empty-state system for React applications.
 
 ## 🏗️ Architecture
 
-Our packages follow a strict set of engineering principles:
+The existing React companion packages follow these principles; the new CSS foundation uses semantic theme tokens and layered component styles:
 
 - **Zero Dependencies:** We rely on modern React and standard DOM APIs to keep bundle sizes ultra-lean.
 - **Inversion of Control:** We provide compound primitives (Dot Notation) alongside fast presets, giving developers ultimate layout control.

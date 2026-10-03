@@ -1,75 +1,15 @@
-# React + TypeScript + Vite
+# TechAaroorian UI documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+One collection site with independent package pages:
 
-Currently, two official plugins are available:
+- `#/` — collection overview and TechAaroorian UI identity.
+- `#/aar-craft` — CSS setup, themes, component specimens, workbench, motion, and design lessons.
+- `#/contextual-empty` — React setup, presets, compound API, styling, accessibility guidance, and working examples.
+- `#/guides/icons` — optional Lucide integration, labeled buttons, status, and empty-state examples.
+- `#/guides/versioning` — manifest versions, independent package policy, and Changesets workflow.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+From the repository root run `npm run dev --workspace apps/docs`. Build with `npm run build --workspace apps/docs`; lint with `npm run lint --workspace apps/docs`. The existing contextual-empty package must be built before a fresh docs checkout can resolve its dist exports.
 
-## React Compiler
+Run `npm run test:visual --workspace apps/docs` with the server running to exercise navigation, direct-link reloads, mobile overflow, live examples, and Aar Craft theme/motion checks. Screenshots are saved under `visual-artifacts/` for human review.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Routes use hashes, so static hosts do not need history-fallback rewrites. Collection branding stays in the shared shell; package branding lives within each package page. Contextual Empty is independent of Aar Craft even though the docs host uses Aar Craft for presentation.

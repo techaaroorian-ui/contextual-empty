@@ -1,0 +1,19 @@
+{
+  "name": "@techaaroorian-ui/aar-craft",
+  "version": "0.1.0",
+  "description": "Aar Craft: a themeable, CSS-only design language for tools and workspaces.",
+  "license": "MIT",
+  "files": ["src", "dist", "scripts", "CHANGELOG.md"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs"
+  },
+  "exports": {
+    ".": "./src/index.css",
+    "./index.css": "./src/index.css",
+    "./tokens.css": "./src/tokens.css",
+    "./components.css": "./src/components.css",
+    "./tailwind-v3.css": "./dist/tailwind-v3.css"
+  },
+  "sideEffects": ["**/*.css"]
+}

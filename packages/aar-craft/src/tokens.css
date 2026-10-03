@@ -1,0 +1,105 @@
+@layer theme {
+  :root, [data-theme] {
+    --aar-font-sans: "Segoe UI", system-ui, sans-serif;
+    --aar-font-mono: "Cascadia Code", Consolas, monospace;
+    --aar-space-1: .25rem;
+    --aar-space-2: .5rem;
+    --aar-space-3: .75rem;
+    --aar-space-4: 1rem;
+    --aar-space-6: 1.5rem;
+    --aar-space-8: 2rem;
+    --aar-radius-sm: .375rem;
+    --aar-radius-md: .75rem;
+    --aar-radius-lg: 1.25rem;
+    --aar-control-height: 2.75rem;
+    --aar-control-padding: 1rem;
+    --aar-panel-padding: 1.5rem;
+    --aar-duration: 140ms;
+    --aar-duration-enter: 220ms;
+    --aar-stagger-step: 35ms;
+    --aar-ease: cubic-bezier(.2, .8, .2, 1);
+    --aar-hover-offset: -1px;
+    --aar-press-scale: .98;
+    --aar-enter-offset: 6px;
+    --aar-background: #f3f4ef;
+    --aar-surface: #ffffff;
+    --aar-surface-subtle: #eceee7;
+    --aar-text: #20271e;
+    --aar-text-muted: #596153;
+    --aar-border: #d4d9ce;
+    --aar-primary: #365c29;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #365c29;
+    --aar-success: #27613d;
+    --aar-success-surface: #e8f3e8;
+    --aar-danger: #a33030;
+    --aar-danger-surface: #fceeee;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]), [data-theme="system"] {
+      --aar-background: #171d18;
+      --aar-surface: #202821;
+      --aar-surface-subtle: #29322a;
+      --aar-text: #eef3e9;
+      --aar-text-muted: #b0bcab;
+      --aar-border: #3b473b;
+      --aar-primary: #b7dc9b;
+      --aar-on-primary: #20321a;
+      --aar-focus: #b7dc9b;
+      --aar-success: #a4d9b2;
+      --aar-success-surface: #253b2d;
+      --aar-danger: #ffb4ab;
+      --aar-danger-surface: #422b29;
+    }
+  }
+
+  [data-theme="dark"] {
+    --aar-background: #171d18;
+    --aar-surface: #202821;
+    --aar-surface-subtle: #29322a;
+    --aar-text: #eef3e9;
+    --aar-text-muted: #b0bcab;
+    --aar-border: #3b473b;
+    --aar-primary: #b7dc9b;
+    --aar-on-primary: #20321a;
+    --aar-focus: #b7dc9b;
+    --aar-success: #a4d9b2;
+    --aar-success-surface: #253b2d;
+    --aar-danger: #ffb4ab;
+    --aar-danger-surface: #422b29;
+  }
+
+  [data-palette="iris"] {
+    --aar-primary: #6546a3;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #6546a3;
+  }
+  [data-theme="dark"][data-palette="iris"] {
+    --aar-primary: #d1bbff;
+    --aar-on-primary: #30204c;
+    --aar-focus: #d1bbff;
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"][data-palette="iris"] {
+      --aar-primary: #d1bbff;
+      --aar-on-primary: #30204c;
+      --aar-focus: #d1bbff;
+    }
+  }
+  [data-density="compact"] {
+    --aar-control-height: 2.25rem;
+    --aar-control-padding: .75rem;
+    --aar-panel-padding: 1rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root, [data-theme] {
+      --aar-duration: 0ms;
+      --aar-duration-enter: 0ms;
+      --aar-stagger-step: 0ms;
+      --aar-hover-offset: 0px;
+      --aar-press-scale: 1;
+      --aar-enter-offset: 0px;
+    }
+  }
+}

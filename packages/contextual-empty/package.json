@@ -20,7 +20,8 @@
     "./dist/index.css": "./dist/index.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly",
