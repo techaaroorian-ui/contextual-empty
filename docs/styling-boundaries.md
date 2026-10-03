@@ -23,4 +23,6 @@ Do not import both standalone Contextual Empty CSS and its Aar Craft styling for
 
 Dialog/sheet and collection picker ship no styles. Aar Craft supplies `aar-dialog`, optional `data-placement="end"` or `"bottom"`, `aar-picker`, and `aar-picker-option`. Their state attributes remain semantic: `[open]`, `[aria-selected]`, `[aria-disabled]`, and `[data-active]`. A picker active outline indicates the option being explored; filled selection indicates the committed choice.
 
+File Intake now includes headless file drop handling as well as validation. Aar Craft supplies the compact `aar-file-intake` composition, `aar-dropzone` drag-active state, and file-row anatomy. A consumer owns the accepted asset list, preview URLs, removal and uploads; a bare file input is the minimal integration, not the full example.
+
 Behavior may require browser primitives such as the native dialog's hidden/top-layer rules. Preserve those rules in custom CSS; headless does not mean removing the browser's accessibility behavior. Product-specific compositions, artwork, and syntax highlighting remain consumer responsibilities.

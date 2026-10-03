@@ -126,12 +126,55 @@ try {
   assert.equal(await page.getByRole('button', { name: 'Details', exact: true }).getAttribute('aria-pressed'), 'true');
   await page.getByRole('button', { name: 'Move selected to start', exact: true }).click();
   assert.equal(await page.locator('[aria-label="Collection items"] button').first().textContent(), 'Details');
-  await page.getByLabel('Choose images').setInputFiles({ name: 'cover.png', mimeType: 'image/png', buffer: Buffer.from('example') });
+  await page.getByLabel('Image files').setInputFiles({ name: 'cover.png', mimeType: 'image/png', buffer: Buffer.from('example') });
   assert.match(await page.locator('#intake-result').textContent(), /Accepted 1 file/);
-  await page.getByLabel('Choose images').setInputFiles({ name: 'oversize.png', mimeType: 'image/png', buffer: Buffer.alloc(2 * 1024 * 1024 + 1) });
+  await page.getByLabel('Image files').setInputFiles({ name: 'oversize.png', mimeType: 'image/png', buffer: Buffer.alloc(2 * 1024 * 1024 + 1) });
   assert.match(await page.locator('#intake-result').textContent(), /exceeds/);
   await page.getByRole('button', { name: 'Clear file result', exact: true }).click();
   assert.match(await page.locator('#intake-result').textContent(), /No files selected/);
+  const dropzone = page.getByRole('group', { name: 'Image drop zone' });
+  const initialDropBackground = await background(dropzone);
+  await dropzone.evaluate(element => {
+    const transfer = new DataTransfer(); transfer.items.add(new File(['image'], 'dropped.png', { type: 'image/png' }));
+    element.dispatchEvent(new DragEvent('dragenter', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+    const child = element.querySelector('button');
+    child.dispatchEvent(new DragEvent('dragenter', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+    child.dispatchEvent(new DragEvent('dragleave', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+  });
+  assert.equal(await dropzone.getAttribute('data-drag-active'), 'true', 'Moving across drop-zone children retains feedback');
+  assert.notEqual(await background(dropzone), initialDropBackground);
+  await dropzone.evaluate(element => {
+    const transfer = new DataTransfer(); transfer.items.add(new File(['image'], 'dropped.png', { type: 'image/png' }));
+    element.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+  });
+  assert.equal(await dropzone.getAttribute('data-drag-active'), null);
+  assert.equal(await page.locator('.aar-file-row').count(), 1);
+  await dropzone.evaluate(element => {
+    const transfer = new DataTransfer();
+    transfer.items.add(new File(['image'], 'good.png', { type: 'image/png' }));
+    transfer.items.add(new File(['text'], 'wrong.txt', { type: 'text/plain' }));
+    element.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+  });
+  assert.match(await page.locator('#intake-result').textContent(), /not an accepted file type/);
+  assert.equal(await page.locator('.aar-file-row').count(), 1, 'Invalid mixed batch preserves previously accepted assets');
+  await page.getByLabel('Image files', { exact: true }).setInputFiles(Array.from({ length: 4 }, (_, index) => ({ name: `asset-${index}.png`, mimeType: 'image/png', buffer: Buffer.from('image') })));
+  assert.equal(await page.locator('.aar-file-row').count(), 5);
+  assert.equal(await page.getByRole('button', { name: 'Choose images', exact: true }).isDisabled(), true);
+  await dropzone.evaluate(element => {
+    const transfer = new DataTransfer(); transfer.items.add(new File(['image'], 'extra.png', { type: 'image/png' }));
+    element.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }));
+  });
+  assert.equal(await page.locator('.aar-file-row').count(), 5, 'Disabled intake ignores additional drops');
+  await page.getByRole('button', { name: 'Remove dropped.png', exact: true }).click();
+  assert.equal(await page.getByRole('button', { name: 'Choose images', exact: true }).isEnabled(), true);
+  await page.getByRole('button', { name: 'Clear file result', exact: true }).click();
+  const chooserPromise = page.waitForEvent('filechooser');
+  await page.getByRole('button', { name: 'Choose images', exact: true }).focus();
+  await page.keyboard.press('Enter');
+  const chooser = await chooserPromise;
+  await chooser.setFiles({ name: 'keyboard.png', mimeType: 'image/png', buffer: Buffer.from('image') });
+  assert.equal(await page.locator('.aar-file-row').count(), 1, 'Keyboard file browsing works');
+  await snapshot('file-intake-mobile.png');
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'Headless guide mobile overflow');
   await snapshot('headless-mobile.png');
   const picker = page.getByRole('listbox', { name: 'Available formats' });

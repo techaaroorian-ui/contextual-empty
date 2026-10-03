@@ -25,3 +25,48 @@ export function validateFiles<T extends FileMetadata>(files: Iterable<T>, option
   }
   return { accepted: errors.length ? [] : batch, errors };
 }
+
+export interface DropzoneOptions extends IntakeOptions {
+  existingCount?: () => number;
+  disabled?: () => boolean;
+  onResult: (result: IntakeResult<File>) => void;
+  onDragChange?: (active: boolean) => void;
+}
+/** Bind file-only drag/drop events. Consumers provide a separate file input. */
+export function bindFileDropzone(element: HTMLElement, options: DropzoneOptions) {
+  let depth = 0;
+  const isFileDrag = (event: DragEvent) => Array.from(event.dataTransfer?.types ?? []).includes('Files');
+  const reset = () => { depth = 0; options.onDragChange?.(false); };
+  const enter = (event: DragEvent) => {
+    if (!isFileDrag(event)) return;
+    event.preventDefault();
+    if (options.disabled?.()) return;
+    depth++; options.onDragChange?.(true);
+  };
+  const over = (event: DragEvent) => {
+    if (!isFileDrag(event)) return;
+    event.preventDefault();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = options.disabled?.() ? 'none' : 'copy';
+  };
+  const leave = (event: DragEvent) => {
+    if (!isFileDrag(event)) return;
+    depth = Math.max(0, depth - 1);
+    if (depth === 0) reset();
+  };
+  const drop = (event: DragEvent) => {
+    if (!isFileDrag(event)) return;
+    event.preventDefault(); event.stopPropagation(); reset();
+    if (!options.disabled?.()) options.onResult(validateFiles(event.dataTransfer?.files ?? [], options, options.existingCount?.() ?? 0));
+  };
+  element.addEventListener('dragenter', enter);
+  element.addEventListener('dragover', over);
+  element.addEventListener('dragleave', leave);
+  element.addEventListener('drop', drop);
+  return { reset, destroy() {
+    element.removeEventListener('dragenter', enter);
+    element.removeEventListener('dragover', over);
+    element.removeEventListener('dragleave', leave);
+    element.removeEventListener('drop', drop);
+    reset();
+  } };
+}

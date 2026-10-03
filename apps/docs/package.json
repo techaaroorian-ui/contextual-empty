@@ -16,7 +16,7 @@
     "@techaaroorian-ui/dialog": "0.2.0-alpha.0",
     "@techaaroorian-ui/collection-picker": "0.2.0-alpha.0",
     "@techaaroorian-ui/ordered-collection": "0.2.0-alpha.0",
-    "@techaaroorian-ui/file-intake": "0.2.0-alpha.0",
+    "@techaaroorian-ui/file-intake": "0.2.0-alpha.1",
     "@techaaroorian-ui/contextual-empty": "0.1.1-alpha.0",
     "lucide-react": "^1.51.0",
     "react": "^19.2.8",

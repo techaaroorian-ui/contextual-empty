@@ -1,12 +1,11 @@
 import { useOrderedCollection } from '@techaaroorian-ui/ordered-collection/react'
-import { useFileIntake } from '@techaaroorian-ui/file-intake/react'
 import InteractionExamples from './InteractionExamples'
+import FileIntakeExample from './FileIntakeExample'
 
 const initialItems = [{ id: 'cover', name: 'Cover' }, { id: 'details', name: 'Details' }]
 
 export default function HeadlessGuide() {
   const collection = useOrderedCollection(initialItems, { minItems: 1, maxItems: 6 })
-  const intake = useFileIntake({ maxFiles: 5, maxFileBytes: 2 * 1024 * 1024, accept: ['image/*'] })
   const selected = collection.items.find(item => item.id === collection.selectedId)
   return <section className="lab-content package-docs">
     <div className="intro"><div><p className="aar-eyebrow">Collection packages / Headless</p><h1 className="aar-title">Headless building blocks</h1></div><div className="intro-copy"><p>Behavior extracted from real Yuwbrndr tasks, with your own markup and styles.</p><p className="aar-hint">Framework-independent cores. Optional React hooks. Alpha APIs under development.</p></div></div>
@@ -35,16 +34,14 @@ const collection = useOrderedCollection(initialItems, { minItems: 1, maxItems: 6
       <h2 className="aar-heading">File Intake</h2>
       <code>@techaaroorian-ui/file-intake</code>
       <p>Validate a whole batch before allocating URLs or uploading. This local example accepts up to five images, at most 2 MiB each. Files are not uploaded.</p>
-      <label className="aar-label" htmlFor="intake-files">Choose images</label>
-      <input id="intake-files" className="aar-input" type="file" multiple accept="image/*" aria-describedby="intake-result" onChange={event => { intake.validate(event.currentTarget.files ?? []); event.currentTarget.value = '' }} />
-      <div id="intake-result" role="status">{intake.errors.length ? <ul>{intake.errors.map((error, index) => <li key={index}>{error.message}</li>)}</ul> : <p>{intake.accepted.length ? `Accepted ${intake.accepted.length} file(s): ${intake.accepted.map(file => file.name).join(', ')}` : 'No files selected.'}</p>}</div>
-      <button className="aar-button" onClick={intake.clear}>Clear file result</button>
+      <FileIntakeExample />
       <pre><code>{`import { validateFiles } from '@techaaroorian-ui/file-intake';
 const result = validateFiles(files, {
   maxFiles: 5, maxFileBytes: 2 * 1024 * 1024, accept: ['image/*'],
 }, existingAssets.length);
 // result.accepted is empty if any file fails.
-// The React adapter is available from '/react'.`}</code></pre>
+// React: useFileDropzone({ ...limits, existingCount, onAccepted })
+// supplies dropzoneProps, inputProps, open(), and drag/error state.`}</code></pre>
       <p className="aar-hint">MIME and extension checks use file metadata. Consumers own content validation, storage, URL cleanup, error localization, and accessible drop-zone behavior.</p>
     </section>
     <InteractionExamples />

@@ -1,6 +1,6 @@
 {
   "name": "@techaaroorian-ui/file-intake",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "description": "Atomic file batch validation with structured errors and an optional React adapter.",
   "type": "module",
   "license": "MIT",
