@@ -12,6 +12,7 @@
   padding: clamp(1.25rem, 4vw, 3.5rem);
   border-radius: 1.25rem;
   font-family: "Segoe UI", sans-serif;
+  line-height: 1.6;
 }
 .magic-art[data-tone="parchment"] {
   --magic-bg: #f4f0e7;
@@ -60,7 +61,7 @@
   gap: 0.8rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--magic-line);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.12em;
 }
 .magic-sign {
@@ -71,7 +72,7 @@
   display: block;
   margin-top: 0.25rem;
   color: var(--magic-muted);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
 }
 .magic-theme {
   display: flex;
@@ -90,7 +91,7 @@
 .magic-theme label {
   display: grid;
   gap: 0.25rem;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
 }
 .magic-theme select {
   background: var(--magic-surface);
@@ -106,8 +107,8 @@
   padding-block: 3rem;
 }
 .magic-kicker {
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
   font-weight: 650;
   color: var(--magic-muted);
 }
@@ -146,7 +147,7 @@
 }
 .magic-caption {
   color: var(--magic-muted);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.65;
   margin-top: 1.25rem;
 }
@@ -177,8 +178,8 @@
   border-radius: 50%;
 }
 .magic-dial-core span {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
 }
 .magic-needle {
   position: absolute;
@@ -207,13 +208,13 @@
   border: 1px solid transparent;
   border-radius: 0.5rem;
   padding: 0.4rem 0.65rem;
-  font-size: 0.8rem !important;
+  font-size: 0.9375rem !important;
   transition:
     background 180ms,
     color 180ms;
 }
 .magic-orbit span {
-  font-size: 0.6rem;
+  font-size: 0.8125rem;
   color: var(--magic-muted);
 }
 .magic-orbit-0 {
@@ -251,7 +252,7 @@
   gap: 0.5rem;
   background: transparent;
   border: 0;
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
   color: var(--magic-accent) !important;
 }
 .magic-artifact {
@@ -294,7 +295,7 @@
 }
 .magic-artifact-copy > p:last-child {
   margin-top: 1rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.65;
   color: var(--magic-muted);
 }
@@ -313,7 +314,7 @@
   padding-block: 1rem;
   border-bottom: 1px solid var(--magic-line);
   animation: magic-reveal 200ms ease-out;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 .magic-tools[hidden] {
   display: none;
@@ -328,7 +329,7 @@
   padding: 0.5rem;
 }
 .magic-resolve > p:not(.magic-kicker):not(.magic-caption) {
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--magic-muted);
   margin-top: 1rem;
@@ -374,12 +375,12 @@
   min-height: 5rem;
 }
 .magic-feedback strong {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .magic-feedback p {
   color: var(--magic-muted);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   margin-top: 0.5rem;
 }
 .magic-primary {
@@ -393,7 +394,7 @@
   color: var(--magic-on-accent) !important;
   border: 0;
   border-radius: 0.6rem 0.6rem 0.6rem 0.15rem;
-  font-size: 0.8rem !important;
+  font-size: 0.9375rem !important;
   transition: filter 180ms;
 }
 .magic-primary:hover:enabled {
@@ -407,7 +408,7 @@
   border: 0;
   background: transparent;
   color: var(--magic-muted) !important;
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
 }
 .magic-foot {
   display: flex;
@@ -419,11 +420,11 @@
   padding-top: 1.5rem;
   border-top: 1px solid var(--magic-line);
   color: var(--magic-muted);
-  font-size: 0.6rem;
+  font-size: 0.8125rem;
   letter-spacing: 0.1em;
 }
 .magic-foot p {
-  font-size: 0.8rem;
+  font-size: 0.9375rem;
   letter-spacing: 0;
 }
 @keyframes magic-reveal {
