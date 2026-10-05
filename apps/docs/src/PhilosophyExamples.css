@@ -74,16 +74,6 @@
 .craft-choice[aria-pressed="true"] {
   border-color: var(--aar-primary);
   background: var(--aar-surface-subtle);
-  box-shadow: inset 3px 0 var(--aar-primary);
-}
-.craft-choice[aria-pressed="true"]::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: 5px;
-  inset-block-start: 5px;
-  width: 5px;
-  height: 5px;
-  background: var(--aar-primary);
 }
 .craft-choice:focus-visible {
   outline: 2px solid var(--aar-focus);

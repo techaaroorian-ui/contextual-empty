@@ -66,7 +66,7 @@ export default function PhilosophyGuide() {
         <h2 className="aar-heading">One language, three tasks</h2>
         <p>
           Compare light and dark themes, Forest and Iris accents, and density.
-          The selection frame uses an edge and small anchor mark; keyboard focus
+          Selection uses a thin frame and quiet surface change; keyboard focus
           has its own outer outline. Status always includes text. Narrow regions
           stack the supporting detail below the work.
         </p>

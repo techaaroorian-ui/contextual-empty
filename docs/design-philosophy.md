@@ -18,7 +18,7 @@ The mage influence is expressed through discovery, intent, and transformation. E
 
 - Typography, alignment, and spacing establish hierarchy before borders or boxes.
 - Accent identifies action or selection; semantic success and danger roles remain separate.
-- A proposed selection frame combines an accent edge and small anchor mark. Keyboard focus uses a distinct outer outline. Persistent selected state must also be exposed semantically.
+- Selection uses a thin frame and quiet surface change in these prototypes. Keyboard focus uses a distinct outer outline. Persistent selected state must also be exposed semantically. Component-specific markers can be explored where they help recognition; no decorative marker is required across every component.
 - Surfaces communicate working regions rather than decorating every item.
 - Themes change semantic roles together, maintaining readable contrast. Density is explicit; coarse input keeps generous targets.
 
