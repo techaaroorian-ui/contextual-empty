@@ -12,7 +12,7 @@ const choices = [
 export default function CollectionPickerExample() {
   const picker = useCollectionPicker(choices);
   return (
-    <div className="aar-root example-stack">
+    <div className="aar-root atelier-example example-stack">
       <label className="aar-field" htmlFor="picker-filter">
         Filter formats
         <input

@@ -27,7 +27,7 @@
   container-type: inline-size;
   background: var(--aar-surface);
   border: 1px solid var(--aar-border);
-  border-radius: var(--aar-radius-md);
+  border-radius: 1.5rem 1.5rem 0.75rem 0.75rem;
   padding: var(--aar-panel-padding);
   min-width: 0;
 }
@@ -85,7 +85,7 @@
   border-inline-start: 1px solid var(--aar-border);
 }
 .craft-label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.05em;
   color: var(--aar-text-muted);
@@ -114,7 +114,8 @@
 }
 .craft-status {
   padding: 1rem;
-  border-inline-start: 3px solid var(--aar-primary);
+  border: 1px solid var(--aar-border);
+  border-radius: 1rem 1rem 1rem 0.2rem;
   background: var(--aar-surface-subtle);
 }
 .craft-status p {
@@ -127,10 +128,24 @@
   background: var(--aar-background);
   padding: 1.5rem;
   min-height: 16rem;
+  border: 1px solid var(--aar-border);
+  border-radius: 4rem 4rem 0.5rem 0.5rem;
+  padding-block: 3rem 1.5rem;
 }
 .craft-art-title {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   line-height: 1.15;
+}
+.craft-etching {
+  width: 8rem;
+  max-width: 100%;
+  margin-inline: auto;
+  fill: none;
+  stroke: var(--aar-primary);
+  stroke-width: 0.8;
+}
+.craft-choice[aria-pressed="true"] {
+  animation: atelier-unfold 180ms ease-out;
 }
 @container (max-width:36rem) {
   .craft-split {

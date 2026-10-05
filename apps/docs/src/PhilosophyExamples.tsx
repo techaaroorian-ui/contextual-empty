@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "@techaaroorian-ui/aar-craft/index.css";
 import "./PhilosophyExamples.css";
+import "./example-setup.css";
 
 export default function PhilosophyExamples() {
   const [theme, setTheme] = useState("light");
@@ -12,7 +13,7 @@ export default function PhilosophyExamples() {
   const [weight, setWeight] = useState("Bold");
   return (
     <div
-      className="aar-root craft-lab"
+      className="aar-root atelier-example craft-lab"
       data-theme={theme}
       data-palette={palette}
       data-density={density}
@@ -160,6 +161,15 @@ export default function PhilosophyExamples() {
           </header>
           <div className="craft-split">
             <div className="craft-artwork" aria-label="Artwork elements">
+              <svg
+                className="craft-etching"
+                viewBox="0 0 160 100"
+                aria-hidden="true"
+              >
+                <circle cx="80" cy="50" r="38" />
+                <path d="M80 8 120 76H40ZM80 92 40 24h80Z" />
+                <circle cx="80" cy="50" r="14" />
+              </svg>
               <button
                 className="craft-choice craft-art-title"
                 aria-pressed={element === "Heading"}

@@ -1,6 +1,7 @@
 import PhilosophyExamples from "./PhilosophyExamples";
 import source from "./PhilosophyExamples.tsx?raw";
 import styles from "./PhilosophyExamples.css?raw";
+import sharedStyles from "./example-setup.css?raw";
 import CodeBlock from "./CodeBlock";
 
 export default function PhilosophyGuide() {
@@ -75,13 +76,14 @@ export default function PhilosophyGuide() {
       <div className="package-setup">
         <h2 className="aar-heading">Complete prototype source</h2>
         <p>
-          In an existing React application with Aar Craft installed, save both
-          files together and render PhilosophyExamples. These experimental
+          In an existing React application with Aar Craft installed, save all
+          three files together and render PhilosophyExamples. These experimental
           styles stay in the docs until the patterns have been reviewed.
         </p>
       </div>
       <CodeBlock language="tsx" title="PhilosophyExamples.tsx" code={source} />
       <CodeBlock language="css" title="PhilosophyExamples.css" code={styles} />
+      <CodeBlock language="css" title="example-setup.css" code={sharedStyles} />
     </section>
   );
 }

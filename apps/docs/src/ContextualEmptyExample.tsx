@@ -13,7 +13,7 @@ export default function ContextualEmptyExample() {
   const [view, setView] = useState("first-use");
   const [notice, setNotice] = useState("");
   return (
-    <div className="aar-root example-stack">
+    <div className="aar-root atelier-example example-stack">
       <div className="aar-toolbar" aria-label="Empty state examples">
         {[
           ["first-use", "First use"],

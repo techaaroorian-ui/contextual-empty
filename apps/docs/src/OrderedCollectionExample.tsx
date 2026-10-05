@@ -16,7 +16,7 @@ export default function OrderedCollectionExample() {
     (item) => item.id === collection.selectedId,
   );
   return (
-    <div className="aar-root example-stack">
+    <div className="aar-root atelier-example example-stack">
       <div className="aar-toolbar" aria-label="Collection items">
         {collection.items.map((item) => (
           <button

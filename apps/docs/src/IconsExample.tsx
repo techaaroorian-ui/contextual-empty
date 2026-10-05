@@ -15,7 +15,7 @@ import "./example-setup.css";
 export default function IconsExample() {
   const [message, setMessage] = useState("Try an action below.");
   return (
-    <div className="aar-root example-stack">
+    <div className="aar-root atelier-example example-stack">
       <div className="aar-toolbar">
         <button
           className="aar-button"

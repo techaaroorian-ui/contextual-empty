@@ -10,7 +10,7 @@ export default function DialogExample() {
     close: closeSheet,
   } = useDialog({ dismissOutside: false });
   return (
-    <div className="aar-root">
+    <div className="aar-root atelier-example">
       <div className="aar-toolbar">
         <button className="aar-button" onClick={openDialog}>
           Open example dialog

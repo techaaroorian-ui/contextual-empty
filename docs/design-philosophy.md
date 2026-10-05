@@ -26,6 +26,8 @@ The mage influence is expressed through discovery, intent, and transformation. E
 
 Open `#/guides/philosophy` in the documentation application. Dashboard account selection, an asynchronous checkout state, and a contextual artwork inspector use the same tokens and experimental anatomy. Checkout progression is deliberately controlled by a labeled simulation button; it does not pretend to contact a payment API.
 
+The expressive study at `#/guides/magic-art` explores a compass, etched geometry, contextual tools, and a resolving seal. Component previews now use a shared consumer stylesheet (`apps/docs/src/example-setup.css`) with parchment/night surfaces, violet/jade accents, asymmetric controls, arched work regions, and short reveals. It is included in the copyable examples. These changes do not alter the published package styles. The Aar Craft package laboratory remains available as a baseline for its current API and custom-theme contract.
+
 Compare narrow and wide regions, light/dark themes, two accent palettes, keyboard focus, reduced motion, and persistent selection after resize. Review whether the accent frame is useful in all three tasks before moving any classes into the public package. The creative example is an interaction study, not the Yuwbrndr redesign.
 
 The existing [adaptive layout philosophy](adaptive-layout.md) describes Focus, Split, Studio, Wide, and future Spatial compositions. These principles complement it; a viewport breakpoint does not provide immersive VR support.

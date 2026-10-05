@@ -2,3 +2,174 @@
   display: grid;
   gap: 1rem;
 }
+
+/* Experimental consumer styling; public Aar Craft tokens and APIs stay unchanged. */
+.atelier-example {
+  --aar-background: #f4f0e7;
+  --aar-surface: #fffaf0;
+  --aar-surface-subtle: #eee5f3;
+  --aar-text: #302936;
+  --aar-text-muted: #655b6c;
+  --aar-border: #c8becd;
+  --aar-primary: #6b468f;
+  --aar-on-primary: #ffffff;
+  --aar-focus: #6b468f;
+  --aar-duration: 180ms;
+  color: var(--aar-text);
+  line-height: 1.6;
+}
+.atelier-example[data-theme="dark"] {
+  --aar-background: #15151d;
+  --aar-surface: #1d1d28;
+  --aar-surface-subtle: #30283f;
+  --aar-text: #f0ede8;
+  --aar-text-muted: #b1abbf;
+  --aar-border: #44404f;
+  --aar-primary: #c9b6fb;
+  --aar-on-primary: #211932;
+  --aar-focus: #c9b6fb;
+}
+.atelier-example[data-palette="forest"] {
+  --aar-primary: #326954;
+  --aar-on-primary: #fff;
+  --aar-focus: #326954;
+  --aar-surface-subtle: #e1ece3;
+}
+.atelier-example[data-theme="dark"][data-palette="forest"] {
+  --aar-primary: #a8d6c4;
+  --aar-on-primary: #142d25;
+  --aar-focus: #a8d6c4;
+  --aar-surface-subtle: #223b33;
+}
+.atelier-example .aar-heading {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: -0.025em;
+}
+.atelier-example .aar-hint {
+  font-size: 0.875rem;
+}
+.atelier-example .aar-eyebrow {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+}
+.atelier-example .aar-button {
+  min-height: 44px;
+  border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
+  background: var(--aar-surface);
+  color: var(--aar-text);
+  transition:
+    background-color 180ms,
+    border-color 180ms,
+    transform 180ms;
+}
+.atelier-example .aar-button[data-variant="primary"],
+.atelier-example .aar-button[aria-pressed="true"] {
+  background: var(--aar-primary);
+  color: var(--aar-on-primary);
+}
+.atelier-example .aar-input {
+  min-height: 44px;
+  border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
+  background: var(--aar-surface);
+}
+.atelier-example select.aar-input {
+  padding-inline-end: 2rem;
+  transition:
+    background-color 180ms,
+    border-color 180ms;
+}
+.atelier-example select.aar-input:focus {
+  background: var(--aar-surface-subtle);
+}
+.atelier-example .aar-picker {
+  padding: 0.75rem;
+  border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
+  background: var(--aar-surface);
+}
+.atelier-example .aar-picker-option {
+  min-height: 44px;
+  border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
+  transition:
+    background-color 180ms,
+    color 180ms;
+}
+.atelier-example .aar-picker-option[aria-selected="true"] {
+  background: var(--aar-surface-subtle);
+  color: var(--aar-primary);
+  box-shadow: inset 0 0 0 1px var(--aar-primary);
+}
+.atelier-example .aar-dropzone {
+  position: relative;
+  background: var(--aar-surface);
+  border-radius: 3rem 3rem 0.75rem 0.75rem;
+  padding-block: 2rem;
+  transition:
+    background-color 180ms,
+    border-color 180ms;
+}
+.atelier-example .aar-dropzone > svg {
+  color: var(--aar-primary);
+  padding: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--aar-border);
+  border-radius: 50%;
+  transition: transform 220ms;
+}
+.atelier-example .aar-dropzone[data-drag-active="true"] > svg {
+  transform: translateY(-3px);
+}
+.atelier-example .aar-dropzone[data-drag-active="true"] {
+  background:var(--aar-surface-subtle);
+  border-color:var(--aar-primary);
+}
+.atelier-example .aar-file-row {
+  animation: atelier-unfold 220ms ease-out;
+}
+.atelier-example .aar-dialog {
+  background: var(--aar-surface);
+  border-radius: 1.5rem 1.5rem 0.75rem 0.75rem;
+}
+.atelier-example .aar-dialog[open] {
+  animation: atelier-unfold 220ms ease-out;
+}
+.atelier-example .aar-contextual-empty {
+  background: var(--aar-surface);
+  border-radius: 3rem 3rem 0.75rem 0.75rem;
+  padding: 2rem 1.25rem;
+}
+.atelier-example .contextual-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin-inline: auto;
+  border: 1px solid var(--aar-border);
+  border-radius: 1rem;
+  color: var(--aar-primary);
+}
+.atelier-example .contextual-empty-content h2,
+.atelier-example .contextual-empty-content h3 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+@keyframes atelier-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atelier-example *,
+  .atelier-example *::before,
+  .atelier-example *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

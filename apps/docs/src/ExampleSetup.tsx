@@ -52,8 +52,9 @@ createRoot(root).render(
 );`}
       />
       <p>
-        Dialog, Picker, and Ordered Collection import this small example-layout
-        stylesheet. File Intake uses Aar Craft's composition styles directly.
+        All component examples import this shared experimental stylesheet for
+        layout and the magic-art styling. It builds on Aar Craft without changing
+        the published framework CSS.
       </p>
       <CodeBlock title="example-setup.css" language="css" code={layoutCss} />
     </section>
