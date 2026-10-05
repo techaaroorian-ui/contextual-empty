@@ -1,7 +1,6 @@
 import CodeBlock from "./CodeBlock";
 import IconsExample from "./IconsExample";
 import exampleSource from "./IconsExample.tsx?raw";
-import layoutCss from "./example-setup.css?raw";
 
 export default function IconGuide() {
   return (
@@ -43,10 +42,8 @@ export default function IconGuide() {
         <IconsExample />
         <CodeBlock title="IconsExample.tsx" code={exampleSource} />
         <p>
-          Save this complete component and its layout stylesheet in src, then
-          import and render IconsExample in your React application.
+          Save this complete component in src, then import and render IconsExample in your React application using Aar Craft styles.
         </p>
-        <CodeBlock title="example-setup.css" language="css" code={layoutCss} />
         <p>
           Put the accessible name on an icon-only button. Hide decorative icons
           beside visible text from assistive technology.{" "}
@@ -60,6 +57,50 @@ export default function IconGuide() {
           reinforces it. Consumers supply Contextual Empty icons through its
           icon prop.
         </p>
+      </section>
+      <section className="aar-panel package-setup">
+        <h2 className="aar-heading">Functional State Runes &amp; Icon Pairing</h2>
+        <p>
+          In the Arcane Atelier philosophy, Lucide icons represent <strong>nouns and actions</strong> (e.g. download, layers, settings), while minimal astronomical runes represent <strong>operational runtime states</strong>:
+        </p>
+        <div className="table-scroll">
+          <table className="docs-table">
+            <thead>
+              <tr>
+                <th>Rune</th>
+                <th>Semantic Meaning</th>
+                <th>Role in Studio Interfaces</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code style={{ fontSize: '1.25rem' }}>✧</code></td>
+                <td><strong>Idle Potential</strong></td>
+                <td>Available actions, dormant capabilities, secondary layers</td>
+              </tr>
+              <tr>
+                <td><code style={{ fontSize: '1.25rem', color: 'var(--aar-primary)' }}>✦</code></td>
+                <td><strong>Active Selection</strong></td>
+                <td>Current illuminated tab, active preset, focused artboard</td>
+              </tr>
+              <tr>
+                <td><code style={{ fontSize: '1.25rem', color: 'var(--aar-accent, #6366f1)' }}>⟡</code></td>
+                <td><strong>Live Transmutation</strong></td>
+                <td>Reactive computation, canvas re-render, processing state</td>
+              </tr>
+              <tr>
+                <td><code style={{ fontSize: '1.25rem', color: '#10b981' }}>✓</code></td>
+                <td><strong>The Seal (Resolved)</strong></td>
+                <td>Export complete, URL state encoded, verified artifact</td>
+              </tr>
+              <tr>
+                <td><code style={{ fontSize: '1.25rem', color: '#ef4444' }}>!</code></td>
+                <td><strong>Rift Warning</strong></td>
+                <td>Validation discrepancy, file intake quota exceeded, syntax error</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
       <section className="aar-panel package-setup">
         <h2 className="aar-heading">Our recommended conventions</h2>

@@ -1,4 +1,3 @@
-import "./example-setup.css";
 import { useEffect, useRef, useState } from "react";
 import { useFileDropzone } from "@techaaroorian-ui/file-intake/react";
 import { FileImage, Upload, X } from "lucide-react";
@@ -43,10 +42,10 @@ export default function FileIntakeExample() {
         ]),
     });
   return (
-    <div className="aar-root atelier-example aar-file-intake">
-      <div className="aar-toolbar">
-        <h3 className="aar-heading">Image assets</h3>
-        <span className="aar-badge">{files.length} / 5</span>
+    <div className="aar-root aar-stack aar-file-intake" data-gap="4">
+      <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3 className="aar-heading">Studio Image Assets</h3>
+        <span className="aar-badge" data-tone={files.length === 5 ? "success" : undefined}>{files.length} / 5 slots</span>
       </div>
       <div
         {...dropzoneProps}

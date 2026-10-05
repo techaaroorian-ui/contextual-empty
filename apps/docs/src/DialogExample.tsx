@@ -1,6 +1,5 @@
 import { useDialog } from "@techaaroorian-ui/dialog/react";
 import "@techaaroorian-ui/aar-craft/index.css";
-import "./example-setup.css";
 
 export default function DialogExample() {
   const { dialogRef, open: openDialog, close: closeDialog } = useDialog();
@@ -10,8 +9,8 @@ export default function DialogExample() {
     close: closeSheet,
   } = useDialog({ dismissOutside: false });
   return (
-    <div className="aar-root atelier-example">
-      <div className="aar-toolbar">
+    <div className="aar-root aar-stack" data-gap="3">
+      <div className="aar-cluster">
         <button className="aar-button" onClick={openDialog}>
           Open example dialog
         </button>

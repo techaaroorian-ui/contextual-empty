@@ -1,7 +1,7 @@
 @layer theme {
   :root, [data-theme] {
-    --aar-font-sans: "Segoe UI", system-ui, sans-serif;
-    --aar-font-mono: "Cascadia Code", Consolas, monospace;
+    --aar-font-sans: "Inter", "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --aar-font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
     --aar-space-1: .25rem;
     --aar-space-2: .5rem;
     --aar-space-3: .75rem;
@@ -21,9 +21,13 @@
     --aar-hover-offset: -1px;
     --aar-press-scale: .98;
     --aar-enter-offset: 6px;
+
+    /* Base Surfaces (Forest / Default Light) */
     --aar-background: #f3f4ef;
     --aar-surface: #ffffff;
     --aar-surface-subtle: #eceee7;
+    --aar-surface-raised: #ffffff;
+    --aar-surface-overlay: #ffffff;
     --aar-text: #20271e;
     --aar-text-muted: #596153;
     --aar-border: #d4d9ce;
@@ -34,6 +38,12 @@
     --aar-success-surface: #e8f3e8;
     --aar-danger: #a33030;
     --aar-danger-surface: #fceeee;
+
+    /* Elevation and Aura */
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+    --aar-glow: 0 0 0 3px color-mix(in srgb, var(--aar-focus) 20%, transparent);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -41,6 +51,8 @@
       --aar-background: #171d18;
       --aar-surface: #202821;
       --aar-surface-subtle: #29322a;
+      --aar-surface-raised: #252f26;
+      --aar-surface-overlay: #2a352b;
       --aar-text: #eef3e9;
       --aar-text-muted: #b0bcab;
       --aar-border: #3b473b;
@@ -51,6 +63,10 @@
       --aar-success-surface: #253b2d;
       --aar-danger: #ffb4ab;
       --aar-danger-surface: #422b29;
+      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+      --aar-glow: 0 0 14px color-mix(in srgb, var(--aar-focus) 35%, transparent);
     }
   }
 
@@ -58,6 +74,8 @@
     --aar-background: #171d18;
     --aar-surface: #202821;
     --aar-surface-subtle: #29322a;
+    --aar-surface-raised: #252f26;
+    --aar-surface-overlay: #2a352b;
     --aar-text: #eef3e9;
     --aar-text-muted: #b0bcab;
     --aar-border: #3b473b;
@@ -68,8 +86,160 @@
     --aar-success-surface: #253b2d;
     --aar-danger: #ffb4ab;
     --aar-danger-surface: #422b29;
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+    --aar-glow: 0 0 14px color-mix(in srgb, var(--aar-focus) 35%, transparent);
   }
 
+  /* --------------------------------------------------------------------------
+     The Arcane Atelier Palettes: Obsidian & Parchment
+     Both adapt faithfully to data-theme="light" and data-theme="dark"
+     -------------------------------------------------------------------------- */
+  
+  /* Obsidian in Light Theme (Slate & Midnight Ink) */
+  [data-palette="obsidian"],
+  [data-theme="light"][data-palette="obsidian"] {
+    --aar-background: #f1f3f8;
+    --aar-surface: #ffffff;
+    --aar-surface-subtle: #e5e8f0;
+    --aar-surface-raised: #ffffff;
+    --aar-surface-overlay: #ffffff;
+    --aar-text: #131722;
+    --aar-text-muted: #58627a;
+    --aar-border: #ccd3e2;
+    --aar-primary: #5b46a8;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #7c3aed;
+    --aar-success: #15803d;
+    --aar-success-surface: #f0fdf4;
+    --aar-danger: #b91c1c;
+    --aar-danger-surface: #fef2f2;
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+    --aar-glow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  }
+
+  /* Obsidian in Dark Theme (Deep Void & Starlight) */
+  [data-theme="dark"][data-palette="obsidian"] {
+    --aar-background: #0f111a;
+    --aar-surface: #161826;
+    --aar-surface-subtle: #202438;
+    --aar-surface-raised: #1c2032;
+    --aar-surface-overlay: #252a42;
+    --aar-text: #f0f3fa;
+    --aar-text-muted: #8b96b5;
+    --aar-border: #2e354f;
+    --aar-primary: #a78bfa;
+    --aar-on-primary: #1e113a;
+    --aar-focus: #c4b5fd;
+    --aar-success: #34d399;
+    --aar-success-surface: #064e3b;
+    --aar-danger: #f87171;
+    --aar-danger-surface: #450a0a;
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+    --aar-glow: 0 0 14px rgba(167, 139, 250, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"][data-palette="obsidian"],
+    :root:not([data-theme])[data-palette="obsidian"] {
+      --aar-background: #0f111a;
+      --aar-surface: #161826;
+      --aar-surface-subtle: #202438;
+      --aar-surface-raised: #1c2032;
+      --aar-surface-overlay: #252a42;
+      --aar-text: #f0f3fa;
+      --aar-text-muted: #8b96b5;
+      --aar-border: #2e354f;
+      --aar-primary: #a78bfa;
+      --aar-on-primary: #1e113a;
+      --aar-focus: #c4b5fd;
+      --aar-success: #34d399;
+      --aar-success-surface: #064e3b;
+      --aar-danger: #f87171;
+      --aar-danger-surface: #450a0a;
+      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+      --aar-glow: 0 0 14px rgba(167, 139, 250, 0.35);
+    }
+  }
+
+  /* Parchment in Light Theme (Ancient Vellum & Iron-Gall Ink) */
+  [data-palette="parchment"],
+  [data-theme="light"][data-palette="parchment"] {
+    --aar-background: #f5f2eb;
+    --aar-surface: #fffdf9;
+    --aar-surface-subtle: #eee9dd;
+    --aar-surface-raised: #ffffff;
+    --aar-surface-overlay: #ffffff;
+    --aar-text: #26212b;
+    --aar-text-muted: #6f6578;
+    --aar-border: #dcd4c3;
+    --aar-primary: #6d28d9;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #7c3aed;
+    --aar-success: #059669;
+    --aar-success-surface: #ecfdf5;
+    --aar-danger: #dc2626;
+    --aar-danger-surface: #fef2f2;
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+    --aar-glow: 0 0 12px rgba(109, 40, 217, 0.25);
+  }
+
+  /* Parchment in Dark Theme (Burnished Night Vellum) */
+  [data-theme="dark"][data-palette="parchment"] {
+    --aar-background: #1c1b18;
+    --aar-surface: #24221f;
+    --aar-surface-subtle: #2e2c28;
+    --aar-surface-raised: #2a2824;
+    --aar-surface-overlay: #32302b;
+    --aar-text: #f4efe6;
+    --aar-text-muted: #aca396;
+    --aar-border: #444038;
+    --aar-primary: #c4b5fd;
+    --aar-on-primary: #2e1065;
+    --aar-focus: #c4b5fd;
+    --aar-success: #34d399;
+    --aar-success-surface: #064e3b;
+    --aar-danger: #f87171;
+    --aar-danger-surface: #450a0a;
+    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+    --aar-glow: 0 0 14px rgba(196, 181, 253, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"][data-palette="parchment"],
+    :root:not([data-theme])[data-palette="parchment"] {
+      --aar-background: #1c1b18;
+      --aar-surface: #24221f;
+      --aar-surface-subtle: #2e2c28;
+      --aar-surface-raised: #2a2824;
+      --aar-surface-overlay: #32302b;
+      --aar-text: #f4efe6;
+      --aar-text-muted: #aca396;
+      --aar-border: #444038;
+      --aar-primary: #c4b5fd;
+      --aar-on-primary: #2e1065;
+      --aar-focus: #c4b5fd;
+      --aar-success: #34d399;
+      --aar-success-surface: #064e3b;
+      --aar-danger: #f87171;
+      --aar-danger-surface: #450a0a;
+      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
+      --aar-glow: 0 0 14px rgba(196, 181, 253, 0.35);
+    }
+  }
+
+  /* Iris Palette */
   [data-palette="iris"] {
     --aar-primary: #6546a3;
     --aar-on-primary: #ffffff;
@@ -87,11 +257,35 @@
       --aar-focus: #d1bbff;
     }
   }
+
+  /* Celestial Jade Palette */
+  [data-palette="jade"] {
+    --aar-primary: #1f6b52;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #1f6b52;
+  }
+  [data-theme="dark"][data-palette="jade"],
+  [data-palette="obsidian"][data-accent="jade"] {
+    --aar-primary: #6ee7b7;
+    --aar-on-primary: #064e3b;
+    --aar-focus: #a7f3d0;
+    --aar-glow: 0 0 14px rgba(110, 231, 183, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"][data-palette="jade"] {
+      --aar-primary: #6ee7b7;
+      --aar-on-primary: #064e3b;
+      --aar-focus: #a7f3d0;
+      --aar-glow: 0 0 14px rgba(110, 231, 183, 0.35);
+    }
+  }
+
   [data-density="compact"] {
     --aar-control-height: 2.25rem;
     --aar-control-padding: .75rem;
     --aar-panel-padding: 1rem;
   }
+
   @media (prefers-reduced-motion: reduce) {
     :root, [data-theme] {
       --aar-duration: 0ms;

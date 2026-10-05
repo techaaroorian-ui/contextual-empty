@@ -12,3 +12,4 @@ pnpm-debug.log*
 coverage/
 visual-artifacts/
 *.local
+*.code-workspace

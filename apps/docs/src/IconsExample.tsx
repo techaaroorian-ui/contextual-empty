@@ -10,13 +10,12 @@ import {
 } from "lucide-react";
 import { SearchEmpty } from "@techaaroorian-ui/contextual-empty";
 import "@techaaroorian-ui/aar-craft/index.css";
-import "./example-setup.css";
 
 export default function IconsExample() {
   const [message, setMessage] = useState("Try an action below.");
   return (
-    <div className="aar-root atelier-example example-stack">
-      <div className="aar-toolbar">
+    <div className="aar-root aar-stack" data-gap="4">
+      <div className="aar-cluster">
         <button
           className="aar-button"
           onClick={() =>

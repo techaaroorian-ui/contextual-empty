@@ -1,6 +1,5 @@
 import { useCollectionPicker } from "@techaaroorian-ui/collection-picker/react";
 import "@techaaroorian-ui/aar-craft/index.css";
-import "./example-setup.css";
 
 const choices = [
   { id: "poster", label: "Poster" },
@@ -12,7 +11,7 @@ const choices = [
 export default function CollectionPickerExample() {
   const picker = useCollectionPicker(choices);
   return (
-    <div className="aar-root atelier-example example-stack">
+    <div className="aar-root aar-stack" data-gap="3">
       <label className="aar-field" htmlFor="picker-filter">
         Filter formats
         <input

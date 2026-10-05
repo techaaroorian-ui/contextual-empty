@@ -11,6 +11,11 @@ Both expose framework-independent ESM cores and optional `/react` hooks. This is
 
 The second extraction adds Dialog/Sheet and Collection Picker. Dialog uses native browser modality with explicit dismissal and focus restoration. Collection Picker adds filtering, disabled-option handling, keyboard navigation, typeahead, and explicit single selection. Both have optional React hooks and no CSS dependency. Browser interaction coverage lives in the docs smoke script. Resizable workspace panels and async-action lifecycles remain future work.
 
+## Third extraction
+
+- Pan & Zoom (`@techaaroorian-ui/pan-zoom`): Core mathematical algorithms for auto-fit sizing, bounding clamps, zoom stepping, and responsive viewport recalculation with `ResizeObserver`.
+- Share State (`@techaaroorian-ui/share-state`): Zero-server client-side state compression and URL hash sharing using native browser `CompressionStream('deflate-raw')`, with built-in guardrails against decompression limits.
+
 Aar Craft supplies optional styles for these behaviors and an opt-in Contextual Empty adapter. See [styling boundaries](./styling-boundaries.md); Aar Craft applications do not need a separate visual stylesheet per headless package.
 
 ## Release and adoption

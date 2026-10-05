@@ -1,33 +1,85 @@
-# Aar Craft design philosophy
+# Aar Craft Design Philosophy · The Arcane Atelier
 
-Status: proposed principles with interactive documentation prototypes. Selection marks and compositions are experiments, not public CSS contracts.
+> **"Code is modern spellcasting. The workspace is your alchemy bench."**
 
-**Make possibilities visible. Make change understandable.**
+Aar Craft fuses **modern software ergonomics** with the visual metaphor of the **Arcane Atelier** (Tech-Mage / Digital Alchemy). In digital creation tools like Yuwbrndr, engineers and creators write structured syntax (incantations) that deterministically transmutes in real-time into visual artifacts (graphics, carousels, sketches, documents).
 
-The mage influence is expressed through discovery, intent, and transformation. Everyday applications use familiar labels, quiet surfaces, and honest feedback. Fantasy ornament is optional and never required to understand a control.
+Rather than superficial fantasy ornament or skeuomorphic kitsch, Aar Craft channels the spirit of **astrolabes, sacred geometry, alchemical manuscripts, and precision laboratory instruments**: 1px etched hair-lines, obsidian slate surfaces, crisp parchment vellum, luminous focus auras, and clean celestial glyphs.
 
-## Principles
+---
 
-1. Purpose leads. The main task occupies the strongest region. Supporting tools stay nearby and are grouped by purpose.
-2. Reveal possibilities. Relevant actions become apparent in context; essential actions remain discoverable without hover or selection.
-3. States tell the truth. Selection, pending, success, and failure convey different facts. A timeout does not establish a failed payment. Status text accompanies color.
-4. Change stays connected. A short transition explains a state change or relationship. Motion must not delay access, move focus unexpectedly, or become the only signal. Reduced motion retains the same meaning.
-5. Adapt without losing context. Container space determines composition. Preserve task state and reachable actions as supporting regions move below the work.
+## 1. The Core Lifecycle: The Transmutation Cycle
 
-## Shared visual grammar
+Every creative tool built with Aar Craft revolves around three stages:
 
-- Typography, alignment, and spacing establish hierarchy before borders or boxes.
-- Accent identifies action or selection; semantic success and danger roles remain separate.
-- Selection uses a thin frame and quiet surface change in these prototypes. Keyboard focus uses a distinct outer outline. Persistent selected state must also be exposed semantically. Component-specific markers can be explored where they help recognition; no decorative marker is required across every component.
-- Surfaces communicate working regions rather than decorating every item.
-- Themes change semantic roles together, maintaining readable contrast. Density is explicit; coarse input keeps generous targets.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    THE TRANSMUTATION CYCLE                  │
+│                                                             │
+│   INCANTATION (Code & Inputs)                               │
+│        │                                                    │
+│        ▼ (16ms reactive compile)                            │
+│   TRANSMUTATION (The Live Altar / Canvas)                   │
+│        │                                                    │
+│        ▼ (Resolution & Sealing)                             │
+│   ARTIFACT (High-DPI Export, Shared Seal, Document)         │
+└─────────────────────────────────────────────────────────────┘
+```
 
-## Comparison laboratory
+1. **The Incantation (Inputs & Code)**: Monospace precision, syntax clarity, and compact toolbars. The author's intent is expressed cleanly without clutter.
+2. **The Altar of Transmutation (The Work)**: The canvas occupies the central, sacred region of the viewport. It is framed with quiet precision—subtle etched corner brackets (`┌ ┐ └ ┘`), matte elevation, and clean boundary lines.
+3. **The Seal of Resolution (Export & Delivery)**: Committing, exporting, or sharing the creation is treated as the ceremonial completion—a luminous, definitive action that provides honest, unmistakable status feedback.
 
-Open `#/guides/philosophy` in the documentation application. Dashboard account selection, an asynchronous checkout state, and a contextual artwork inspector use the same tokens and experimental anatomy. Checkout progression is deliberately controlled by a labeled simulation button; it does not pretend to contact a payment API.
+---
 
-The expressive study at `#/guides/magic-art` explores a compass, etched geometry, contextual tools, and a resolving seal. Component previews now use a shared consumer stylesheet (`apps/docs/src/example-setup.css`) with parchment/night surfaces, violet/jade accents, asymmetric controls, arched work regions, and short reveals. It is included in the copyable examples. These changes do not alter the published package styles. The Aar Craft package laboratory remains available as a baseline for its current API and custom-theme contract.
+## 2. Visual Grammar & Aesthetic Rules
 
-Compare narrow and wide regions, light/dark themes, two accent palettes, keyboard focus, reduced motion, and persistent selection after resize. Review whether the accent frame is useful in all three tasks before moving any classes into the public package. The creative example is an interaction study, not the Yuwbrndr redesign.
+### Rule I: Precision over Ornamentation
+Magic in mathematics and science is exacting. Every line, glyph, and container must have a clear structural purpose:
+- **No faux-leather, bevels, or novelty textures.**
+- **Surfaces** group related operations; they do not decorate every individual control.
+- **Borders** are delicate 1px etched hairlines (`color-mix(in srgb, var(--aar-border) 80%, transparent)`), reminiscent of finely engraved brass or stone instruments.
 
-The existing [adaptive layout philosophy](adaptive-layout.md) describes Focus, Split, Studio, Wide, and future Spatial compositions. These principles complement it; a viewport breakpoint does not provide immersive VR support.
+### Rule II: The Two Realms of Surface
+The interface lives in two deliberate, atmospheric realms:
+* **The Obsidian Realm (Dark Mode)**: Deep cosmic void (`#0f111a`), slate workbench surfaces (`#161826`), midnight blue dividers (`#2e354f`), and crisp starlight text (`#f0f3fa`).
+* **The Parchment Realm (Light Mode)**: Ancient hand-pressed vellum (`#f5f2eb`), pristine paper panels (`#fffdf9`), soft sepia dividers (`#dcd4c3`), and rich iron-gall charcoal ink (`#26212b`).
+
+### Rule III: Luminous Focus & Intent
+Traditional interfaces use harsh, jarring browser focus rings. The Arcane Atelier uses **luminous intent**:
+- Controls lift subtly (`-1px`) on hover, acknowledging intent with an inner glow.
+- Focus-visible casts a soft, focused halo (`--aar-glow`) that feels like directed illumination.
+- Active tabs and selected cards illuminate with an unmistakable primary accent while remaining accessible and WCAG AAA compliant in contrast.
+
+### Rule IV: Functional Runes & State Markers
+Minimal geometric and astronomical glyphs are used strictly to communicate **state**, never as random decor:
+* `✧` (*Star-point*): Idle potential / available action.
+* `✦` (*Illuminated Star*): Active / currently selected state.
+* `⟡` (*Rhombus Spark*): Transmuting / processing / loading.
+* `✓` (*The Seal*): Resolved / confirmed / successful export.
+* `!` (*Rift Warning*): Divergence / syntax error / invalid intake.
+
+---
+
+## 3. Layout Compositions: The Five Instruments
+
+Aar Craft structures tools using five foundational layout compositions:
+
+1. **`.aar-workspace` (The Atelier Shell)**:
+   The master frame featuring a fixed command bar header, a central canvas viewport, collapsible grimoire docks (left and right), and an optional sequence strip (bottom slide deck).
+2. **`.aar-altar` (The Work Frame)**:
+   The sacred viewport dedicated to the user's artwork. Features optional celestial corner brackets (`data-corner-brackets="true"`), isolated styling boundaries, and non-intrusive zoom/pan affordances.
+3. **`.aar-stack`**:
+   Vertical rhythm container with strict token gaps (`--aar-space-1` through `--aar-space-8`) and optional etched dividers.
+4. **`.aar-cluster`**:
+   Horizontal wrapping flex container for tool groups, segmented switches, and tag collections.
+5. **`.aar-grid`**:
+   Responsive, container-aware grid for asset collections, templates, and card decks.
+
+---
+
+## 4. Accessibility and Restraint
+
+* **Reduced Motion**: All transmutation animations, reveals, and glows respect `prefers-reduced-motion: reduce`. The visual state remains completely legible and immediate without any motion.
+* **Semantic Truth**: Color is never the sole communicator of state. Every error, pending operation, or success state carries textual or symbolic clarity.
+* **Touch & Density**: Even in compact mode, pointer targets maintain a 44px minimum touch boundary on coarse devices. Keyboard navigation (`Tab`, `Shift+Tab`, `Space`, `Enter`) is a first-class citizen for all controls.

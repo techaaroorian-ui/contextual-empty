@@ -1,6 +1,5 @@
 import { useOrderedCollection } from "@techaaroorian-ui/ordered-collection/react";
 import "@techaaroorian-ui/aar-craft/index.css";
-import "./example-setup.css";
 
 const initialItems = [
   { id: "cover", name: "Cover" },
@@ -16,12 +15,13 @@ export default function OrderedCollectionExample() {
     (item) => item.id === collection.selectedId,
   );
   return (
-    <div className="aar-root atelier-example example-stack">
-      <div className="aar-toolbar" aria-label="Collection items">
+    <div className="aar-root aar-stack" data-gap="4">
+      <div className="aar-cluster" aria-label="Collection items">
         {collection.items.map((item) => (
           <button
             key={item.id}
             className="aar-button"
+            data-variant={item.id === collection.selectedId ? 'primary' : undefined}
             aria-pressed={item.id === collection.selectedId}
             onClick={() => collection.dispatch({ type: "select", id: item.id })}
           >
@@ -29,7 +29,7 @@ export default function OrderedCollectionExample() {
           </button>
         ))}
       </div>
-      <div className="aar-toolbar">
+      <div className="aar-cluster">
         <button
           className="aar-button"
           disabled={collection.items.length >= 6}
