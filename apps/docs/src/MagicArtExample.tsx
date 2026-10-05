@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Check,
+  ChevronDown,
   Layers,
   Moon,
   RotateCcw,
@@ -83,14 +84,28 @@ export default function MagicArtExample() {
           </button>
           <label>
             Accent
-            <select
-              aria-label="Magic accent"
-              value={accent}
-              onChange={(e) => setAccent(e.target.value)}
-            >
-              <option value="violet">Violet</option>
-              <option value="jade">Jade</option>
-            </select>
+            <span className="magic-select">
+              <span
+                key={accent}
+                className="magic-select-mark"
+                aria-hidden="true"
+              >
+                ✦
+              </span>
+              <select
+                aria-label="Magic accent"
+                value={accent}
+                onChange={(e) => setAccent(e.target.value)}
+              >
+                <option value="violet">Violet</option>
+                <option value="jade">Jade</option>
+              </select>
+              <ChevronDown
+                className="magic-select-chevron"
+                size={16}
+                aria-hidden="true"
+              />
+            </span>
           </label>
         </div>
       </header>

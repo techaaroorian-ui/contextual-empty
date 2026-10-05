@@ -93,11 +93,74 @@
   gap: 0.25rem;
   font-size: 0.8125rem;
 }
-.magic-theme select {
+.magic-select {
+  position: relative;
+  display: grid;
+  min-width: 9rem;
+}
+.magic-theme .magic-select select {
+  appearance: none;
+  width: 100%;
+  min-height: 44px;
   background: var(--magic-surface);
   border: 1px solid var(--magic-line);
-  padding: 0.35rem;
-  border-radius: 0.3rem;
+  padding: 0.65rem 2.5rem 0.65rem 2.3rem;
+  border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
+  font-size: 0.9375rem;
+  letter-spacing: normal;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+.magic-select:hover select {
+  border-color: var(--magic-accent);
+}
+.magic-select:focus-within select {
+  background: var(--magic-wash);
+  border-color: var(--magic-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--magic-accent) 15%, transparent);
+}
+.magic-select-mark,
+.magic-select-chevron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--magic-accent);
+}
+.magic-select-mark {
+  inset-inline-start: 0.85rem;
+  font-size: 1rem;
+  animation: magic-select-settle 320ms ease-out;
+}
+.magic-select-chevron {
+  inset-inline-end: 0.85rem;
+  transition: transform 180ms ease;
+}
+.magic-select:hover .magic-select-chevron,
+.magic-select:focus-within .magic-select-chevron {
+  transform: translateY(calc(-50% + 2px));
+}
+@keyframes magic-select-settle {
+  from {
+    opacity: 0.4;
+    transform: translateY(-50%) rotate(-45deg) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+}
+@media (forced-colors: active) {
+  .magic-theme .magic-select select {
+    appearance: auto;
+    padding-inline: 0.75rem;
+  }
+  .magic-select-mark,
+  .magic-select-chevron {
+    display: none;
+  }
 }
 .magic-intro {
   display: grid;
