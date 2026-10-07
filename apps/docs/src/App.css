@@ -1,4 +1,13 @@
 /* Playground composition; not part of the published framework. */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .aar-docs-sidebar-content {
+    scroll-behavior: auto !important;
+  }
+}
 .lab { min-height: 100vh; }
 .lab-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 4vw; border-bottom:1px solid var(--aar-border); }
 .brand { display:flex; align-items:center; gap:.75rem; color:var(--aar-text); text-decoration:none; font-size:.9375rem; letter-spacing:-.025em; }
@@ -11,8 +20,25 @@
 .intro-copy { max-width:25rem; padding-bottom:.5rem; }
 .intro-copy > p:first-child { font-size:1.125rem; line-height:1.7; }
 .intro-copy .aar-hint { margin-top:1rem; }
-.controls { display:flex; align-items:end; flex-wrap:wrap; gap:1rem; padding:1rem; }
-.controls .aar-field { min-width:130px; flex:1; }
+.controls {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--aar-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--aar-border);
+  border-radius: var(--aar-radius-md);
+  box-shadow: var(--aar-shadow-sm);
+  margin-bottom: 1.5rem;
+  transition: box-shadow var(--aar-duration) var(--aar-ease);
+}
+.controls:hover,
+.controls:focus-within {
+  box-shadow: var(--aar-shadow-md);
+}
+.controls .aar-field { min-width:170px; flex:1; }
 .controls .aar-field:has(input[type=color]) { min-width:85px; flex:.5; }
 .color-input { padding:.25rem; cursor:pointer; }
 .compare-control { display:flex; align-items:center; gap:.5rem; min-height:var(--aar-control-height); font-size:.8125rem; }
@@ -40,15 +66,69 @@
 .section-head .aar-heading { margin:.5rem 0; font-size:1.5rem; }
 .stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; margin:1.75rem 0; }
 .stat-value { font-size:clamp(1.5rem,3vw,2.25rem); line-height:1.2; letter-spacing:-.035em; margin-top:.75rem !important; }
-.project-list { margin-top:1rem; }
-.project { display:flex; align-items:center; gap:1rem; padding:1rem 0; border-bottom:1px solid var(--aar-border); }
-.project { transition: background-color var(--aar-duration) var(--aar-ease); }
-@media (hover:hover) and (pointer:fine) {
- .project:hover { background:var(--aar-surface-subtle); }
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 1rem;
 }
-.project h3 { font-size:.9375rem; font-weight:600; }
-.project .aar-badge { margin-left:auto; white-space:nowrap; }
-.project-icon { display:grid; place-items:center; width:2.5rem; height:2.5rem; flex-shrink:0; background:var(--aar-surface-subtle); border:1px solid var(--aar-border); border-radius:var(--aar-radius-sm); color:var(--aar-text-muted); font-size:1.25rem; }
+.project {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--aar-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--aar-duration) var(--aar-ease);
+}
+@media (hover:hover) and (pointer:fine) {
+  .project:hover {
+    background: var(--aar-surface-subtle);
+    border-color: var(--aar-border);
+    translate: 0 var(--aar-hover-offset);
+    box-shadow: var(--aar-shadow-sm);
+  }
+  .project:hover .project-icon {
+    background: var(--aar-surface);
+    border-color: var(--aar-primary);
+    color: var(--aar-primary);
+    box-shadow: var(--aar-shadow-sm);
+  }
+  .project:hover h3 {
+    color: var(--aar-primary);
+  }
+}
+.project:focus-visible {
+  outline: 2px solid var(--aar-primary);
+  outline-offset: 2px;
+  background: var(--aar-surface-subtle);
+}
+.project:active {
+  scale: var(--aar-press-scale);
+}
+.project h3 {
+  font-size: .9375rem;
+  font-weight: 600;
+  transition: color var(--aar-duration) var(--aar-ease);
+}
+.project .aar-badge {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.project-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  background: var(--aar-surface-subtle);
+  border: 1px solid var(--aar-border);
+  border-radius: var(--aar-radius-sm);
+  color: var(--aar-text-muted);
+  font-size: 1.25rem;
+  transition: all var(--aar-duration) var(--aar-ease);
+}
 .notice { min-height:1.5rem; margin-top:1rem !important; }
 .workspace .aar-empty { margin-top:1rem; }
 .specimens { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; padding:1.5rem; }
@@ -87,3 +167,149 @@
  .specimens,.lessons,.review { grid-template-columns:1fr; } .specimens { padding:1rem; }
  .lab-nav .aar-button { font-size:.75rem; padding-inline:.625rem; } .lab-footer { flex-direction:column; }
 }
+
+/* Aar Craft & Headless Documentation Shell & Side Navigation */
+.aar-docs-shell {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 2.25rem;
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+.aar-docs-sidebar {
+  position: sticky;
+  top: 4.75rem;
+  max-height: calc(100vh - 5.5rem);
+  background: var(--aar-surface);
+  border: 1px solid var(--aar-border);
+  border-radius: var(--aar-radius-md);
+  box-shadow: var(--aar-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+}
+.aar-docs-sidebar-header,
+.aar-docs-sidebar-search {
+  flex-shrink: 0;
+  padding: 0.75rem 0.875rem 0.625rem;
+  background: var(--aar-surface);
+  border-bottom: 1px solid var(--aar-border);
+}
+.aar-docs-sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.625rem 0.75rem 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--aar-border) transparent;
+}
+.aar-docs-sidebar-content::-webkit-scrollbar,
+.aar-docs-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+.aar-docs-sidebar-content::-webkit-scrollbar-track,
+.aar-docs-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.aar-docs-sidebar-content::-webkit-scrollbar-thumb,
+.aar-docs-sidebar::-webkit-scrollbar-thumb {
+  background: var(--aar-border);
+  border-radius: 999px;
+}
+.aar-docs-sidebar-content::-webkit-scrollbar-thumb:hover,
+.aar-docs-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--aar-border-strong);
+}
+.aar-docs-sidebar-group {
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+  padding-left: 0.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--aar-text-muted);
+}
+.aar-docs-sidebar-group:first-child {
+  margin-top: 0;
+}
+.aar-docs-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--aar-radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--aar-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--aar-duration) var(--aar-ease);
+  white-space: nowrap;
+}
+.aar-docs-nav-item:hover {
+  background: var(--aar-surface-subtle);
+  border-color: var(--aar-border);
+  color: var(--aar-primary);
+}
+.aar-docs-nav-item[data-active="true"] {
+  background: var(--aar-surface-subtle);
+  border-color: var(--aar-primary);
+  color: var(--aar-primary);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--aar-primary), var(--aar-shadow-sm);
+}
+.aar-docs-nav-item .aar-badge {
+  margin-left: auto;
+  font-size: 0.6875rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0.15rem 0.45rem;
+}
+.aar-docs-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.aar-doc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+.aar-specimen-box {
+  padding: 1.5rem;
+  background: var(--aar-surface);
+  border: 1px solid var(--aar-border);
+  border-radius: var(--aar-radius-md);
+  box-shadow: var(--aar-shadow-sm);
+}
+.aar-specimen-preview {
+  padding: 1.75rem;
+  background: var(--aar-surface-subtle);
+  border: 1px dashed var(--aar-border-strong);
+  border-radius: var(--aar-radius-sm);
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 960px) {
+  .aar-docs-shell {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .aar-docs-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}
+

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, Search, TriangleAlert } from 'lucide-react'
+import { Plus, Search, TriangleAlert, Sparkles } from 'lucide-react'
 import {
   ContextualEmptyState,
   FirstUseEmpty,
@@ -16,10 +16,10 @@ export default function ContextualEmptyExample() {
     <div className="aar-root aar-stack" data-gap="4">
       <div className="aar-cluster" aria-label="Empty state examples">
         {[
-          ['first-use', '✧ Canvas Empty (First Use)'],
-          ['search', '⟡ Search Void'],
-          ['error', '! Transmutation Error'],
-          ['compound', '✦ Compound Altar'],
+          ['first-use', 'Canvas Empty (First Use)'],
+          ['search', 'Search Void'],
+          ['error', 'Transmutation Error'],
+          ['compound', 'Compound Altar'],
         ].map(([id, label]) => (
           <button
             className="aar-button"
@@ -77,7 +77,7 @@ export default function ContextualEmptyExample() {
         {view === 'compound' && (
           <ContextualEmptyState className="aar-contextual-empty" type="error">
             <ContextualEmptyState.Icon>
-              <span style={{ fontSize: '2rem', color: 'var(--aar-primary)' }}>⟡</span>
+              <Sparkles size={32} color="var(--aar-primary)" />
             </ContextualEmptyState.Icon>
             <ContextualEmptyState.Content>
               <h3 className="aar-heading">The Canvas Altar is Dormant</h3>
@@ -88,8 +88,9 @@ export default function ContextualEmptyExample() {
                 className="aar-button"
                 data-variant="primary"
                 onClick={() => setNotice('Altar ignited: Loaded 1200×627 Social Banner preset.')}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
               >
-                ✦ Ignite Starter Preset
+                <Sparkles size={14} /> Ignite Starter Preset
               </button>
             </ContextualEmptyState.Actions>
           </ContextualEmptyState>

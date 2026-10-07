@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { Share2 } from 'lucide-react';
 import { encodeShareState, decodeShareState } from '../../../packages/share-state/src/index';
 
 export default function ShareStateExample() {
   const [title, setTitle] = useState('Arcane Atelier Study 001');
-  const [snippet, setSnippet] = useState('<section class="atelier-altar">✦ Transmuted</section>');
+  const [snippet, setSnippet] = useState('<section class="atelier-altar">Transmuted</section>');
   const [encodedHash, setEncodedHash] = useState('');
   const [originalBytes, setOriginalBytes] = useState(0);
   const [compressedBytes, setCompressedBytes] = useState(0);
@@ -53,8 +54,8 @@ export default function ShareStateExample() {
             />
           </label>
           <div>
-            <button type="button" className="aar-button" data-variant="primary" onClick={handleCompress}>
-              ✦ Compress into URL Hash
+            <button type="button" className="aar-button" data-variant="primary" onClick={handleCompress} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Share2 size={14} /> Compress into URL Hash
             </button>
           </div>
         </div>

@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 export interface AarSelectOption {
   value: string
-  label: string
-  shortLabel?: string
+  label: ReactNode
+  shortLabel?: ReactNode
 }
 
 export interface AarSelectProps {
@@ -11,7 +13,7 @@ export interface AarSelectProps {
   value: string
   options: AarSelectOption[]
   onChange: (value: string) => void
-  style?: React.CSSProperties
+  style?: CSSProperties
   compact?: boolean
   menuAlign?: 'left' | 'right'
 }
@@ -64,20 +66,11 @@ export default function AarSelect({
           onClick={() => setIsOpen(!isOpen)}
           style={compact ? { padding: '0.35rem 0.75rem', height: '2.25rem', fontSize: '0.8125rem' } : undefined}
         >
-          <span>{(compact && selectedOption?.shortLabel) ? selectedOption.shortLabel : selectedOption?.label}</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            {(compact && selectedOption?.shortLabel) ? selectedOption.shortLabel : selectedOption?.label}
+          </span>
           <span className="aar-dropdown-arrow" aria-hidden="true">
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
+            <ChevronDown size={13} strokeWidth={2.4} />
           </span>
         </button>
 
@@ -99,7 +92,7 @@ export default function AarSelect({
                   setIsOpen(false)
                 }}
               >
-                <span>{opt.label}</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>{opt.label}</span>
               </button>
             ))}
           </div>

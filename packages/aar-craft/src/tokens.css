@@ -11,8 +11,16 @@
     --aar-radius-sm: .375rem;
     --aar-radius-md: .75rem;
     --aar-radius-lg: 1.25rem;
+    --aar-control-height-xs: 1.75rem;
+    --aar-control-padding-xs: .5rem;
+    --aar-control-height-sm: 2.25rem;
+    --aar-control-padding-sm: .75rem;
     --aar-control-height: 2.75rem;
     --aar-control-padding: 1rem;
+    --aar-control-height-lg: 3.25rem;
+    --aar-control-padding-lg: 1.25rem;
+    --aar-control-height-xl: 3.75rem;
+    --aar-control-padding-xl: 1.5rem;
     --aar-panel-padding: 1.5rem;
     --aar-duration: 140ms;
     --aar-duration-enter: 220ms;
@@ -36,6 +44,8 @@
     --aar-focus: #365c29;
     --aar-success: #27613d;
     --aar-success-surface: #e8f3e8;
+    --aar-warning: #b45309;
+    --aar-warning-surface: #fef3c7;
     --aar-danger: #a33030;
     --aar-danger-surface: #fceeee;
 
@@ -61,6 +71,8 @@
       --aar-focus: #b7dc9b;
       --aar-success: #a4d9b2;
       --aar-success-surface: #253b2d;
+      --aar-warning: #fde047;
+      --aar-warning-surface: #422006;
       --aar-danger: #ffb4ab;
       --aar-danger-surface: #422b29;
       --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
@@ -84,6 +96,8 @@
     --aar-focus: #b7dc9b;
     --aar-success: #a4d9b2;
     --aar-success-surface: #253b2d;
+    --aar-warning: #fde047;
+    --aar-warning-surface: #422006;
     --aar-danger: #ffb4ab;
     --aar-danger-surface: #422b29;
     --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);

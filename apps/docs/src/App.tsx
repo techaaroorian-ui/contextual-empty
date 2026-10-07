@@ -3,12 +3,30 @@ import './App.css'
 import './CollectionDocs.css'
 import '../../../packages/aar-craft/src/index.css'
 import AarCraftDocs from './AarCraftDocs'
-import ContextualEmptyDocs from './ContextualEmptyDocs'
+import HeadlessGuide from './HeadlessGuide'
 import IconGuide from './IconGuide'
 import VersioningGuide from './VersioningGuide'
-import HeadlessGuide from './HeadlessGuide'
 import PhilosophyGuide from './PhilosophyGuide'
 import AarSelect from './AarSelect'
+import {
+  Sun,
+  Moon,
+  Laptop,
+  Sparkles,
+  Scroll,
+  Gem,
+  TreePine,
+  Building2,
+  ArrowRight,
+  LayoutGrid,
+  Move,
+  FolderArchive,
+  Layers,
+  UploadCloud,
+} from 'lucide-react'
+
+import MagicArtGuide from './MagicArtGuide'
+import { initMagicSparkAutoListener } from './magic-spark'
 
 function subscribe(listener: () => void) {
   window.addEventListener('hashchange', listener)
@@ -18,17 +36,20 @@ const snapshot = () => window.location.hash || '#/'
 const pages = [
   ['#/', 'Overview'],
   ['#/aar-craft', 'Aar Craft'],
-  ['#/contextual-empty', 'Contextual Empty'],
   ['#/headless', 'Headless'],
   ['#/guides/philosophy', 'Philosophy'],
+  ['#/guides/magic-art', 'Magic Art'],
   ['#/guides/icons', 'Icons'],
   ['#/guides/versioning', 'Versioning'],
 ]
 
 export default function App() {
   const route = useSyncExternalStore(subscribe, snapshot)
-  const known = pages.some(([path]) => path === route)
-  const title = pages.find(([path]) => path === route)?.[1] || 'Page not found'
+  const isContextualEmpty = route === '#/contextual-empty'
+  const known = pages.some(([path]) => path === route) || isContextualEmpty
+  const title = isContextualEmpty
+    ? 'Contextual Empty · Headless'
+    : pages.find(([path]) => path === route)?.[1] || 'Page not found'
 
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>(() => {
     const saved = localStorage.getItem('aar-docs-theme')
@@ -53,7 +74,9 @@ export default function App() {
   }
 
   useEffect(() => {
-    document.title = `${title} · TechAaroorian UI · Arcane Atelier`
+    document.title = `${title} · TechAaroorian UI · Universal Design System`
+    const cleanup = initMagicSparkAutoListener()
+    return cleanup
   }, [title])
 
   return (
@@ -102,9 +125,21 @@ export default function App() {
             value={theme}
             onChange={handleThemeChange}
             options={[
-              { value: 'light', label: '☀️ Light', shortLabel: '☀️ Light' },
-              { value: 'dark', label: '🌙 Dark', shortLabel: '🌙 Dark' },
-              { value: 'system', label: '💻 System', shortLabel: '💻 System' },
+              {
+                value: 'light',
+                label: <><Sun size={13} /> Light</>,
+                shortLabel: <><Sun size={13} /> Light</>,
+              },
+              {
+                value: 'dark',
+                label: <><Moon size={13} /> Dark</>,
+                shortLabel: <><Moon size={13} /> Dark</>,
+              },
+              {
+                value: 'system',
+                label: <><Laptop size={13} /> System</>,
+                shortLabel: <><Laptop size={13} /> System</>,
+              },
             ]}
           />
           <AarSelect
@@ -113,11 +148,31 @@ export default function App() {
             value={palette}
             onChange={handlePaletteChange}
             options={[
-              { value: 'obsidian', label: '✦ Obsidian (Night Atelier)', shortLabel: '✦ Obsidian' },
-              { value: 'parchment', label: '✧ Parchment (Ancient Vellum)', shortLabel: '✧ Parchment' },
-              { value: 'jade', label: '⟡ Celestial Jade', shortLabel: '⟡ Jade' },
-              { value: 'forest', label: '🌿 Forest (Botanical)', shortLabel: '🌿 Forest' },
-              { value: 'iris', label: '🔮 Iris (Mystic)', shortLabel: '🔮 Iris' },
+              {
+                value: 'obsidian',
+                label: <><Sparkles size={13} /> Obsidian (Night Atelier)</>,
+                shortLabel: <><Sparkles size={13} /> Obsidian</>,
+              },
+              {
+                value: 'parchment',
+                label: <><Scroll size={13} /> Parchment (Ancient Vellum)</>,
+                shortLabel: <><Scroll size={13} /> Parchment</>,
+              },
+              {
+                value: 'jade',
+                label: <><Gem size={13} /> Celestial Jade</>,
+                shortLabel: <><Gem size={13} /> Jade</>,
+              },
+              {
+                value: 'forest',
+                label: <><TreePine size={13} /> Forest (Botanical)</>,
+                shortLabel: <><TreePine size={13} /> Forest</>,
+              },
+              {
+                value: 'iris',
+                label: <><Sparkles size={13} /> Iris (Mystic)</>,
+                shortLabel: <><Sparkles size={13} /> Iris</>,
+              },
             ]}
           />
         </div>
@@ -126,6 +181,8 @@ export default function App() {
       <main id="docs-content" tabIndex={-1}>
         {route === '#/guides/philosophy' ? (
           <PhilosophyGuide />
+        ) : route === '#/guides/magic-art' ? (
+          <MagicArtGuide />
         ) : route === '#/headless' ? (
           <HeadlessGuide />
         ) : route === '#/guides/icons' ? (
@@ -140,28 +197,28 @@ export default function App() {
             onPaletteChange={handlePaletteChange}
           />
         ) : route === '#/contextual-empty' ? (
-          <ContextualEmptyDocs />
+          <HeadlessGuide initialSection="contextual-empty" />
         ) : known ? (
           <section className="lab-content collection-home">
             <div className="intro">
               <div>
-                <p className="aar-eyebrow">The Arcane Atelier · Studio Ergonomics</p>
+                <p className="aar-eyebrow">Clean Design System · Optional Magic Art</p>
                 <h1 className="aar-title">
-                  Code is modern spellcasting.<br />
-                  <span>The workspace is your alchemy bench.</span>
+                  Precision Layouts for All Applications.<br />
+                  <span>Subtle enchantment when you want it.</span>
                 </h1>
               </div>
               <div className="intro-copy">
                 <p>
-                  TechAaroorian UI fuses <strong>modern software ergonomics</strong> with the depth of the Arcane Atelier. In creative tools like Yuwbrndr, structured parameters deterministically transmute in real-time into visual artifacts.
+                  TechAaroorian UI and Aar Craft provide a <strong>proper, clean design and layout system</strong> for all kinds of applications—from enterprise SaaS dashboards to creative engineering tools. Magic-Art is an <strong>optional, extendable layer</strong> of subtle animations: button star sparks, fluid collapsible sidebars, and cascading options.
                 </p>
                 <p className="aar-hint">
-                  Pure CSS foundations, headless viewport math, and zero-server state sharing.
+                  Pure CSS foundations, zero runtime dependencies, and accessible ergonomics.
                 </p>
               </div>
             </div>
 
-            {/* The Transmutation Cycle Ribbon */}
+            {/* Architecture Ribbon */}
             <div
               className="aar-card cycle-ribbon"
               style={{
@@ -175,27 +232,32 @@ export default function App() {
               <div className="aar-cluster" style={{ justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
                 <div className="aar-cluster" style={{ gap: '1.5rem', flexWrap: 'wrap' }}>
                   <div className="aar-cluster" style={{ gap: '0.5rem' }}>
-                    <span style={{ color: 'var(--aar-text-muted)' }}>✧</span>
-                    <strong>1. Incantation</strong>
-                    <span className="aar-hint">(Code &amp; Sliders)</span>
+                    <span style={{ color: 'var(--aar-primary)', display: 'inline-flex', alignItems: 'center' }}><Building2 size={16} /></span>
+                    <strong>1. Clean Design System</strong>
+                    <span className="aar-hint">(Universal Foundation)</span>
                   </div>
-                  <span style={{ color: 'var(--aar-border-strong)' }}>➔</span>
+                  <span style={{ color: 'var(--aar-border-strong)', display: 'inline-flex', alignItems: 'center' }}><ArrowRight size={13} /></span>
                   <div className="aar-cluster" style={{ gap: '0.5rem' }}>
-                    <span style={{ color: 'var(--aar-primary)' }}>⟡</span>
-                    <strong>2. The Altar</strong>
-                    <span className="aar-hint">(Canvas Viewport)</span>
+                    <span style={{ color: 'var(--aar-primary)', display: 'inline-flex', alignItems: 'center' }}><LayoutGrid size={16} /></span>
+                    <strong>2. Layout Primitives</strong>
+                    <span className="aar-hint">(Sidebars, Headers &amp; Grids)</span>
                   </div>
-                  <span style={{ color: 'var(--aar-border-strong)' }}>➔</span>
+                  <span style={{ color: 'var(--aar-border-strong)', display: 'inline-flex', alignItems: 'center' }}><ArrowRight size={13} /></span>
                   <div className="aar-cluster" style={{ gap: '0.5rem' }}>
-                    <span style={{ color: '#10b981' }}>✓</span>
-                    <strong>3. The Seal</strong>
-                    <span className="aar-hint">(High-DPI Artifact)</span>
+                    <span style={{ color: '#10b981', display: 'inline-flex', alignItems: 'center' }}><Sparkles size={16} /></span>
+                    <strong>3. Optional Magic-Art</strong>
+                    <span className="aar-hint">(Subtle Animations)</span>
                   </div>
                 </div>
 
-                <a className="aar-button" data-variant="quiet" href="#/guides/philosophy" style={{ fontSize: '0.8125rem' }}>
-                  Read Design Philosophy →
-                </a>
+                <div className="aar-cluster" style={{ gap: '0.5rem' }}>
+                  <a className="aar-button" data-variant="quiet" href="#/guides/philosophy" style={{ fontSize: '0.8125rem' }}>
+                    Design Philosophy →
+                  </a>
+                  <a className="aar-button" data-variant="primary" href="#/guides/magic-art" style={{ fontSize: '0.8125rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <Sparkles size={13} /> Magic Art Lab →
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -217,8 +279,23 @@ export default function App() {
               </article>
 
               <article className="aar-panel package-card">
-                <span className="empty-package-mark" aria-hidden="true">
-                  [ ⟡ ]
+                <span className="empty-package-mark" aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <FolderArchive size={26} />
+                </span>
+                <p className="aar-eyebrow">Headless Studio Component</p>
+                <h2 className="aar-heading">Contextual Empty</h2>
+                <p>
+                  Explain first use, empty canvas stages, and recovery flows with a clear next action instead of dead-end placeholders.
+                </p>
+                <code>@techaaroorian-ui/contextual-empty</code>
+                <a className="aar-button" href="#/contextual-empty">
+                  Explore Contextual Empty →
+                </a>
+              </article>
+
+              <article className="aar-panel package-card">
+                <span className="empty-package-mark" aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Move size={26} />
                 </span>
                 <p className="aar-eyebrow">Headless Studio Viewport Math</p>
                 <h2 className="aar-heading">Pan &amp; Zoom</h2>
@@ -232,32 +309,32 @@ export default function App() {
               </article>
 
               <article className="aar-panel package-card">
-                <span className="empty-package-mark" aria-hidden="true">
-                  #share=v1z…
+                <span className="empty-package-mark" aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Layers size={26} />
                 </span>
-                <p className="aar-eyebrow">Zero-Server State Sharing</p>
-                <h2 className="aar-heading">Share State</h2>
+                <p className="aar-eyebrow">Deterministic Sequence Engine</p>
+                <h2 className="aar-heading">Ordered Collection</h2>
                 <p>
-                  Encodes and compresses studio state directly into URL hash fragments via browser-native deflate compression. No database required.
+                  Deterministic state machine for multi-slide presentations, canvas layers, and undoable timelines with zero UI lock-in.
                 </p>
-                <code>@techaaroorian-ui/share-state</code>
+                <code>@techaaroorian-ui/ordered-collection</code>
                 <a className="aar-button" href="#/headless">
-                  Explore Share State →
+                  Explore Ordered Collection →
                 </a>
               </article>
 
               <article className="aar-panel package-card">
-                <span className="empty-package-mark" aria-hidden="true">
-                  [ + ]
+                <span className="empty-package-mark" aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <UploadCloud size={26} />
                 </span>
-                <p className="aar-eyebrow">Composable React Component</p>
-                <h2 className="aar-heading">Contextual Empty</h2>
+                <p className="aar-eyebrow">Atomic Batch Intake</p>
+                <h2 className="aar-heading">File Intake</h2>
                 <p>
-                  Explain first use, empty canvas stages, and recovery flows with a clear next action instead of dead-end placeholders.
+                  Validates batches of images or creative assets atomically before allocating object URLs or GPU memory.
                 </p>
-                <code>@techaaroorian-ui/contextual-empty</code>
-                <a className="aar-button" href="#/contextual-empty">
-                  Explore Contextual Empty →
+                <code>@techaaroorian-ui/file-intake</code>
+                <a className="aar-button" href="#/headless">
+                  Explore File Intake →
                 </a>
               </article>
             </div>
@@ -266,7 +343,7 @@ export default function App() {
             <section className="collection-note" style={{ maxWidth: '48rem' }}>
               <h2 className="aar-heading">Built for High-Precision Creative Studios</h2>
               <p>
-                Whether you need a full aesthetic shell with <strong>Aar Craft</strong>, infinite canvas positioning with <strong>Pan &amp; Zoom</strong>, or serverless persistence with <strong>Share State</strong>, each package is modular, independently tested, and production-ready.
+                Whether you need a full aesthetic shell with <strong>Aar Craft</strong>, actionable recovery states with <strong>Contextual Empty</strong>, infinite canvas positioning with <strong>Pan &amp; Zoom</strong>, or deterministic layer control with <strong>Ordered Collection</strong>, each engine is modular and production-ready.
               </p>
             </section>
           </section>

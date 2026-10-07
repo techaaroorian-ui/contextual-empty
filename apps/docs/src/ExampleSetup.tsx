@@ -2,21 +2,17 @@ import CodeBlock from './CodeBlock'
 import layoutCss from './example-setup.css?raw'
 import aarCraft from '../../../packages/aar-craft/package.json'
 import panZoom from '../../../packages/pan-zoom/package.json'
-import shareState from '../../../packages/share-state/package.json'
 import orderedCollection from '../../../packages/ordered-collection/package.json'
 import fileIntake from '../../../packages/file-intake/package.json'
-import dialog from '../../../packages/dialog/package.json'
-import collectionPicker from '../../../packages/collection-picker/package.json'
+import contextualEmpty from '../../../packages/contextual-empty/package.json'
 
 export default function ExampleSetup() {
   const packages = [
     aarCraft,
     panZoom,
-    shareState,
     orderedCollection,
     fileIntake,
-    dialog,
-    collectionPicker,
+    contextualEmpty,
   ]
 
   return (

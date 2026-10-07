@@ -1,135 +1,556 @@
 import { useState } from 'react'
+import {
+  LayoutDashboard,
+  FolderKanban,
+  LineChart,
+  Settings,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Layers,
+  X,
+  Check,
+  Building2,
+  Wand2,
+  RefreshCw,
+  Maximize2,
+  Sparkles,
+} from 'lucide-react'
+import AarSelect from './AarSelect'
+import { sparkMagicStars } from './magic-spark'
+import CodeBlock from './CodeBlock'
 
 export default function PhilosophyGuide() {
-  const [activeCycle, setActiveCycle] = useState<'incantation' | 'altar' | 'seal'>('altar')
-  const [realm, setRealm] = useState<'obsidian' | 'parchment'>('obsidian')
+  const [magicArtEnabled, setMagicArtEnabled] = useState(true)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [activeNav, setActiveNav] = useState('dashboard')
+  const [sampleOption, setSampleOption] = useState('production')
+  const [sparkCount, setSparkCount] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalWaveKey, setModalWaveKey] = useState(0)
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, color?: string) => {
+    if (magicArtEnabled) {
+      sparkMagicStars(e, color ? { color } : undefined)
+      setSparkCount((prev) => prev + 1)
+    }
+  }
+
+  const handleOpenModal = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleButtonClick(e)
+    setModalWaveKey((k) => k + 1)
+    setModalOpen(true)
+  }
 
   return (
     <section className="lab-content package-docs">
+      {/* Intro Header */}
       <div className="package-setup">
-        <p className="aar-eyebrow">Aar Craft · Design Philosophy</p>
-        <h1 className="aar-title">The Arcane Atelier</h1>
-        <p className="aar-subtitle" style={{ fontSize: '1.25rem', color: 'var(--aar-text-muted)', fontStyle: 'italic', margin: '0.5rem 0 1rem' }}>
-          &ldquo;Code is modern spellcasting. The workspace is your alchemy bench.&rdquo;
+        <p className="aar-eyebrow">Aar Craft · Design Philosophy &amp; Architecture</p>
+        <h1 className="aar-title">Clean Foundation, Optional Magic</h1>
+        <p
+          className="aar-subtitle"
+          style={{
+            fontSize: '1.25rem',
+            color: 'var(--aar-text-muted)',
+            fontStyle: 'italic',
+            margin: '0.5rem 0 1rem',
+          }}
+        >
+          &ldquo;Precision design for all applications. Subtle enchantment on demand.&rdquo;
         </p>
         <p>
-          Aar Craft fuses <strong>modern software ergonomics</strong> with the precision and atmospheric depth of an <strong>Arcane Atelier</strong> (Tech-Mage / Digital Alchemy). In creative engineering tools like Yuwbrndr, creators write structured parameters and logic that deterministically transmute in real-time into visual artifacts.
+          <strong>TechAaroorian UI</strong> and <strong>Aar Craft</strong> provide a proper, clean design and layout
+          system engineered for <strong>all kinds of applications</strong>—from enterprise SaaS platforms,
+          analytics dashboards, and developer consoles, to creative studios like Yuwbrndr.
         </p>
         <p>
-          Rather than superficial fantasy ornament or skeuomorphic kitsch, Aar Craft channels the spirit of <strong>astrolabes, sacred geometry, alchemical manuscripts, and precision laboratory instruments</strong>: 1px etched hairlines, obsidian slate surfaces, crisp parchment vellum, luminous focus auras, and clean functional state runes.
+          The <strong>magic-art philosophy is optional</strong>. Clean business applications need zero visual
+          distraction, honest functional typography, and robust layout structures. When you choose to extend
+          with Magic-Art, it becomes an <strong>opt-in layer of subtle animations</strong>: semi-transparent frosted
+          glass, perimeter border waves that grow and dissolve, and tactile click sparks.
         </p>
       </div>
 
-      {/* The Transmutation Cycle */}
-      <div className="package-setup" style={{ marginTop: '2.5rem' }}>
-        <h2 className="aar-heading">1. The Transmutation Cycle</h2>
-        <p>
-          Every creative tool and studio surface built with Aar Craft is organized around three deterministic stages:
-        </p>
-
-        <div className="aar-segmented" role="tablist" aria-label="Transmutation Stages" style={{ marginBottom: '1.25rem' }}>
-          <button
-            type="button"
-            className="aar-segmented-item"
-            data-active={activeCycle === 'incantation'}
-            onClick={() => setActiveCycle('incantation')}
-          >
-            ✧ 1. Incantation (Inputs)
-          </button>
-          <button
-            type="button"
-            className="aar-segmented-item"
-            data-active={activeCycle === 'altar'}
-            onClick={() => setActiveCycle('altar')}
-          >
-            ⟡ 2. The Altar (Canvas)
-          </button>
-          <button
-            type="button"
-            className="aar-segmented-item"
-            data-active={activeCycle === 'seal'}
-            onClick={() => setActiveCycle('seal')}
-          >
-            ✓ 3. The Seal (Artifact)
-          </button>
+      {/* Mode Comparison Banner */}
+      <div
+        className="aar-panel"
+        style={{
+          marginTop: '2rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem',
+          border: '1px solid var(--aar-border-strong)',
+          background: 'var(--aar-surface-raised)',
+        }}
+      >
+        <div>
+          <span className="aar-badge" data-variant="primary" style={{ marginBottom: '0.5rem' }}>
+            Interactive Demo Control
+          </span>
+          <h3 style={{ margin: 0, fontSize: '1.1rem' }}>
+            Current Mode: {magicArtEnabled ? '✨ Magic-Art Enabled (Subtle Animations)' : '🏢 Clean Mode (Universal / Minimalist)'}
+          </h3>
+          <p style={{ margin: '0.25rem 0 0', fontSize: '0.875rem', color: 'var(--aar-text-muted)' }}>
+            Toggle below to see how components behave in a pure clean layout vs. with optional subtle micro-animations.
+          </p>
         </div>
 
-        <div className="aar-card" style={{ padding: '1.5rem', border: '1px solid var(--aar-border-strong)', background: 'var(--aar-surface-raised)' }}>
-          {activeCycle === 'incantation' && (
-            <div className="aar-stack" style={{ gap: '0.75rem' }}>
-              <div className="aar-cluster" style={{ justifyContent: 'space-between' }}>
-                <span className="aar-badge" data-variant="primary">Stage 1 · Intent</span>
-                <span className="aar-hint">Monospace Precision</span>
-              </div>
-              <h3 style={{ margin: 0, fontSize: '1.1rem' }}>The Incantation (Code, Sliders &amp; Form Fields)</h3>
-              <p style={{ margin: 0, color: 'var(--aar-text-muted)' }}>
-                The author's intent is expressed cleanly without visual friction. Inputs use clear monospace typography, strict boundaries, and non-distracting controls so creative logic remains the focus.
-              </p>
-              <div className="aar-cluster" style={{ gap: '0.5rem', marginTop: '0.5rem' }}>
-                <code style={{ fontSize: '0.85rem' }}>&lt;input class="aar-input" /&gt;</code>
-                <code style={{ fontSize: '0.85rem' }}>&lt;div class="aar-segmented" /&gt;</code>
-                <code style={{ fontSize: '0.85rem' }}>&lt;input type="range" class="aar-range" /&gt;</code>
+        <div className="aar-cluster" style={{ gap: '0.75rem' }}>
+          <button
+            type="button"
+            className="aar-button"
+            data-variant={!magicArtEnabled ? 'primary' : undefined}
+            onClick={() => setMagicArtEnabled(false)}
+          >
+            <Building2 size={16} />
+            <span>Clean Mode (Universal)</span>
+          </button>
+          <button
+            type="button"
+            className="aar-button"
+            data-variant={magicArtEnabled ? 'primary' : undefined}
+            onClick={(e) => {
+              setMagicArtEnabled(true)
+              sparkMagicStars(e)
+            }}
+          >
+            <Wand2 size={16} />
+            <span>Magic-Art (Animated)</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 1. Universal Layout & Application Shell Demo */}
+      <div className="package-setup" style={{ marginTop: '2.5rem' }}>
+        <h2 className="aar-heading">1. Proper Clean Layout System for All Applications</h2>
+        <p>
+          Aar Craft provides rock-solid application shell primitives: responsive header, collapsible sidebar,
+          flexible content canvas, multi-column split panes, and metric grids. Below is a live application shell:
+        </p>
+
+        {/* Live Application Workspace Preview */}
+        <div
+          className="aar-panel"
+          data-magic-art={magicArtEnabled ? 'true' : 'false'}
+          style={{
+            padding: 0,
+            overflow: 'hidden',
+            border: '1px solid var(--aar-border)',
+            borderRadius: 'var(--aar-radius-lg)',
+            marginTop: '1.25rem',
+            background: 'var(--aar-background)',
+            minHeight: '440px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {/* Top Header / Navbar */}
+          <div className="aar-workspace-header" style={{ padding: '0.625rem 1rem' }}>
+            <div className="aar-cluster" style={{ gap: '0.75rem' }}>
+              <button
+                type="button"
+                className="aar-sidebar-toggle"
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                aria-label="Toggle sidebar"
+                title="Toggle sidebar"
+              >
+                <span className="aar-sidebar-toggle-icon" aria-hidden="true">
+                  {sidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+                </span>
+              </button>
+              <div style={{ fontWeight: 600, fontSize: '0.9375rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ color: 'var(--aar-primary)' }}>◆</span>
+                <span>Nova Workspace</span>
               </div>
             </div>
-          )}
 
-          {activeCycle === 'altar' && (
-            <div className="aar-stack" style={{ gap: '0.75rem' }}>
-              <div className="aar-cluster" style={{ justifyContent: 'space-between' }}>
-                <span className="aar-badge" data-variant="primary">Stage 2 · Live Transformation</span>
-                <span className="aar-hint">Framed Geometry</span>
-              </div>
-              <h3 style={{ margin: 0, fontSize: '1.1rem' }}>The Altar of Transmutation (The Viewport)</h3>
-              <p style={{ margin: 0, color: 'var(--aar-text-muted)' }}>
-                The canvas is the focal, central altar of the studio. It is framed with quiet precision—matte elevation, etched corner brackets (<code style={{ padding: '0 4px' }}>data-corner-brackets="true"</code>), and pan-zoom math isolated from surrounding chrome.
-              </p>
-              <div
-                className="aar-altar"
-                data-corner-brackets="true"
-                style={{
-                  minHeight: '120px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'var(--aar-surface)',
-                  margin: '0.5rem 0',
-                }}
+            <div className="aar-cluster" style={{ gap: '0.5rem' }}>
+              <span className="aar-badge" data-tone="success">✓ Production Ready</span>
+              <button
+                type="button"
+                className="aar-button"
+                data-variant="primary"
+                onClick={(e) => handleButtonClick(e)}
               >
-                <div style={{ textAlign: 'center' }}>
-                  <span style={{ fontSize: '1.75rem' }}>⟡</span>
-                  <p style={{ margin: '0.25rem 0 0', fontSize: '0.9rem', color: 'var(--aar-text-muted)' }}>
-                    Artwork rendered in isolated coordinates
+                {magicArtEnabled ? <Sparkles size={16} /> : null}
+                <span>{magicArtEnabled ? 'Spark Action' : '+ New Item'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Workspace Body: Sidebar + Main Content */}
+          <div className="aar-workspace-body" style={{ flex: 1, minHeight: '380px' }}>
+            {/* Collapsible Sidebar */}
+            <aside
+              className="aar-sidebar"
+              data-collapsed={sidebarCollapsed ? 'rail' : 'false'}
+              style={{
+                width: sidebarCollapsed ? '4.25rem' : '14rem',
+                minWidth: sidebarCollapsed ? '4.25rem' : '14rem',
+              }}
+            >
+              <div className="aar-sidebar-nav">
+                {[
+                  { id: 'dashboard', icon: <LayoutDashboard size={17} />, label: 'Dashboard', badge: '12' },
+                  { id: 'projects', icon: <FolderKanban size={17} />, label: 'Projects', badge: '4' },
+                  { id: 'analytics', icon: <LineChart size={17} />, label: 'Analytics' },
+                  { id: 'settings', icon: <Settings size={17} />, label: 'Settings' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className="aar-sidebar-item"
+                    data-active={activeNav === item.id ? 'true' : 'false'}
+                    onClick={() => setActiveNav(item.id)}
+                  >
+                    <span className="aar-sidebar-icon" aria-hidden="true">{item.icon}</span>
+                    <span className="aar-sidebar-label">{item.label}</span>
+                    {!sidebarCollapsed && item.badge && (
+                      <span className="aar-badge" style={{ padding: '0.1rem 0.4rem', fontSize: '0.7rem' }}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <div className="aar-sidebar-footer">
+                {!sidebarCollapsed ? (
+                  <span className="aar-hint" style={{ fontSize: '0.75rem' }}>
+                    {magicArtEnabled ? 'Fluid transition on toggle' : 'Collapsible sidebar'}
+                  </span>
+                ) : (
+                  <span className="aar-hint" style={{ textAlign: 'center', width: '100%', fontSize: '0.75rem' }}>
+                    <Settings size={15} />
+                  </span>
+                )}
+              </div>
+            </aside>
+
+            {/* Main Content Area */}
+            <main className="aar-workspace-main" style={{ padding: '1.25rem' }}>
+              <div className="aar-page-header">
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '1.2rem' }}>
+                    {activeNav.charAt(0).toUpperCase() + activeNav.slice(1)} Overview
+                  </h3>
+                  <p className="aar-hint" style={{ margin: '0.25rem 0 0' }}>
+                    Standard clean layout primitives working cleanly across themes and densities.
                   </p>
                 </div>
+                <div className="aar-cluster">
+                  <AarSelect
+                    compact
+                    value={sampleOption}
+                    onChange={setSampleOption}
+                    options={[
+                      { value: 'production', label: 'Production Env', shortLabel: 'Prod' },
+                      { value: 'staging', label: 'Staging Cluster', shortLabel: 'Stage' },
+                      { value: 'preview', label: 'Preview Branch', shortLabel: 'Preview' },
+                    ]}
+                  />
+                </div>
               </div>
-            </div>
-          )}
 
-          {activeCycle === 'seal' && (
-            <div className="aar-stack" style={{ gap: '0.75rem' }}>
-              <div className="aar-cluster" style={{ justifyContent: 'space-between' }}>
-                <span className="aar-badge" data-variant="primary">Stage 3 · Resolution</span>
-                <span className="aar-hint">Definitive State</span>
+              {/* Metrics Grid */}
+              <div className="aar-grid" style={{ '--aar-grid-min': '10rem' } as React.CSSProperties}>
+                <div className="aar-stat-card">
+                  <span className="aar-stat-label">Total Requests</span>
+                  <span className="aar-stat-value">148.2k</span>
+                  <span className="aar-stat-delta" data-trend="up">↑ +14.2%</span>
+                </div>
+                <div className="aar-stat-card">
+                  <span className="aar-stat-label">Avg Latency</span>
+                  <span className="aar-stat-value">24ms</span>
+                  <span className="aar-stat-delta" data-trend="up">↑ -4ms faster</span>
+                </div>
+                <div className="aar-stat-card">
+                  <span className="aar-stat-label">System Health</span>
+                  <span className="aar-stat-value">99.98%</span>
+                  <span className="aar-stat-delta" data-trend="up">✓ Sealed</span>
+                </div>
               </div>
-              <h3 style={{ margin: 0, fontSize: '1.1rem' }}>The Seal of Resolution (Export &amp; Share)</h3>
-              <p style={{ margin: 0, color: 'var(--aar-text-muted)' }}>
-                Completing, publishing, or sharing the work is the definitive ceremony. Success states, compressed URL sharing (<code style={{ padding: '0 4px' }}>@techaaroorian-ui/share-state</code>), and high-DPI renders provide unmistakable, confident feedback.
-              </p>
-              <div className="aar-cluster" style={{ gap: '0.75rem', marginTop: '0.5rem' }}>
-                <button type="button" className="aar-button" data-variant="primary">
-                  <span>✓</span>
-                  <span>Seal &amp; Export</span>
+
+              {/* Action and Demonstration Card */}
+              <div className="aar-panel" style={{ background: 'var(--aar-surface)', border: '1px solid var(--aar-border)' }}>
+                <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                  <h4 style={{ margin: 0, fontSize: '0.95rem' }}>Interactive Controls &amp; Spark Testing</h4>
+                  <span className="aar-hint">Sparks triggered: {sparkCount}</span>
+                </div>
+                <p style={{ margin: '0 0 1rem', fontSize: '0.85rem', color: 'var(--aar-text-muted)' }}>
+                  Click the buttons below. In Clean Mode, standard crisp tactile feedback is provided.
+                  In Magic-Art Mode, stars burst outward from the click origin!
+                </p>
+                <div className="aar-cluster" style={{ gap: '0.75rem' }}>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    data-variant="primary"
+                    onClick={(e) => handleButtonClick(e)}
+                  >
+                    Spark Primary Stars
+                  </button>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    onClick={(e) => handleButtonClick(e, '#34d399')}
+                  >
+                    Spark Emerald Stars
+                  </button>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    data-variant="quiet"
+                    onClick={(e) => handleButtonClick(e, '#f59e0b')}
+                  >
+                    Spark Amber Stars
+                  </button>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    data-variant="danger"
+                    onClick={(e) => handleButtonClick(e, '#f87171')}
+                  >
+                    <span>Alert Spark</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    data-variant="primary"
+                    style={{ marginLeft: 'auto' }}
+                    onClick={handleOpenModal}
+                  >
+                    <Layers size={16} />
+                    <span>{magicArtEnabled ? 'Open Frosted Modal (Wave Effect)' : 'Open Standard Modal'}</span>
+                  </button>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        {/* Live Modal Dialog Comparison */}
+        {modalOpen && (
+          <div
+            data-magic-art={magicArtEnabled ? 'true' : 'false'}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1rem',
+            }}
+          >
+            {/* Backdrop */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: magicArtEnabled
+                  ? 'radial-gradient(circle at center, rgba(15, 17, 26, 0.65) 0%, rgba(5, 7, 12, 0.82) 100%)'
+                  : 'rgba(0, 0, 0, 0.55)',
+                backdropFilter: magicArtEnabled ? 'blur(10px) saturate(130%)' : 'blur(4px)',
+                WebkitBackdropFilter: magicArtEnabled ? 'blur(10px) saturate(130%)' : 'blur(4px)',
+              }}
+              onClick={() => setModalOpen(false)}
+            />
+
+            {/* Dialog Card with Expanding Border Wave */}
+            <div
+              className="aar-dialog"
+              data-magic-art={magicArtEnabled ? 'true' : 'false'}
+              style={{
+                position: 'relative',
+                overflow: 'visible',
+                zIndex: 1001,
+                width: 'min(30rem, 100%)',
+              }}
+            >
+              {/* Concentric expanding wave rings when Magic Art is active */}
+              {magicArtEnabled && (
+                <>
+                  <div className="aar-modal-wave-ring" key={`pw1-${modalWaveKey}`} aria-hidden="true" />
+                  <div className="aar-modal-wave-ring-secondary" key={`pw2-${modalWaveKey}`} aria-hidden="true" />
+                  <div className="aar-modal-wave-ring-tertiary" key={`pw3-${modalWaveKey}`} aria-hidden="true" />
+                </>
+              )}
+
+              <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                <div className="aar-cluster" style={{ gap: '0.5rem' }}>
+                  <Layers size={18} style={{ color: 'var(--aar-primary)' }} />
+                  <h3 style={{ margin: 0, fontSize: '1.15rem' }}>
+                    {magicArtEnabled ? 'Frosted Glass Modal (Perimeter Wave)' : 'Standard Clean Modal'}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-variant="quiet"
+                  onClick={() => setModalOpen(false)}
+                >
+                  <X size={16} />
                 </button>
-                <span className="aar-hint">Clean, verified artifact resolution.</span>
+              </div>
+
+              <p style={{ margin: '0 0 1rem', color: 'var(--aar-text-muted)', fontSize: '0.875rem' }}>
+                {magicArtEnabled
+                  ? 'In Magic-Art, the modal surface uses 76% semi-transparent frosted glass (backdrop-filter: blur(24px)). Upon opening, glowing concentric waves erupt from the modal border, expand 50px–100px outward, and dissolve.'
+                  : 'In Clean Mode, the modal is completely solid and opaque with crisp borders and minimal drop shadow—ideal for enterprise environments.'}
+              </p>
+
+              {magicArtEnabled && (
+                <div style={{ marginBottom: '1rem' }}>
+                  <button
+                    type="button"
+                    className="aar-button"
+                    data-variant="primary"
+                    onClick={() => setModalWaveKey((k) => k + 1)}
+                    title="Re-trigger the border expanding wave"
+                  >
+                    <RefreshCw size={14} />
+                    <span>Trigger Wave Pulse ({modalWaveKey + 1})</span>
+                  </button>
+                </div>
+              )}
+
+              <div className="aar-cluster" style={{ justifyContent: 'flex-end', gap: '0.75rem' }}>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="quiet"
+                  onClick={() => setModalOpen(false)}
+                >
+                  Dismiss
+                </button>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="primary"
+                  onClick={(e) => {
+                    handleButtonClick(e)
+                    setModalOpen(false)
+                  }}
+                >
+                  <Check size={16} />
+                  <span>Confirm</span>
+                </button>
               </div>
             </div>
-          )}
+          </div>
+        )}
+      </div>
+
+      {/* 2. The Extendable Magic-Art Animations */}
+      <div className="package-setup" style={{ marginTop: '3rem' }}>
+        <h2 className="aar-heading">2. Distinct Reveals &amp; Subtle Animations</h2>
+        <p>
+          When enabled, Magic-Art enriches the clean UI with distinctive semi-transparent reveals and micro-animations:
+        </p>
+
+        <div className="aar-grid" style={{ '--aar-grid-min': '16rem', gap: '1.25rem', marginTop: '1.25rem' } as React.CSSProperties}>
+          {/* Card 1: Button Click Sparks */}
+          <div className="aar-card" style={{ padding: '1.25rem', border: '1px solid var(--aar-border-strong)' }}>
+            <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+              <Sparkles size={20} style={{ color: 'var(--aar-primary)' }} />
+              <span className="aar-badge" data-variant="primary">Tactile Feedback</span>
+            </div>
+            <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>1. Tactile Click Sparks</h3>
+            <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--aar-text-muted)' }}>
+              On pointer click, subtle glowing particles radiate smoothly outward from the cursor origin with gentle dissipation.
+            </p>
+            <div style={{ marginTop: '1rem' }}>
+              <button
+                type="button"
+                className="aar-button"
+                data-variant="primary"
+                style={{ width: '100%' }}
+                onClick={(e) => sparkMagicStars(e)}
+              >
+                <Sparkles size={16} />
+                <span>Test Click Spark</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Card 2: Semi-Transparent Frosted Sidebar */}
+          <div className="aar-card" style={{ padding: '1.25rem', border: '1px solid var(--aar-border-strong)' }}>
+            <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+              <PanelLeftOpen size={20} style={{ color: 'var(--aar-primary)' }} />
+              <span className="aar-badge" data-variant="primary">Frosted Glass</span>
+            </div>
+            <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>2. Frosted Sidebar Reveal</h3>
+            <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--aar-text-muted)' }}>
+              Reveals as a <strong>semi-transparent frosted glass pane</strong> (<code>backdrop-filter: blur(16px)</code>) with a luminous vertical edge beam and a smooth flip toggle.
+            </p>
+            <div style={{ marginTop: '1rem' }}>
+              <button
+                type="button"
+                className="aar-button"
+                style={{ width: '100%' }}
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              >
+                {sidebarCollapsed ? <PanelLeftOpen size={16} /> : <PanelLeftClose size={16} />}
+                <span>{sidebarCollapsed ? 'Expand Sidebar' : 'Collapse to Rail'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Card 3: Perimeter Border Wave Modal */}
+          <div className="aar-card" style={{ padding: '1.25rem', border: '1px solid var(--aar-border-strong)' }}>
+            <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+              <Layers size={20} style={{ color: 'var(--aar-primary)' }} />
+              <span className="aar-badge" data-variant="primary">Perimeter Wave</span>
+            </div>
+            <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>3. Modal Perimeter Wave</h3>
+            <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--aar-text-muted)' }}>
+              Modals reveal with <strong>semi-transparent 24px frosted blur</strong>. A radiant wave erupts from the modal border, expands outward, and dissolves into the backdrop.
+            </p>
+            <div style={{ marginTop: '1rem' }}>
+              <button
+                type="button"
+                className="aar-button"
+                style={{ width: '100%' }}
+                onClick={handleOpenModal}
+              >
+                <Maximize2 size={16} />
+                <span>Test Frosted Wave Modal</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Card 3: Option & Dropdown Cascading Reveal */}
+          <div className="aar-card" style={{ padding: '1.25rem', border: '1px solid var(--aar-border-strong)' }}>
+            <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+              <span style={{ fontSize: '1.5rem', color: 'var(--aar-primary)' }}>✧</span>
+              <span className="aar-badge" data-variant="primary">Cascading Motion</span>
+            </div>
+            <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>3. Option &amp; Dropdown Animation</h3>
+            <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--aar-text-muted)' }}>
+              Dropdowns, selects, and popovers glide into view with a gentle scale transition. Options cascade
+              with 20ms staggered delays, and hovered options project a soft ambient highlight.
+            </p>
+            <div style={{ marginTop: '1rem' }}>
+              <AarSelect
+                value={sampleOption}
+                onChange={setSampleOption}
+                options={[
+                  { value: 'production', label: '✦ Production Cluster' },
+                  { value: 'staging', label: '✧ Staging Environment' },
+                  { value: 'preview', label: '⟡ Feature Branch Preview' },
+                ]}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Visual Grammar & Rules */}
-      <div className="package-setup" style={{ marginTop: '2.5rem' }}>
-        <h2 className="aar-heading">2. Core Architectural Rules</h2>
+      {/* 3. Core Architectural Rules */}
+      <div className="package-setup" style={{ marginTop: '3rem' }}>
+        <h2 className="aar-heading">3. Architectural Principles</h2>
       </div>
 
       <div className="table-scroll">
@@ -143,175 +564,94 @@ export default function PhilosophyGuide() {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">I. Precision over Ornament</th>
+              <th scope="row">I. Clean by Default</th>
               <td>
-                Magic in mathematics and science is exacting. No faux-leather, skeumorphism, or decorative novelty noise.
+                The core library provides honest, utilitarian ergonomics suitable for any enterprise, SaaS, or admin app.
               </td>
               <td>
-                Delicate 1px etched hairlines (<code style={{ fontSize: '0.8rem' }}>--aar-border</code>). Surfaces group related workflows without heavy drop-shadows or clutter.
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">II. Dual Realms</th>
-              <td>
-                Two deliberate atmospheres: <strong>Obsidian</strong> (deep cosmic void) and <strong>Parchment</strong> (warm tactile vellum).
-              </td>
-              <td>
-                Configured cleanly with <code style={{ fontSize: '0.8rem' }}>data-theme="dark|light"</code> and <code style={{ fontSize: '0.8rem' }}>data-palette="obsidian|parchment|jade"</code>.
+                Zero required fantasy symbols. Standard semantic HTML, 1px etched hairlines, and accessible contrast.
               </td>
             </tr>
             <tr>
-              <th scope="row">III. Luminous Intent</th>
+              <th scope="row">II. Magic-Art is Optional</th>
               <td>
-                Instead of harsh default browser rings, interaction acknowledges user attention through focused illumination.
+                Micro-animations add joy and tactile delight without compromising professional utility or performance.
               </td>
               <td>
-                Hover lifts controls by 1px. Focus states project a soft, atmospheric aura via <code style={{ fontSize: '0.8rem' }}>--aar-glow</code> while remaining WCAG AAA contrast compliant.
+                Opt-in via <code>data-magic-art="true"</code>, <code>.aar-magic-spark</code>, or helper functions.
               </td>
             </tr>
             <tr>
-              <th scope="row">IV. Functional Runes</th>
+              <th scope="row">III. Precision over Ornament</th>
               <td>
-                Symbols are used exclusively to communicate active runtime state, never as arbitrary decoration.
+                Modern mathematical elegance rather than heavy skeuomorphism or distracting decorative noise.
               </td>
               <td>
-                Strict rune vocabulary: <code style={{ padding: '0 4px' }}>✧</code> Available, <code style={{ padding: '0 4px' }}>✦</code> Active, <code style={{ padding: '0 4px' }}>⟡</code> Transmuting, <code style={{ padding: '0 4px' }}>✓</code> Sealed.
+                Delicate 1px borders (<code>--aar-border</code>), crisp monospace metadata, and responsive layout primitives.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">IV. Respect for Accessibility</th>
+              <td>
+                All animations strictly respect user motion sensitivities and keyboard navigation standards.
+              </td>
+              <td>
+                <code>prefers-reduced-motion: reduce</code> zeroes all star particles and layout transitions instantly.
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      {/* Functional Runes Showcase */}
-      <div className="package-setup" style={{ marginTop: '2.5rem' }}>
-        <h2 className="aar-heading">3. The Functional Rune Vocabulary</h2>
+      {/* 4. Code & Extensibility Guide */}
+      <div className="package-setup" style={{ marginTop: '3rem' }}>
+        <h2 className="aar-heading">4. How to Extend Your Application</h2>
         <p>
-          State markers give users instant, universal understanding across complex multi-panel tools:
+          Enabling Magic-Art or sparking stars requires only pure CSS or a single line of JavaScript:
         </p>
-
-        <div className="aar-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
-          <div className="aar-card" style={{ padding: '1rem', border: '1px solid var(--aar-border)' }}>
-            <div className="aar-cluster" style={{ alignItems: 'baseline', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', color: 'var(--aar-text-muted)' }}>✧</span>
-              <strong>Idle / Potential</strong>
-            </div>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'var(--aar-text-muted)' }}>
-              Represents an available capability, dormant parameter, or secondary action.
-            </p>
-          </div>
-
-          <div className="aar-card" style={{ padding: '1rem', border: '1px solid var(--aar-border-strong)' }}>
-            <div className="aar-cluster" style={{ alignItems: 'baseline', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', color: 'var(--aar-primary)' }}>✦</span>
-              <strong>Active / Selected</strong>
-            </div>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'var(--aar-text-muted)' }}>
-              Marks the currently selected layer, tool mode, or illuminated view.
-            </p>
-          </div>
-
-          <div className="aar-card" style={{ padding: '1rem', border: '1px solid var(--aar-border)' }}>
-            <div className="aar-cluster" style={{ alignItems: 'baseline', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', color: 'var(--aar-accent, #6366f1)' }}>⟡</span>
-              <strong>Transmuting</strong>
-            </div>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'var(--aar-text-muted)' }}>
-              Indicates dynamic calculation, rendering pass, or real-time compilation.
-            </p>
-          </div>
-
-          <div className="aar-card" style={{ padding: '1rem', border: '1px solid var(--aar-border)' }}>
-            <div className="aar-cluster" style={{ alignItems: 'baseline', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.5rem', color: '#10b981' }}>✓</span>
-              <strong>The Seal (Resolved)</strong>
-            </div>
-            <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'var(--aar-text-muted)' }}>
-              Confirms cryptographic verification, export readiness, or permanent save.
-            </p>
-          </div>
-        </div>
       </div>
 
-      {/* Interactive Realm Swatch */}
-      <div className="package-setup" style={{ marginTop: '2.5rem' }}>
-        <h2 className="aar-heading">4. Realm Exploration (Atmospheric Tones)</h2>
-        <p>
-          Toggle between the two primary realms to see how Aar Craft balances density, readability, and contrast:
-        </p>
+      <CodeBlock
+        title="1. Pure CSS Activation"
+        language="html"
+        code={`<!-- Enable Magic-Art animations across an entire container -->
+<div class="aar-root" data-magic-art="true">
+  <!-- Any button automatically gains subtle star sparks on click -->
+  <button class="aar-button" data-variant="primary">Deploy Service</button>
 
-        <div className="aar-segmented" role="tablist" style={{ marginBottom: '1.25rem', width: 'fit-content' }}>
-          <button
-            type="button"
-            className="aar-segmented-item"
-            data-active={realm === 'obsidian'}
-            onClick={() => setRealm('obsidian')}
-          >
-            ✦ Obsidian Realm (Dark)
-          </button>
-          <button
-            type="button"
-            className="aar-segmented-item"
-            data-active={realm === 'parchment'}
-            onClick={() => setRealm('parchment')}
-          >
-            ✧ Parchment Realm (Light)
-          </button>
-        </div>
+  <!-- Animated collapsible sidebar -->
+  <aside class="aar-sidebar" data-collapsed="false">
+    <div class="aar-sidebar-nav">
+      <a class="aar-sidebar-item" data-active="true">Dashboard</a>
+    </div>
+  </aside>
+</div>
 
-        <div
-          className="aar-root aar-panel"
-          data-theme={realm === 'obsidian' ? 'dark' : 'light'}
-          data-palette={realm === 'obsidian' ? 'obsidian' : 'parchment'}
-          style={{
-            padding: '1.75rem',
-            borderRadius: 'var(--aar-radius-lg)',
-            border: '1px solid var(--aar-border-strong)',
-            transition: 'background-color 0.25s ease, color 0.25s ease',
-          }}
-        >
-          <div className="aar-stack" style={{ gap: '1.25rem' }}>
-            <div className="aar-cluster" style={{ justifyContent: 'space-between' }}>
-              <div>
-                <p className="aar-eyebrow" style={{ margin: 0 }}>
-                  {realm === 'obsidian' ? 'Midnight Slate & Starlight' : 'Hand-Pressed Vellum & Iron-Gall Ink'}
-                </p>
-                <h3 style={{ margin: '0.25rem 0 0', fontSize: '1.2rem' }}>
-                  {realm === 'obsidian' ? 'Obsidian Atelier' : 'Parchment Script'}
-                </h3>
-              </div>
-              <span className="aar-badge" data-variant="primary">
-                {realm === 'obsidian' ? 'Low-Light Studio' : 'High-Clarity Document'}
-              </span>
-            </div>
+<!-- Or target a single button anywhere without container attributes -->
+<button class="aar-button aar-magic-spark">Spark Button</button>`}
+      />
 
-            <div className="aar-cluster" style={{ gap: '1rem' }}>
-              <button type="button" className="aar-button" data-variant="primary">
-                <span>✦</span> Primary Seal
-              </button>
-              <button type="button" className="aar-button">
-                <span>✧</span> Standard Action
-              </button>
-              <button type="button" className="aar-button" data-variant="quiet">
-                Quiet Utility
-              </button>
-            </div>
+      <CodeBlock
+        title="2. React / TypeScript Helper (Zero Runtime Dependencies)"
+        language="tsx"
+        code={`import { sparkMagicStars } from '@techaaroorian-ui/aar-craft'
 
-            <div
-              className="aar-altar"
-              data-corner-brackets="true"
-              style={{
-                padding: '1.25rem',
-                textAlign: 'center',
-                background: 'var(--aar-surface-raised)',
-              }}
-            >
-              <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--aar-text-muted)' }}>
-                Etched corner brackets frame the canvas in both realms with zero pixel distortion.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+export function MyActionButton() {
+  return (
+    <button
+      className="aar-button"
+      data-variant="primary"
+      onClick={(e) => {
+        // Sparks stars radiating outward from click coordinates
+        sparkMagicStars(e, { count: 8, color: '#a78bfa' })
+        doAction()
+      }}
+    >
+      Publish Artifact
+    </button>
+  )
+}`}
+      />
     </section>
   )
 }

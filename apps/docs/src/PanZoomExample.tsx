@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Plus, Minus, Sparkles } from 'lucide-react';
 import { usePanZoom } from '../../../packages/pan-zoom/src/react';
 
 const PRESETS = [
@@ -38,17 +39,18 @@ export default function PanZoomExample() {
               role="tab"
               aria-selected={selectedPreset.name === preset.name}
               onClick={() => setSelectedPreset(preset)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
             >
-              {selectedPreset.name === preset.name ? '✦ ' : ''}
+              {selectedPreset.name === preset.name && <Sparkles size={12} />}
               {preset.name} ({preset.width}×{preset.height})
             </button>
           ))}
         </div>
 
         <div className="aar-cluster">
-          <button className="aar-icon-button" onClick={zoomOut} title="Zoom Out" aria-label="Zoom Out">－</button>
+          <button className="aar-icon-button" onClick={zoomOut} title="Zoom Out" aria-label="Zoom Out"><Minus size={14} /></button>
           <span className="aar-kbd">{Math.round(zoom * 100)}%</span>
-          <button className="aar-icon-button" onClick={zoomIn} title="Zoom In" aria-label="Zoom In">＋</button>
+          <button className="aar-icon-button" onClick={zoomIn} title="Zoom In" aria-label="Zoom In"><Plus size={14} /></button>
           <button className="aar-button" data-variant="quiet" onClick={resetZoom}>100%</button>
           <label className="aar-toggle">
             <input type="checkbox" checked={autoFit} onChange={toggleAutoFit} />

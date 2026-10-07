@@ -58,6 +58,27 @@ For a group, add `aar-stagger` to its parent and `style="--aar-order: 0"` (then 
 
 Customize `--aar-duration`, `--aar-duration-enter`, `--aar-ease`, `--aar-hover-offset`, `--aar-press-scale`, and `--aar-enter-offset`. Reduced-motion preferences zero durations and movement and disable entrance animations. Consumer motion overrides should also preserve that preference.
 
+## Layout Primitives
+
+Aar Craft provides clean, responsive layout primitives for all kinds of applications (dashboards, SaaS platforms, developer consoles, and creative studios):
+
+- Application shell: `.aar-workspace`
+- Collapsible sidebar: `.aar-sidebar`, with support for expanded (`16rem`), compact rail (`4.25rem`, `data-collapsed="rail"`), and closed (`data-collapsed="closed"`)
+- Sidebar items & toggles: `.aar-sidebar-item`, `.aar-sidebar-toggle` (180° rotating chevron)
+- Main content canvas: `.aar-workspace-main`, `.aar-page-header`
+- Metric & KPI cards: `.aar-stat-card`, `.aar-stat-value`, `.aar-stat-label`, `.aar-stat-delta`
+- Responsive composition: `.aar-split`, `.aar-grid`, `.aar-stack`, `.aar-cluster`
+
+## Optional Magic-Art Animations
+
+The magic-art philosophy is purely **optional**. Clean business applications run with zero distraction and crisp ergonomics. When enabled (via `data-magic-art="true"` or utility classes), it provides subtle, delightful micro-animations:
+
+1. **Button Click Star Sparks**: Clicking buttons with `.aar-magic-spark` or inside `[data-magic-art="true"]` emits radiating star sparkles (`✦`, `✧`, `⋆`, `★`).
+2. **Sidebar Collapse / Open Transition**: Smooth fluid cubic-bezier width transition, rotating chevron toggle, and subtle edge shimmer.
+3. **Option & Dropdown Cascade**: Fluid upward drift with staggered 20ms delays for menu options and soft ambient highlights.
+
+All animations strictly observe `prefers-reduced-motion: reduce`.
+
 ## Headless component styling
 
 Import Aar Craft CSS once for the application. It styles headless markup without depending on the JavaScript packages:
