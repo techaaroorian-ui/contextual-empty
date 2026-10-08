@@ -1,13 +1,30 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 
-// Tailwind v3 consumes @layer components during PostCSS processing. Use a
-// separately named native layer so the independently imported CSS survives.
-const directory = new URL('../dist/', import.meta.url);
+// Tailwind v3 consumes its own @layer names. Keep every public module in native layers.
+const directory = new URL("../dist/", import.meta.url);
 await mkdir(directory, { recursive: true });
-const tokens = await readFile(new URL('../src/tokens.css', import.meta.url), 'utf8');
-const components = await readFile(new URL('../src/components.css', import.meta.url), 'utf8');
-await writeFile(new URL('tailwind-v3.css', directory),
-  '/* Generated from src; do not edit. V3 unlayered utilities override this layer. */\n' +
-  '@layer aar-theme, aar-components;\n' +
-  tokens.replace('@layer theme {', '@layer aar-theme {') + '\n' +
-  components.replace('@layer components {', '@layer aar-components {'));
+const modules = [
+  "tokens",
+  "components",
+  "layouts",
+  "compositions",
+  "expression",
+  "code",
+  "magic-art",
+  "utilities",
+];
+const sources = await Promise.all(
+  modules.map((name) =>
+    readFile(new URL(`../src/${name}.css`, import.meta.url), "utf8"),
+  ),
+);
+const css = sources
+  .join("\n")
+  .replace(/@layer theme\s*\{/g, "@layer aar-theme {")
+  .replace(/@layer components\s*\{/g, "@layer aar-components {")
+  .replace(/@layer utilities\s*\{/g, "@layer aar-utilities {");
+await writeFile(
+  new URL("tailwind-v3.css", directory),
+  "/* Generated from all public source modules; do not edit. */\n@layer aar-theme, aar-components, aar-utilities;\n" +
+    css,
+);

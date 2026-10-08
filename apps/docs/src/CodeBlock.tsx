@@ -6,7 +6,6 @@ import javascript from "highlight.js/lib/languages/javascript";
 import xml from "highlight.js/lib/languages/xml";
 import css from "highlight.js/lib/languages/css";
 import bash from "highlight.js/lib/languages/bash";
-import "./CodeBlock.css";
 
 hljs.registerLanguage("typescript", typescript);
 hljs.registerLanguage("javascript", javascript);
@@ -71,8 +70,8 @@ export default function CodeBlock({
   const id = useId();
   const feedback = outcome?.source === source ? outcome.state : null;
   return (
-    <figure className="docs-code" data-expanded={expanded ? "true" : undefined}>
-      <figcaption className="docs-code-toolbar">
+    <figure className="aar-code" data-expanded={expanded ? "true" : undefined}>
+      <figcaption className="aar-code-toolbar">
         <span>
           <strong>{title}</strong>
           <small>{language.toUpperCase()}</small>
@@ -113,7 +112,7 @@ export default function CodeBlock({
         {feedback === "copied" ? `Copied ${title}` : ""}
       </span>
       {feedback === "error" && (
-        <p className="docs-code-error" aria-live="polite">
+        <p className="aar-code-error" aria-live="polite">
           Copy failed. Select the code below and copy it manually.
         </p>
       )}

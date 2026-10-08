@@ -21,7 +21,9 @@ export default function OrderedCollectionExample() {
           <button
             key={item.id}
             className="aar-button"
-            data-variant={item.id === collection.selectedId ? 'primary' : undefined}
+            data-variant={
+              item.id === collection.selectedId ? "primary" : undefined
+            }
             aria-pressed={item.id === collection.selectedId}
             onClick={() => collection.dispatch({ type: "select", id: item.id })}
           >

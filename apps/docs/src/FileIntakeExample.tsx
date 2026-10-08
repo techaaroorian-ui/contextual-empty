@@ -43,9 +43,14 @@ export default function FileIntakeExample() {
     });
   return (
     <div className="aar-root aar-stack aar-file-intake" data-gap="4">
-      <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="aar-cluster aar-justify-space-between aar-items-center">
         <h3 className="aar-heading">Studio Image Assets</h3>
-        <span className="aar-badge" data-tone={files.length === 5 ? "success" : undefined}>{files.length} / 5 slots</span>
+        <span
+          className="aar-badge"
+          data-tone={files.length === 5 ? "success" : undefined}
+        >
+          {files.length} / 5 slots
+        </span>
       </div>
       <div
         {...dropzoneProps}

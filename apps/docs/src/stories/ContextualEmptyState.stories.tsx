@@ -3,7 +3,7 @@ import {
   ContextualEmptyState,
   SearchEmpty,
 } from "@techaaroorian-ui/contextual-empty";
-import "@techaaroorian-ui/contextual-empty/dist/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 const meta: Meta<typeof ContextualEmptyState> = {
   title: "Core/ContextualEmptyState",
@@ -23,9 +23,11 @@ type Story = StoryObj<typeof ContextualEmptyState>;
 
 export const PrimitiveError: Story = {
   render: (args) => (
-    <ContextualEmptyState {...args}>
+    <ContextualEmptyState {...args} className="aar-contextual-empty">
       <ContextualEmptyState.Icon>
-        <span style={{ fontSize: "48px" }}>⚠️</span>
+        <span className="aar-text-2rem" aria-hidden="true">
+          !
+        </span>
       </ContextualEmptyState.Icon>
       <ContextualEmptyState.Content>
         <h3>Connection Lost</h3>
@@ -47,7 +49,7 @@ export const PrimitiveError: Story = {
 };
 
 export const SearchPreset: StoryObj<typeof SearchEmpty> = {
-  render: (args) => <SearchEmpty {...args} />,
+  render: (args) => <SearchEmpty className="aar-contextual-empty" {...args} />,
   args: {
     query: "Quantum Mechanics",
     actionText: "Clear Search",

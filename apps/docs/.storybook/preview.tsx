@@ -1,9 +1,15 @@
 import type { Preview } from "@storybook/react-vite";
 
-// 1. Inject our custom typography!
-import "./custom-theme.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <div className="aar-root aar-p-1-5rem" data-theme="system">
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {

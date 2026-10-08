@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "@techaaroorian-ui/aar-loom/index.css";
-import "./PhilosophyExamples.css";
-import "./example-setup.css";
 
 export default function PhilosophyExamples() {
   const [theme, setTheme] = useState("light");
-  const [palette, setPalette] = useState("forest");
+  const [palette, setPalette] = useState("default");
   const [density, setDensity] = useState("comfortable");
   const [account, setAccount] = useState("Operations");
   const [order, setOrder] = useState<"pending" | "confirmed">("pending");
@@ -13,12 +11,12 @@ export default function PhilosophyExamples() {
   const [weight, setWeight] = useState("Bold");
   return (
     <div
-      className="aar-root atelier-example craft-lab"
+      className="aar-root aar-expression aar-lab"
       data-theme={theme}
-      data-palette={palette}
+      style={palette === "custom" ? { "--aar-primary":"#326954", "--aar-on-primary":"#fff", "--aar-focus":"#326954" } as React.CSSProperties : undefined}
       data-density={density}
     >
-      <div className="craft-controls" aria-label="Compare design settings">
+      <div className="aar-controls" aria-label="Compare design settings">
         <label>
           Theme
           <select
@@ -39,8 +37,8 @@ export default function PhilosophyExamples() {
             value={palette}
             onChange={(e) => setPalette(e.target.value)}
           >
-            <option value="forest">Forest</option>
-            <option value="iris">Iris</option>
+            <option value="default">Default accent</option>
+            <option value="custom">Custom brand example</option>
           </select>
         </label>
         <label>
@@ -56,8 +54,8 @@ export default function PhilosophyExamples() {
           </select>
         </label>
       </div>
-      <div className="craft-comparisons">
-        <section className="craft-example" aria-labelledby="dashboard-title">
+      <div className="aar-comparisons">
+        <section className="aar-example" aria-labelledby="dashboard-title">
           <header>
             <p className="aar-eyebrow">01 / Dashboard</p>
             <h2 id="dashboard-title" className="aar-heading">
@@ -65,13 +63,13 @@ export default function PhilosophyExamples() {
             </h2>
             <p>Selection directs attention. Supporting detail follows.</p>
           </header>
-          <div className="craft-split">
-            <div className="craft-stack">
-              <p className="craft-label">Accounts</p>
+          <div className="aar-split">
+            <div className="aar-stack">
+              <p className="aar-label">Accounts</p>
               {["Operations", "Reserve", "Payroll"].map((name) => (
                 <button
                   key={name}
-                  className="craft-choice"
+                  className="aar-choice"
                   aria-pressed={account === name}
                   onClick={() => setAccount(name)}
                 >
@@ -86,10 +84,10 @@ export default function PhilosophyExamples() {
                 </button>
               ))}
             </div>
-            <div className="craft-detail">
-              <p className="craft-label">Selected account</p>
+            <div className="aar-detail">
+              <p className="aar-label">Selected account</p>
               <h3>{account}</h3>
-              <p className="craft-metric">
+              <p className="aar-metric">
                 {account === "Operations"
                   ? "$24,800"
                   : account === "Reserve"
@@ -103,7 +101,7 @@ export default function PhilosophyExamples() {
             </div>
           </div>
         </section>
-        <section className="craft-example" aria-labelledby="checkout-title">
+        <section className="aar-example" aria-labelledby="checkout-title">
           <header>
             <p className="aar-eyebrow">02 / Checkout</p>
             <h2 id="checkout-title" className="aar-heading">
@@ -111,13 +109,13 @@ export default function PhilosophyExamples() {
             </h2>
             <p>Payment and order confirmation are separate facts.</p>
           </header>
-          <div className="craft-stack">
-            <div className="craft-receipt">
+          <div className="aar-stack">
+            <div className="aar-receipt">
               <span>Studio notebook × 1</span>
               <strong>$18.00</strong>
             </div>
-            <p className="craft-success">✓ Payment received</p>
-            <div className="craft-status" role="status">
+            <p className="aar-success">✓ Payment received</p>
+            <div className="aar-status" role="status">
               <strong>
                 {order === "pending"
                   ? "Updating your order"
@@ -129,7 +127,7 @@ export default function PhilosophyExamples() {
                   : "Order #1042 is confirmed. Your receipt is ready."}
               </p>
             </div>
-            <div className="craft-cluster">
+            <div className="aar-cluster">
               <button
                 className="aar-button"
                 onClick={() => setOrder("confirmed")}
@@ -151,7 +149,7 @@ export default function PhilosophyExamples() {
             </p>
           </div>
         </section>
-        <section className="craft-example" aria-labelledby="editor-title">
+        <section className="aar-example" aria-labelledby="editor-title">
           <header>
             <p className="aar-eyebrow">03 / Creative editor</p>
             <h2 id="editor-title" className="aar-heading">
@@ -159,10 +157,10 @@ export default function PhilosophyExamples() {
             </h2>
             <p>Choose an element. Its settings appear beside the canvas.</p>
           </header>
-          <div className="craft-split">
-            <div className="craft-artwork" aria-label="Artwork elements">
+          <div className="aar-split">
+            <div className="aar-artwork" aria-label="Artwork elements">
               <svg
-                className="craft-etching"
+                className="aar-etching"
                 viewBox="0 0 160 100"
                 aria-hidden="true"
               >
@@ -171,9 +169,13 @@ export default function PhilosophyExamples() {
                 <circle cx="80" cy="50" r="14" />
               </svg>
               <button
-                className="craft-choice craft-art-title"
+                className="aar-choice aar-art-title aar-bind-font-weight"
                 aria-pressed={element === "Heading"}
-                style={{ fontWeight: weight === "Bold" ? 750 : 400 }}
+                style={
+                  {
+                    "--aar-font-weight": weight === "Bold" ? 750 : 400,
+                  } as React.CSSProperties
+                }
                 onClick={() => setElement("Heading")}
               >
                 Make room
@@ -181,15 +183,15 @@ export default function PhilosophyExamples() {
                 for ideas.
               </button>
               <button
-                className="craft-choice"
+                className="aar-choice"
                 aria-pressed={element === "Caption"}
                 onClick={() => setElement("Caption")}
               >
                 A small start. A new possibility.
               </button>
             </div>
-            <div className="craft-detail craft-stack">
-              <p className="craft-label">Selected element</p>
+            <div className="aar-detail aar-stack">
+              <p className="aar-label">Selected element</p>
               <h3>{element}</h3>
               {element === "Heading" ? (
                 <label>

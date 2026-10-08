@@ -24,7 +24,7 @@ export default function DialogExample() {
         aria-labelledby="example-dialog-title"
         aria-describedby="example-dialog-description"
       >
-        <div className="example-stack">
+        <div className="aar-example-stack">
           <h3 id="example-dialog-title" className="aar-heading">
             Export settings
           </h3>
@@ -58,7 +58,7 @@ export default function DialogExample() {
         data-placement="end"
         aria-labelledby="example-sheet-title"
       >
-        <div className="example-stack">
+        <div className="aar-example-stack">
           <h3 id="example-sheet-title" className="aar-heading">
             Document tools
           </h3>

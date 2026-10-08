@@ -4,7 +4,7 @@
 
 A raw token names a value; a semantic token names its purpose. `green-700` is a value; `primary` is a role. Components use roles so consumers can change values without redesigning every component.
 
-Try Forest and Iris in the lab. Observe that reading order stays the same. Next, choose Your colors and change primary and its foreground separately.
+Switch Light, Dark, and System in the lab. Reading order stays the same. Choose Custom colors and change the accent and its foreground separately.
 
 ## 2. Hierarchy
 

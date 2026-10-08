@@ -1,10 +1,11 @@
-import CodeBlock from './CodeBlock'
-import quickstartHtml from './examples/aar-loom/index.html?raw'
-import quickstartCss from './examples/aar-loom/styles.css?raw'
-import { useState } from 'react'
-import type { CSSProperties, ReactNode } from 'react'
-import '../../../packages/aar-loom/src/index.css'
-import './App.css'
+import loomPackage from "../../../packages/aar-loom/package.json";
+import AarSelect from "./AarSelect";
+import CodeBlock from "./CodeBlock";
+import quickstartHtml from "./examples/aar-loom/index.html?raw";
+import quickstartCss from "./examples/aar-loom/styles.css?raw";
+import { useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 import {
   Check,
@@ -45,109 +46,235 @@ import {
   TrendingUp,
   FileText,
   Clock,
-} from 'lucide-react'
+} from "lucide-react";
 
 const lessons = [
-  ['The Arcane Atelier', 'Tools as digital alchemy', 'In creative engineering tools like Yuwbrndr, structured parameters deterministically transmute into visual artifacts. The workspace is your alchemy altar.'],
-  ['Dual Realms', 'Atmospheric presence', 'Obsidian channels deep cosmic slate and starlight; Parchment channels tactile hand-pressed vellum and iron-gall ink. Each realm is deliberate, not a simple color invert.'],
-  ['Precision over ornament', 'Etched geometry', 'No faux-leather, bevels, or novelty clutter. Delicate 1px hairlines and corner brackets (┌ ┐ └ ┘) frame the workspace like an astrolabe or precision laboratory instrument.'],
-  ['Functional Runes', 'Symbols with operational truth', 'Runes communicate active runtime state, never random decoration: ✧ Idle potential, ✦ Active selection, ⟡ Live transmutation, ✓ Sealed artifact, ! Rift warning.'],
-  ['Luminous intent', 'Atmospheric attention', 'Hover lifts controls by 1px. Focus-visible projects a soft aura (--aar-glow) rather than a jarring default browser outline. Contrast remains WCAG AAA compliant.'],
-  ['Surface hierarchy', 'Separate without decorating', 'The background holds the atelier; panels group related instruments; the altar frames user artwork with zero style leakage.'],
-  ['Motion and rhythm', 'Respond, then settle', 'Spring feedback gives immediate tactile confirmation. Micro-rotation on dropdown chevrons, 35ms staggered arrival capped at 140ms, and complete instant accessibility for prefers-reduced-motion.'],
-]
+  [
+    "The Arcane Atelier",
+    "Tools as digital alchemy",
+    "In creative engineering tools like Yuwbrndr, structured parameters deterministically transmute into visual artifacts. The workspace is your alchemy altar.",
+  ],
+  [
+    "Theme roles",
+    "Atmospheric presence",
+    "Light and Dark have distinct surface and text hierarchies. System follows the browser preference. Brand accents are semantic overrides rather than extra theme modes.",
+  ],
+  [
+    "Precision over ornament",
+    "Etched geometry",
+    "No faux-leather, bevels, or novelty clutter. Delicate 1px hairlines and corner brackets (┌ ┐ └ ┘) frame the workspace like an astrolabe or precision laboratory instrument.",
+  ],
+  [
+    "Functional Runes",
+    "Symbols with operational truth",
+    "Runes communicate active runtime state, never random decoration: ✧ Idle potential, ✦ Active selection, ⟡ Live transmutation, ✓ Sealed artifact, ! Rift warning.",
+  ],
+  [
+    "Luminous intent",
+    "Atmospheric attention",
+    "Hover lifts controls by 1px. Focus-visible projects a soft aura (--aar-glow) rather than a jarring default browser outline. Contrast remains WCAG AAA compliant.",
+  ],
+  [
+    "Surface hierarchy",
+    "Separate without decorating",
+    "The background holds the atelier; panels group related instruments; the altar frames user artwork with zero style leakage.",
+  ],
+  [
+    "Motion and rhythm",
+    "Respond, then settle",
+    "Spring feedback gives immediate tactile confirmation. Micro-rotation on dropdown chevrons, 35ms staggered arrival capped at 140ms, and complete instant accessibility for prefers-reduced-motion.",
+  ],
+];
 
 function Workbench() {
-  const [query, setQuery] = useState('')
-  const [ready, setReady] = useState(false)
-  const [notice, setNotice] = useState('')
+  const [query, setQuery] = useState("");
+  const [ready, setReady] = useState(false);
+  const [notice, setNotice] = useState("");
   const [projects, setProjects] = useState([
-    { name: 'Yuwbrndr Canvas Studio', kind: 'Creative Studio', ready: true },
-    { name: 'Algorithmic Sketch Engine', kind: 'Generative Art', ready: true },
-    { name: 'Design Tokens Grimoire', kind: 'Design System', ready: false },
-  ])
-  const visible = projects.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) && (!ready || p.ready))
-  return <div className="workbench">
-    <aside className="sidebar">
-      <p className="aar-eyebrow">Studio Atelier</p>
-      <h3 className="aar-heading">Grimoire</h3>
-      <div className="sidebar-nav">
-        <button className="aar-button" aria-pressed={!ready} onClick={() => setReady(false)}>All projects <span>{projects.length}</span></button>
-        <button className="aar-button" aria-pressed={ready} onClick={() => setReady(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-          <Check size={13} /> Sealed <span>{projects.filter(p => p.ready).length}</span>
-        </button>
-      </div>
-      <p className="sidebar-note">Code is modern spellcasting.<br />The workspace is your alchemy bench.</p>
-    </aside>
-    <section className="workspace">
-      <div className="section-head">
-        <div>
-          <p className="aar-eyebrow">Workspace / Atelier</p>
-          <h2 className="aar-heading">Active Incantations</h2>
-          <p className="aar-hint">Real composition testing the Arcane Atelier design language in context.</p>
+    { name: "Yuwbrndr Canvas Studio", kind: "Creative Studio", ready: true },
+    { name: "Algorithmic Sketch Engine", kind: "Generative Art", ready: true },
+    { name: "Design Tokens Grimoire", kind: "Design System", ready: false },
+  ]);
+  const visible = projects.filter(
+    (p) =>
+      p.name.toLowerCase().includes(query.toLowerCase()) && (!ready || p.ready),
+  );
+  return (
+    <div className="aar-workbench">
+      <aside className="aar-workbench-sidebar">
+        <p className="aar-eyebrow">Studio Atelier</p>
+        <h3 className="aar-heading">Grimoire</h3>
+        <div className="aar-sidebar-nav">
+          <button
+            className="aar-button"
+            aria-pressed={!ready}
+            onClick={() => setReady(false)}
+          >
+            All projects <span>{projects.length}</span>
+          </button>
+          <button
+            className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+            aria-pressed={ready}
+            onClick={() => setReady(true)}
+          >
+            <Check size={13} /> Sealed{" "}
+            <span>{projects.filter((p) => p.ready).length}</span>
+          </button>
         </div>
-        <button className="aar-button" data-variant="primary" onClick={() => { setProjects([...projects, { name: `Untitled incantation ${projects.length + 1}`, kind: 'New creation', ready: false }]); setNotice('Incantation created.'); setReady(false); setQuery('') }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-          <Plus size={14} /> New project
-        </button>
-      </div>
-      <div className="stats">{[['Active Projects', String(projects.length).padStart(2, '0')], ['Sealed Artifacts', String(projects.filter(p => p.ready).length).padStart(2, '0')], ['Philosophy', 'Arcane Atelier']].map(([label, value]) => <div className="aar-panel" key={label}><p className="aar-eyebrow">{label}</p><p className="stat-value">{value}</p></div>)}</div>
-      <label className="aar-field">Find a project<input className="aar-input" type="search" placeholder="Search your projects…" value={query} onChange={e => setQuery(e.target.value)} /></label>
-      <div className="project-list aar-stagger">
-        {visible.map((p, index) => (
-          <article
-            className="project aar-enter"
-            style={{ '--aar-order': index } as CSSProperties}
-            key={p.name}
-            tabIndex={0}
-            role="button"
-            aria-label={`${p.name}, ${p.kind}, ${p.ready ? 'Sealed' : 'Transmuting'}`}
-            onClick={() => setNotice(`Selected "${p.name}".`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                setNotice(`Selected "${p.name}".`)
-              }
+        <p className="aar-sidebar-note">
+          Code is modern spellcasting.
+          <br />
+          The workspace is your alchemy bench.
+        </p>
+      </aside>
+      <section className="aar-work-area">
+        <div className="aar-section-head">
+          <div>
+            <p className="aar-eyebrow">Workspace / Atelier</p>
+            <h2 className="aar-heading">Active Incantations</h2>
+            <p className="aar-hint">
+              Real composition testing the Arcane Atelier design language in
+              context.
+            </p>
+          </div>
+          <button
+            className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+            data-variant="primary"
+            onClick={() => {
+              setProjects([
+                ...projects,
+                {
+                  name: `Untitled incantation ${projects.length + 1}`,
+                  kind: "New creation",
+                  ready: false,
+                },
+              ]);
+              setNotice("Incantation created.");
+              setReady(false);
+              setQuery("");
             }}
           >
-            <span className="project-icon" aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-              {p.ready ? <Sparkles size={14} /> : <Sparkles size={14} style={{ opacity: 0.35 }} />}
-            </span>
-            <div>
-              <h3>{p.name}</h3>
-              <p className="aar-hint">{p.kind}</p>
+            <Plus size={14} /> New project
+          </button>
+        </div>
+        <div className="aar-metrics">
+          {[
+            ["Active Projects", String(projects.length).padStart(2, "0")],
+            [
+              "Sealed Artifacts",
+              String(projects.filter((p) => p.ready).length).padStart(2, "0"),
+            ],
+            ["Philosophy", "Arcane Atelier"],
+          ].map(([label, value]) => (
+            <div className="aar-panel" key={label}>
+              <p className="aar-eyebrow">{label}</p>
+              <p className="aar-metric-value">{value}</p>
             </div>
-            <span className="aar-badge" data-tone={p.ready ? 'success' : undefined} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-              {p.ready ? <Check size={12} /> : <Sparkles size={12} />}
-              {p.ready ? 'Sealed' : 'Transmuting'}
-            </span>
-          </article>
-        ))}
-      </div>
-      {!visible.length && <div className="aar-empty aar-enter"><h3 className="aar-heading">No matching projects</h3><p className="aar-hint">Try a different name or clear your filters.</p><button className="aar-button" onClick={() => { setQuery(''); setReady(false) }}>Clear filters</button></div>}
-      <p className="aar-hint notice" role="status">{notice || 'Your ideas, organized. All demo changes are temporary.'}</p>
-    </section>
-  </div>
+          ))}
+        </div>
+        <label className="aar-field">
+          Find a project
+          <input
+            className="aar-input"
+            type="search"
+            placeholder="Search your projects…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </label>
+        <div className="aar-item-list aar-stagger">
+          {visible.map((p, index) => (
+            <article
+              className="aar-item-row aar-enter"
+              style={{ "--aar-order": index } as CSSProperties}
+              key={p.name}
+              tabIndex={0}
+              role="button"
+              aria-label={`${p.name}, ${p.kind}, ${p.ready ? "Sealed" : "Transmuting"}`}
+              onClick={() => setNotice(`Selected "${p.name}".`)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setNotice(`Selected "${p.name}".`);
+                }
+              }}
+            >
+              <span
+                className="aar-item-mark aar-display-inline-flex aar-items-center aar-justify-center"
+                aria-hidden="true"
+              >
+                {p.ready ? (
+                  <Sparkles size={14} />
+                ) : (
+                  <Sparkles size={14} className="aar-opacity-0-35" />
+                )}
+              </span>
+              <div>
+                <h3>{p.name}</h3>
+                <p className="aar-hint">{p.kind}</p>
+              </div>
+              <span
+                className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                data-tone={p.ready ? "success" : undefined}
+              >
+                {p.ready ? <Check size={12} /> : <Sparkles size={12} />}
+                {p.ready ? "Sealed" : "Transmuting"}
+              </span>
+            </article>
+          ))}
+        </div>
+        {!visible.length && (
+          <div className="aar-empty aar-enter">
+            <h3 className="aar-heading">No matching projects</h3>
+            <p className="aar-hint">
+              Try a different name or clear your filters.
+            </p>
+            <button
+              className="aar-button"
+              onClick={() => {
+                setQuery("");
+                setReady(false);
+              }}
+            >
+              Clear filters
+            </button>
+          </div>
+        )}
+        <p className="aar-hint aar-notice" role="status">
+          {notice || "Your ideas, organized. All demo changes are temporary."}
+        </p>
+      </section>
+    </div>
+  );
 }
 
 function SizeScaleSpecimen() {
-  const [size, setSize] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md')
-  const sizes: Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'> = ['xs', 'sm', 'md', 'lg', 'xl']
+  const [size, setSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">("md");
+  const sizes: Array<"xs" | "sm" | "md" | "lg" | "xl"> = [
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
+  ];
   const sizeLabels = {
-    xs: 'Extra Small (28px)',
-    sm: 'Small (36px)',
-    md: 'Medium · Default (44px)',
-    lg: 'Large (52px)',
-    xl: 'Extra Large (60px)',
-  }
+    xs: "Extra Small (28px)",
+    sm: "Small (36px)",
+    md: "Medium · Default (44px)",
+    lg: "Large (52px)",
+    xl: "Extra Large (60px)",
+  };
 
   return (
-    <section className="aar-panel specimen wide">
-      <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+    <section className="aar-panel aar-specimen aar-wide">
+      <div className="aar-cluster aar-justify-space-between aar-items-flex-start aar-flex-wrap-wrap aar-gap-4">
         <div>
           <p className="aar-eyebrow">08 / Universal Size Scale</p>
           <h2 className="aar-heading">Proportion Across Every Instrument</h2>
           <p className="aar-hint">
-            Standardized 5-tier size scale (<code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>) applicable to buttons, icon controls, text inputs, selects, badges, and modals.
+            Standardized 5-tier size scale (<code>xs</code>, <code>sm</code>,{" "}
+            <code>md</code>, <code>lg</code>, <code>xl</code>) applicable to
+            buttons, icon controls, text inputs, selects, badges, and modals.
           </p>
         </div>
         <div className="aar-segmented" role="tablist">
@@ -165,40 +292,96 @@ function SizeScaleSpecimen() {
         </div>
       </div>
 
-      <div style={{ marginTop: '1.5rem', padding: '1.25rem', background: 'var(--aar-surface-subtle)', borderRadius: 'var(--aar-radius-md)', border: '1px solid var(--aar-border)' }}>
-        <p className="aar-eyebrow" style={{ marginBottom: '1rem' }}>
-          Live Dynamic Specimen · Active Size: <strong>data-size=&quot;{size}&quot;</strong> ({sizeLabels[size]})
+      <div className="aar-mt-6 aar-p-5 aar-bg-surface-subtle aar-radius-radius-md aar-border-1px-solid-border">
+        <p className="aar-eyebrow aar-mb-4">
+          Live Dynamic Specimen · Active Size:{" "}
+          <strong>data-size=&quot;{size}&quot;</strong> ({sizeLabels[size]})
         </p>
-        <div className="aar-cluster" style={{ gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button type="button" className="aar-button" data-variant="primary" data-size={size}>
-            <Sparkles size={size === 'xs' ? 12 : size === 'sm' ? 14 : size === 'lg' ? 18 : size === 'xl' ? 20 : 16} />
+        <div className="aar-cluster aar-gap-4 aar-items-center aar-flex-wrap-wrap">
+          <button
+            type="button"
+            className="aar-button"
+            data-variant="primary"
+            data-size={size}
+          >
+            <Sparkles
+              size={
+                size === "xs"
+                  ? 12
+                  : size === "sm"
+                    ? 14
+                    : size === "lg"
+                      ? 18
+                      : size === "xl"
+                        ? 20
+                        : 16
+              }
+            />
             <span>Primary Button</span>
           </button>
           <button type="button" className="aar-button" data-size={size}>
             Secondary
           </button>
-          <button type="button" className="aar-icon-button" data-size={size} title="Settings" aria-label="Settings">
-            <Settings size={size === 'xs' ? 12 : size === 'sm' ? 14 : size === 'lg' ? 18 : size === 'xl' ? 20 : 16} />
+          <button
+            type="button"
+            className="aar-icon-button"
+            data-size={size}
+            title="Settings"
+            aria-label="Settings"
+          >
+            <Settings
+              size={
+                size === "xs"
+                  ? 12
+                  : size === "sm"
+                    ? 14
+                    : size === "lg"
+                      ? 18
+                      : size === "xl"
+                        ? 20
+                        : 16
+              }
+            />
           </button>
           <span className="aar-badge" data-tone="success" data-size={size}>
-            <Check size={size === 'xs' ? 10 : 12} />
+            <Check size={size === "xs" ? 10 : 12} />
             <span>Badge</span>
           </span>
-          <label className="aar-switch" data-size={size === 'xl' ? 'lg' : size === 'xs' ? 'sm' : size}>
+          <label
+            className="aar-switch"
+            data-size={size === "xl" ? "lg" : size === "xs" ? "sm" : size}
+          >
             <input type="checkbox" defaultChecked />
-            <span className="aar-switch-track"><span className="aar-switch-thumb" /></span>
-            <span style={{ fontSize: '0.8125rem' }}>Switch</span>
+            <span className="aar-switch-track">
+              <span className="aar-switch-thumb" />
+            </span>
+            <span className="aar-text-0-875rem">Switch</span>
           </label>
         </div>
 
-        <div className="aar-grid" style={{ '--aar-grid-min': '14rem', marginTop: '1.25rem', gap: '1rem' } as CSSProperties}>
+        <div
+          className="aar-grid aar-mt-5 aar-gap-4"
+          style={{ "--aar-grid-min": "14rem" } as React.CSSProperties}
+        >
           <label className="aar-field" data-size={size}>
-            <span className="aar-field-label">Field with data-size=&quot;{size}&quot;</span>
-            <input className="aar-input" data-size={size} defaultValue="Interactive size scaling" />
+            <span className="aar-field-label">
+              Field with data-size=&quot;{size}&quot;
+            </span>
+            <input
+              className="aar-input"
+              data-size={size}
+              defaultValue="Interactive size scaling"
+            />
           </label>
           <label className="aar-field" data-size={size}>
-            <span className="aar-field-label">Select with data-size=&quot;{size}&quot;</span>
-            <select className="aar-input" data-size={size} defaultValue="option1">
+            <span className="aar-field-label">
+              Select with data-size=&quot;{size}&quot;
+            </span>
+            <select
+              className="aar-input"
+              data-size={size}
+              defaultValue="option1"
+            >
               <option value="option1">High Throughput Node</option>
               <option value="option2">Edge Replicated</option>
             </select>
@@ -206,75 +389,118 @@ function SizeScaleSpecimen() {
         </div>
       </div>
 
-      <div style={{ marginTop: '2rem' }}>
-        <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>All Sizes Side-by-Side Comparison</p>
+      <div className="aar-mt-8">
+        <p className="aar-eyebrow aar-mb-3">
+          All Sizes Side-by-Side Comparison
+        </p>
         <div className="aar-stack" data-gap="3">
           {sizes.map((s) => (
             <div
               key={s}
-              className="aar-cluster"
-              style={{
-                justifyContent: 'space-between',
-                padding: '0.625rem 1rem',
-                background: size === s ? 'color-mix(in srgb, var(--aar-primary) 8%, var(--aar-surface))' : 'var(--aar-surface)',
-                border: `1px solid ${size === s ? 'var(--aar-primary)' : 'var(--aar-border)'}`,
-                borderRadius: 'var(--aar-radius-sm)',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '0.75rem',
-              }}
+              className="aar-cluster aar-justify-space-between aar-p-0-625rem-1rem aar-bind-background aar-bind-border aar-radius-radius-sm aar-items-center aar-flex-wrap-wrap aar-gap-3"
+              style={
+                {
+                  "--aar-background":
+                    size === s
+                      ? "color-mix(in srgb, var(--aar-primary) 8%, var(--aar-surface))"
+                      : "var(--aar-surface)",
+                  "--aar-border": `1px solid ${size === s ? "var(--aar-primary)" : "var(--aar-border)"}`,
+                } as React.CSSProperties
+              }
             >
-              <div className="aar-cluster" style={{ gap: '0.75rem', minWidth: '8rem' }}>
-                <span className="aar-badge" data-size="xs">{s.toUpperCase()}</span>
+              <div className="aar-cluster aar-gap-3 aar-min-w-8rem">
+                <span className="aar-badge" data-size="xs">
+                  {s.toUpperCase()}
+                </span>
                 <span className="aar-hint">{sizeLabels[s]}</span>
               </div>
-              <div className="aar-cluster" style={{ gap: '0.5rem', alignItems: 'center' }}>
-                <button type="button" className="aar-button" data-variant="primary" data-size={s}>
+              <div className="aar-cluster aar-gap-2 aar-items-center">
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="primary"
+                  data-size={s}
+                >
                   Deploy
                 </button>
                 <button type="button" className="aar-button" data-size={s}>
                   Cancel
                 </button>
-                <button type="button" className="aar-icon-button" data-size={s} aria-label="Configure">
-                  <Sliders size={s === 'xs' ? 12 : s === 'sm' ? 14 : s === 'lg' ? 18 : s === 'xl' ? 20 : 16} />
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-size={s}
+                  aria-label="Configure"
+                >
+                  <Sliders
+                    size={
+                      s === "xs"
+                        ? 12
+                        : s === "sm"
+                          ? 14
+                          : s === "lg"
+                            ? 18
+                            : s === "xl"
+                              ? 20
+                              : 16
+                    }
+                  />
                 </button>
-                <input className="aar-input" data-size={s} defaultValue={`data-size="${s}"`} style={{ width: '130px' }} readOnly />
-                <span className="aar-badge" data-size={s}>Tag</span>
+                <input
+                  className="aar-input aar-w-130px"
+                  data-size={s}
+                  defaultValue={`data-size="${s}"`}
+                  readOnly
+                />
+                <span className="aar-badge" data-size={s}>
+                  Tag
+                </span>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function FormVariantsSpecimen() {
-  const [variant, setVariant] = useState<'outline' | 'filled' | 'flushed' | 'ghost'>('outline')
-  const [layout, setLayout] = useState<'vertical' | 'horizontal' | 'floating'>('vertical')
-  const [showPassword, setShowPassword] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState('pro')
-  const [switchState, setSwitchState] = useState(true)
-  const [checkState, setCheckState] = useState(true)
+  const [variant, setVariant] = useState<
+    "outline" | "filled" | "flushed" | "ghost"
+  >("outline");
+  const [layout, setLayout] = useState<"vertical" | "horizontal" | "floating">(
+    "vertical",
+  );
+  const [showPassword, setShowPassword] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("pro");
+  const [switchState, setSwitchState] = useState(true);
+  const [checkState, setCheckState] = useState(true);
 
   return (
-    <section className="aar-panel specimen wide">
-      <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+    <section className="aar-panel aar-specimen aar-wide">
+      <div className="aar-cluster aar-justify-space-between aar-items-flex-start aar-flex-wrap-wrap aar-gap-4">
         <div>
-          <p className="aar-eyebrow">09 / Form Variants &amp; Layout Instruments</p>
-          <h2 className="aar-heading">Style, Structure &amp; Selection Controls</h2>
+          <p className="aar-eyebrow">
+            09 / Form Variants &amp; Layout Instruments
+          </p>
+          <h2 className="aar-heading">
+            Style, Structure &amp; Selection Controls
+          </h2>
           <p className="aar-hint">
-            Modular form architecture: 4 visual input styles (<code>outline</code>, <code>filled</code>, <code>flushed</code>, <code>ghost</code>), layout engines, input groups, validation tones, and accessible selection primitives.
+            Modular form architecture: 4 visual input styles (
+            <code>outline</code>, <code>filled</code>, <code>flushed</code>,{" "}
+            <code>ghost</code>), layout engines, input groups, validation tones,
+            and accessible selection primitives.
           </p>
         </div>
       </div>
 
       {/* Part 1: Visual Input Variants */}
-      <div style={{ marginTop: '1.5rem' }}>
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', alignItems: 'center' }}>
+      <div className="aar-mt-6">
+        <div className="aar-cluster aar-justify-space-between aar-mb-3 aar-items-center">
           <p className="aar-eyebrow">1. Visual Input Variants (data-variant)</p>
           <div className="aar-segmented" role="tablist">
-            {(['outline', 'filled', 'flushed', 'ghost'] as const).map((v) => (
+            {(["outline", "filled", "flushed", "ghost"] as const).map((v) => (
               <button
                 key={v}
                 type="button"
@@ -288,26 +514,45 @@ function FormVariantsSpecimen() {
           </div>
         </div>
 
-        <div className="aar-grid" style={{ '--aar-grid-min': '15rem', gap: '1rem' } as CSSProperties}>
+        <div
+          className="aar-grid aar-gap-4"
+          style={{ "--aar-grid-min": "15rem" } as React.CSSProperties}
+        >
           <label className="aar-field">
             <span className="aar-field-label">
               <span>Text Field</span>
-              <span className="aar-hint" style={{ fontSize: '0.75rem' }}>(data-variant=&quot;{variant}&quot;)</span>
+              <span className="aar-hint aar-text-0-875rem">
+                (data-variant=&quot;{variant}&quot;)
+              </span>
             </span>
             <input
               className="aar-input"
               data-variant={variant}
               placeholder={`Enter text in ${variant} style...`}
-              defaultValue={variant === 'outline' ? 'Standard Border' : variant === 'filled' ? 'Subtle Surface Fill' : variant === 'flushed' ? 'Clean Underline Only' : 'Frameless Ghost'}
+              defaultValue={
+                variant === "outline"
+                  ? "Standard Border"
+                  : variant === "filled"
+                    ? "Subtle Surface Fill"
+                    : variant === "flushed"
+                      ? "Clean Underline Only"
+                      : "Frameless Ghost"
+              }
             />
           </label>
 
           <label className="aar-field">
             <span className="aar-field-label">
               <span>Native Select</span>
-              <span className="aar-hint" style={{ fontSize: '0.75rem' }}>(data-variant=&quot;{variant}&quot;)</span>
+              <span className="aar-hint aar-text-0-875rem">
+                (data-variant=&quot;{variant}&quot;)
+              </span>
             </span>
-            <select className="aar-input" data-variant={variant} defaultValue="us-east">
+            <select
+              className="aar-input"
+              data-variant={variant}
+              defaultValue="us-east"
+            >
               <option value="us-east">US East (N. Virginia)</option>
               <option value="eu-west">EU West (Frankfurt)</option>
               <option value="ap-south">AP South (Mumbai)</option>
@@ -317,7 +562,9 @@ function FormVariantsSpecimen() {
           <label className="aar-field">
             <span className="aar-field-label">
               <span>Textarea</span>
-              <span className="aar-hint" style={{ fontSize: '0.75rem' }}>(data-variant=&quot;{variant}&quot;)</span>
+              <span className="aar-hint aar-text-0-875rem">
+                (data-variant=&quot;{variant}&quot;)
+              </span>
             </span>
             <textarea
               className="aar-textarea"
@@ -331,11 +578,11 @@ function FormVariantsSpecimen() {
       </div>
 
       {/* Part 2: Form Layouts */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', alignItems: 'center' }}>
+      <div className="aar-mt-10">
+        <div className="aar-cluster aar-justify-space-between aar-mb-3 aar-items-center">
           <p className="aar-eyebrow">2. Form Layouts (data-layout)</p>
           <div className="aar-segmented" role="tablist">
-            {(['vertical', 'horizontal', 'floating'] as const).map((l) => (
+            {(["vertical", "horizontal", "floating"] as const).map((l) => (
               <button
                 key={l}
                 type="button"
@@ -349,32 +596,54 @@ function FormVariantsSpecimen() {
           </div>
         </div>
 
-        <div style={{ padding: '1.25rem', background: 'var(--aar-surface)', border: '1px solid var(--aar-border)', borderRadius: 'var(--aar-radius-md)' }}>
-          {layout === 'floating' ? (
+        <div className="aar-p-5 aar-bg-surface aar-border-1px-solid-border aar-radius-radius-md">
+          {layout === "floating" ? (
             <div className="aar-stack" data-gap="3">
               <div className="aar-field-floating">
-                <input className="aar-input" id="fl-user" placeholder=" " defaultValue="janarthanan" />
+                <input
+                  className="aar-input"
+                  id="fl-user"
+                  placeholder=" "
+                  defaultValue="janarthanan"
+                />
                 <label htmlFor="fl-user">Workspace Username</label>
               </div>
               <div className="aar-field-floating">
-                <input className="aar-input" id="fl-email" type="email" placeholder=" " defaultValue="dev@techaaroorian.com" />
+                <input
+                  className="aar-input"
+                  id="fl-email"
+                  type="email"
+                  placeholder=" "
+                  defaultValue="dev@techaaroorian.com"
+                />
                 <label htmlFor="fl-email">Primary Email Address</label>
               </div>
             </div>
           ) : (
             <div className="aar-stack" data-gap="3">
-              <label className="aar-field" data-layout={layout === 'horizontal' ? 'horizontal' : undefined}>
+              <label
+                className="aar-field"
+                data-layout={layout === "horizontal" ? "horizontal" : undefined}
+              >
                 <span className="aar-field-label">
                   <span>Organization Name</span>
                   <span className="aar-required">*</span>
                 </span>
                 <div>
-                  <input className="aar-input" defaultValue="TechAaroorian Studios" />
-                  <span className="aar-field-hint">Public handle used for repository namespaces.</span>
+                  <input
+                    className="aar-input"
+                    defaultValue="TechAaroorian Studios"
+                  />
+                  <span className="aar-field-hint">
+                    Public handle used for repository namespaces.
+                  </span>
                 </div>
               </label>
 
-              <label className="aar-field" data-layout={layout === 'horizontal' ? 'horizontal' : undefined}>
+              <label
+                className="aar-field"
+                data-layout={layout === "horizontal" ? "horizontal" : undefined}
+              >
                 <span className="aar-field-label">
                   <span>Routing Domain</span>
                 </span>
@@ -384,7 +653,9 @@ function FormVariantsSpecimen() {
                     <input className="aar-input" defaultValue="craft" />
                     <span className="aar-input-addon">.aar.design</span>
                   </div>
-                  <span className="aar-field-hint">Automatic SSL edge termination enabled.</span>
+                  <span className="aar-field-hint">
+                    Automatic SSL edge termination enabled.
+                  </span>
                 </div>
               </label>
             </div>
@@ -393,16 +664,24 @@ function FormVariantsSpecimen() {
       </div>
 
       {/* Part 3: Input Groups & Adornments */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>3. Input Groups, Prefixes, Suffixes &amp; Addons</p>
-        <div className="aar-grid" style={{ '--aar-grid-min': '15rem', gap: '1rem' } as CSSProperties}>
+      <div className="aar-mt-10">
+        <p className="aar-eyebrow aar-mb-3">
+          3. Input Groups, Prefixes, Suffixes &amp; Addons
+        </p>
+        <div
+          className="aar-grid aar-gap-4"
+          style={{ "--aar-grid-min": "15rem" } as React.CSSProperties}
+        >
           <label className="aar-field">
             <span className="aar-field-label">Prefix Search Icon</span>
             <div className="aar-input-group">
               <span className="aar-input-prefix">
                 <Search size={15} />
               </span>
-              <input className="aar-input" placeholder="Search components, tokens, guides..." />
+              <input
+                className="aar-input"
+                placeholder="Search components, tokens, guides..."
+              />
             </div>
           </label>
 
@@ -411,7 +690,7 @@ function FormVariantsSpecimen() {
             <div className="aar-input-group">
               <input
                 className="aar-input"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 defaultValue="secret-passphrase-2026"
               />
               <span className="aar-input-suffix">
@@ -421,7 +700,7 @@ function FormVariantsSpecimen() {
                   data-variant="quiet"
                   data-size="xs"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
                 </button>
@@ -432,8 +711,16 @@ function FormVariantsSpecimen() {
           <label className="aar-field">
             <span className="aar-field-label">Addon Button Segment</span>
             <div className="aar-input-group">
-              <input className="aar-input" placeholder="Enter coupon or token..." defaultValue="DEV-PREVIEW-2026" />
-              <button type="button" className="aar-button" data-variant="primary" style={{ borderStartStartRadius: 0, borderEndStartRadius: 0, borderLeft: 'none' }}>
+              <input
+                className="aar-input"
+                placeholder="Enter coupon or token..."
+                defaultValue="DEV-PREVIEW-2026"
+              />
+              <button
+                type="button"
+                className="aar-button aar-border-start-start-radius-0px aar-border-end-start-radius-0px aar-border-left-none"
+                data-variant="primary"
+              >
                 Apply
               </button>
             </div>
@@ -442,24 +729,35 @@ function FormVariantsSpecimen() {
       </div>
 
       {/* Part 4: Form Validation & Status States (Anti-CLS & Subgrid Alignment) */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.75rem', alignItems: 'center' }}>
+      <div className="aar-mt-10">
+        <div className="aar-cluster aar-justify-space-between aar-mb-3 aar-items-center">
           <div>
-            <p className="aar-eyebrow">4. Validation Feedback States &amp; Anti-CLS Alignment</p>
-            <p className="aar-hint" style={{ margin: 0 }}>
-              Use <code>.aar-form-row</code> (CSS Subgrid) and <code>.aar-field-feedback</code> to prevent Cumulative Layout Shift (CLS) when feedback toggles.
+            <p className="aar-eyebrow">
+              4. Validation Feedback States &amp; Anti-CLS Alignment
+            </p>
+            <p className="aar-hint aar-m-0px">
+              Use <code>.aar-form-row</code> (CSS Subgrid) and{" "}
+              <code>.aar-field-feedback</code> to prevent Cumulative Layout
+              Shift (CLS) when feedback toggles.
             </p>
           </div>
-          <span className="aar-badge" data-tone="success">Subgrid Aligned · 0px CLS</span>
+          <span className="aar-badge" data-tone="success">
+            Subgrid Aligned · 0px CLS
+          </span>
         </div>
 
-        <div className="aar-form-row" style={{ gap: '0 1rem' }}>
+        <div className="aar-form-row aar-gap-0-1rem">
           <label className="aar-field" data-tone="danger">
             <span className="aar-field-label">
               <span>Database Host (Invalid)</span>
               <span className="aar-required">*</span>
             </span>
-            <input className="aar-input" data-tone="danger" defaultValue="db.invalid-port:9999" aria-invalid="true" />
+            <input
+              className="aar-input"
+              data-tone="danger"
+              defaultValue="db.invalid-port:9999"
+              aria-invalid="true"
+            />
             <div className="aar-field-feedback" data-reserve="2">
               <span className="aar-field-error">
                 <AlertCircle size={14} />
@@ -470,7 +768,11 @@ function FormVariantsSpecimen() {
 
           <label className="aar-field" data-tone="success">
             <span className="aar-field-label">API Key (Verified)</span>
-            <input className="aar-input" data-tone="success" defaultValue="aar_live_99f381ad792" />
+            <input
+              className="aar-input"
+              data-tone="success"
+              defaultValue="aar_live_99f381ad792"
+            />
             <div className="aar-field-feedback" data-reserve="2">
               <span className="aar-field-success">
                 <CheckCircle2 size={14} />
@@ -481,9 +783,13 @@ function FormVariantsSpecimen() {
 
           <label className="aar-field" data-tone="warning">
             <span className="aar-field-label">Disk Allocation (Warning)</span>
-            <input className="aar-input" data-tone="warning" defaultValue="94% (470 GB / 500 GB)" />
+            <input
+              className="aar-input"
+              data-tone="warning"
+              defaultValue="94% (470 GB / 500 GB)"
+            />
             <div className="aar-field-feedback" data-reserve="2">
-              <span className="aar-field-hint" style={{ color: 'var(--aar-warning)' }}>
+              <span className="aar-field-hint aar-ink-warning">
                 <AlertTriangle size={14} />
                 <span>Storage volume exceeds recommended 85% headroom.</span>
               </span>
@@ -493,14 +799,23 @@ function FormVariantsSpecimen() {
       </div>
 
       {/* Part 5: Selection Controls */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>5. Selection Controls: Checkboxes, Radios, Switches &amp; Choice Cards</p>
-        <div className="aar-grid" style={{ '--aar-grid-min': '16rem', gap: '1.25rem' } as CSSProperties}>
+      <div className="aar-mt-10">
+        <p className="aar-eyebrow aar-mb-3">
+          5. Selection Controls: Checkboxes, Radios, Switches &amp; Choice Cards
+        </p>
+        <div
+          className="aar-grid aar-gap-5"
+          style={{ "--aar-grid-min": "16rem" } as React.CSSProperties}
+        >
           <div className="aar-panel">
-            <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>Checkboxes &amp; Radios</p>
+            <p className="aar-eyebrow aar-mb-3">Checkboxes &amp; Radios</p>
             <div className="aar-stack" data-gap="3">
               <label className="aar-checkbox">
-                <input type="checkbox" checked={checkState} onChange={(e) => setCheckState(e.target.checked)} />
+                <input
+                  type="checkbox"
+                  checked={checkState}
+                  onChange={(e) => setCheckState(e.target.checked)}
+                />
                 <span className="aar-checkbox-box" />
                 <span>Enable Automated Backups</span>
               </label>
@@ -509,7 +824,7 @@ function FormVariantsSpecimen() {
                 <span className="aar-checkbox-box" />
                 <span>Enable Dark Launch Canary</span>
               </label>
-              <div style={{ borderTop: '1px solid var(--aar-border)', margin: '0.25rem 0' }} />
+              <div className="aar-border-top-1px-solid-border aar-m-0-25rem-0" />
               <label className="aar-radio">
                 <input type="radio" name="node_env" defaultChecked />
                 <span className="aar-radio-circle" />
@@ -524,33 +839,68 @@ function FormVariantsSpecimen() {
           </div>
 
           <div className="aar-panel">
-            <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>Accessible Toggle Switches (.aar-switch)</p>
+            <p className="aar-eyebrow aar-mb-3">
+              Accessible Toggle Switches (.aar-switch)
+            </p>
             <div className="aar-stack" data-gap="3">
               <label className="aar-switch" data-size="sm">
                 <input type="checkbox" defaultChecked />
-                <span className="aar-switch-track"><span className="aar-switch-thumb" /></span>
+                <span className="aar-switch-track">
+                  <span className="aar-switch-thumb" />
+                </span>
                 <span>Small Switch (data-size=&quot;sm&quot;)</span>
               </label>
               <label className="aar-switch" data-size="md">
-                <input type="checkbox" checked={switchState} onChange={(e) => setSwitchState(e.target.checked)} />
-                <span className="aar-switch-track"><span className="aar-switch-thumb" /></span>
+                <input
+                  type="checkbox"
+                  checked={switchState}
+                  onChange={(e) => setSwitchState(e.target.checked)}
+                />
+                <span className="aar-switch-track">
+                  <span className="aar-switch-thumb" />
+                </span>
                 <span>Medium Switch (Default)</span>
               </label>
               <label className="aar-switch" data-size="lg">
                 <input type="checkbox" defaultChecked />
-                <span className="aar-switch-track"><span className="aar-switch-thumb" /></span>
+                <span className="aar-switch-track">
+                  <span className="aar-switch-thumb" />
+                </span>
                 <span>Large Switch (data-size=&quot;lg&quot;)</span>
               </label>
             </div>
           </div>
 
-          <div className="aar-panel" style={{ gridColumn: '1 / -1' }}>
-            <p className="aar-eyebrow" style={{ marginBottom: '0.75rem' }}>Interactive Choice Cards (.aar-choice-card)</p>
-            <div className="aar-grid" style={{ '--aar-grid-min': '14rem', gap: '0.75rem' } as CSSProperties}>
+          <div className="aar-panel aar-grid-column-1-1">
+            <p className="aar-eyebrow aar-mb-3">
+              Interactive Choice Cards (.aar-choice-card)
+            </p>
+            <div
+              className="aar-grid aar-gap-3"
+              style={{ "--aar-grid-min": "14rem" } as React.CSSProperties}
+            >
               {[
-                { id: 'starter', title: 'Developer Studio', desc: '1 Node · 4 GB RAM · 10 GB Storage', tag: 'Free', price: '$0 / mo' },
-                { id: 'pro', title: 'Team Atelier', desc: '4 Nodes · 16 GB RAM · Edge CDN Cache', tag: 'Recommended', price: '$29 / mo' },
-                { id: 'enterprise', title: 'Global Enterprise', desc: 'Dedicated Cluster · Custom SLA · 99.99%', tag: 'High Scale', price: '$199 / mo' },
+                {
+                  id: "starter",
+                  title: "Developer Studio",
+                  desc: "1 Node · 4 GB RAM · 10 GB Storage",
+                  tag: "Free",
+                  price: "$0 / mo",
+                },
+                {
+                  id: "pro",
+                  title: "Team Atelier",
+                  desc: "4 Nodes · 16 GB RAM · Edge CDN Cache",
+                  tag: "Recommended",
+                  price: "$29 / mo",
+                },
+                {
+                  id: "enterprise",
+                  title: "Global Enterprise",
+                  desc: "Dedicated Cluster · Custom SLA · 99.99%",
+                  tag: "High Scale",
+                  price: "$199 / mo",
+                },
               ].map((c) => (
                 <div
                   key={c.id}
@@ -558,12 +908,22 @@ function FormVariantsSpecimen() {
                   data-selected={selectedPlan === c.id}
                   onClick={() => setSelectedPlan(c.id)}
                 >
-                  <div className="aar-cluster" style={{ justifyContent: 'space-between', marginBottom: '0.35rem' }}>
-                    <span className="aar-badge" data-tone={c.id === 'pro' ? 'success' : undefined} data-size="xs">{c.tag}</span>
-                    <strong style={{ fontSize: '1rem', color: 'var(--aar-primary)' }}>{c.price}</strong>
+                  <div className="aar-cluster aar-justify-space-between aar-mb-0-35rem">
+                    <span
+                      className="aar-badge"
+                      data-tone={c.id === "pro" ? "success" : undefined}
+                      data-size="xs"
+                    >
+                      {c.tag}
+                    </span>
+                    <strong className="aar-text-1rem aar-ink-primary">
+                      {c.price}
+                    </strong>
                   </div>
-                  <h4 style={{ margin: '0.25rem 0', fontSize: '1.05rem' }}>{c.title}</h4>
-                  <p className="aar-hint" style={{ margin: 0 }}>{c.desc}</p>
+                  <h4 className="aar-m-0-25rem-0 aar-text-1-05rem">
+                    {c.title}
+                  </h4>
+                  <p className="aar-hint aar-m-0px">{c.desc}</p>
                 </div>
               ))}
             </div>
@@ -571,81 +931,148 @@ function FormVariantsSpecimen() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function PureHtmlUiSuiteSpecimen() {
-  const [striped, setStriped] = useState(true)
-  const [hover, setHover] = useState(true)
-  const [bordered, setBordered] = useState(false)
-  const [tableDensity, setTableDensity] = useState<'sm' | 'md' | 'lg'>('md')
-  const [selectedArtifacts, setSelectedArtifacts] = useState<string[]>(['art-1', 'art-3'])
-  const [activeTab, setActiveTab] = useState('overview')
-  const [tabVariant, setTabVariant] = useState<'underline' | 'pills'>('underline')
-  const [page, setPage] = useState(2)
+  const [striped, setStriped] = useState(true);
+  const [hover, setHover] = useState(true);
+  const [bordered, setBordered] = useState(false);
+  const [tableDensity, setTableDensity] = useState<"sm" | "md" | "lg">("md");
+  const [selectedArtifacts, setSelectedArtifacts] = useState<string[]>([
+    "art-1",
+    "art-3",
+  ]);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [tabVariant, setTabVariant] = useState<"underline" | "pills">(
+    "underline",
+  );
+  const [page, setPage] = useState(2);
 
   interface ArtifactRow {
-    id: string
-    name: string
-    realm: string
-    status: string
-    tone: 'success' | 'info' | 'warning' | 'danger'
-    res: string
-    latency: string
+    id: string;
+    name: string;
+    realm: string;
+    status: string;
+    tone: "success" | "info" | "warning" | "danger";
+    res: string;
+    latency: string;
   }
 
   const artifacts: ArtifactRow[] = [
-    { id: 'art-1', name: 'Yuwbrndr Canvas Atelier', realm: 'Obsidian', status: 'Sealed', tone: 'success', res: '1200×627', latency: '14ms' },
-    { id: 'art-2', name: 'Algorithmic Sketch Graph', realm: 'Jade', status: 'Transmuting', tone: 'info', res: '1080×1080', latency: '28ms' },
-    { id: 'art-3', name: 'Grimoire Design System', realm: 'Parchment', status: 'Review Needed', tone: 'warning', res: 'Vector SVG', latency: '4ms' },
-    { id: 'art-4', name: 'Spectral Shimmer Shader', realm: 'Iris', status: 'Deprecated', tone: 'danger', res: 'WebGL 2.0', latency: '62ms' },
-  ]
+    {
+      id: "art-1",
+      name: "Yuwbrndr Canvas Atelier",
+      realm: "Dark",
+      status: "Sealed",
+      tone: "success",
+      res: "1200×627",
+      latency: "14ms",
+    },
+    {
+      id: "art-2",
+      name: "Algorithmic Sketch Graph",
+      realm: "Jade",
+      status: "Transmuting",
+      tone: "info",
+      res: "1080×1080",
+      latency: "28ms",
+    },
+    {
+      id: "art-3",
+      name: "Grimoire Design System",
+      realm: "Light",
+      status: "Review Needed",
+      tone: "warning",
+      res: "Vector SVG",
+      latency: "4ms",
+    },
+    {
+      id: "art-4",
+      name: "Spectral Shimmer Shader",
+      realm: "Custom",
+      status: "Deprecated",
+      tone: "danger",
+      res: "WebGL 2.0",
+      latency: "62ms",
+    },
+  ];
 
   const toggleSelect = (id: string) => {
-    setSelectedArtifacts(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
-  }
+    setSelectedArtifacts((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    );
+  };
 
   const toggleSelectAll = () => {
     if (selectedArtifacts.length === artifacts.length) {
-      setSelectedArtifacts([])
+      setSelectedArtifacts([]);
     } else {
-      setSelectedArtifacts(artifacts.map(a => a.id))
+      setSelectedArtifacts(artifacts.map((a) => a.id));
     }
-  }
+  };
 
   return (
-    <section className="aar-panel specimen wide" style={{ marginTop: '2.5rem' }}>
+    <section className="aar-panel aar-specimen aar-wide aar-mt-10">
       <div>
         <p className="aar-eyebrow">Pure HTML &amp; CSS Component Suite</p>
-        <h2 className="aar-heading">Full UI Coverage with Zero JavaScript Dependencies</h2>
+        <h2 className="aar-heading">
+          Full UI Coverage with Zero JavaScript Dependencies
+        </h2>
         <p className="aar-hint">
-          Every component below is built exclusively using semantic HTML5 elements (<code>&lt;table&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;summary&gt;</code>, <code>&lt;progress&gt;</code>, <code>&lt;nav&gt;</code>) and <code>aar-loom</code> CSS classes. No React components, zero bundle overhead, universal portability.
+          Every component below is built exclusively using semantic HTML5
+          elements (<code>&lt;table&gt;</code>, <code>&lt;details&gt;</code>,{" "}
+          <code>&lt;summary&gt;</code>, <code>&lt;progress&gt;</code>,{" "}
+          <code>&lt;nav&gt;</code>) and <code>aar-loom</code> CSS classes. No
+          React components, zero bundle overhead, universal portability.
         </p>
       </div>
 
       {/* 1. Pure HTML Data Table */}
-      <div style={{ marginTop: '2rem' }}>
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+      <div className="aar-mt-8">
+        <div className="aar-cluster aar-justify-space-between aar-items-center aar-mb-4 aar-flex-wrap-wrap aar-gap-3">
           <div>
-            <h3 className="aar-heading" style={{ fontSize: '1.125rem' }}>1. Data Tables &amp; Data Grids (table.aar-table)</h3>
-            <p className="aar-hint" style={{ margin: 0 }}>Built-in zebra striping, row hover, column alignment, sticky header, and row selection.</p>
+            <h3 className="aar-heading aar-text-1-125rem">
+              1. Data Tables &amp; Data Grids (table.aar-table)
+            </h3>
+            <p className="aar-hint aar-m-0px">
+              Built-in zebra striping, row hover, column alignment, sticky
+              header, and row selection.
+            </p>
           </div>
-          <div className="aar-cluster" style={{ gap: '0.5rem', flexWrap: 'wrap' }}>
-            <label className="aar-toggle" style={{ fontSize: '0.8125rem' }}>
-              <input type="checkbox" checked={striped} onChange={e => setStriped(e.target.checked)} />
+          <div className="aar-cluster aar-gap-2 aar-flex-wrap-wrap">
+            <label className="aar-toggle aar-text-0-875rem">
+              <input
+                type="checkbox"
+                checked={striped}
+                onChange={(e) => setStriped(e.target.checked)}
+              />
               <span>Striped</span>
             </label>
-            <label className="aar-toggle" style={{ fontSize: '0.8125rem' }}>
-              <input type="checkbox" checked={hover} onChange={e => setHover(e.target.checked)} />
+            <label className="aar-toggle aar-text-0-875rem">
+              <input
+                type="checkbox"
+                checked={hover}
+                onChange={(e) => setHover(e.target.checked)}
+              />
               <span>Hover</span>
             </label>
-            <label className="aar-toggle" style={{ fontSize: '0.8125rem' }}>
-              <input type="checkbox" checked={bordered} onChange={e => setBordered(e.target.checked)} />
+            <label className="aar-toggle aar-text-0-875rem">
+              <input
+                type="checkbox"
+                checked={bordered}
+                onChange={(e) => setBordered(e.target.checked)}
+              />
               <span>Bordered</span>
             </label>
             <div className="aar-segmented" role="tablist">
-              {(['sm', 'md', 'lg'] as const).map(s => (
-                <button key={s} type="button" aria-selected={tableDensity === s} onClick={() => setTableDensity(s)}>
+              {(["sm", "md", "lg"] as const).map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  aria-selected={tableDensity === s}
+                  onClick={() => setTableDensity(s)}
+                >
                   {s.toUpperCase()}
                 </button>
               ))}
@@ -656,14 +1083,14 @@ function PureHtmlUiSuiteSpecimen() {
         <div className="aar-table-container">
           <table
             className="aar-table"
-            data-striped={striped ? 'true' : undefined}
-            data-hover={hover ? 'true' : undefined}
-            data-bordered={bordered ? 'true' : undefined}
+            data-striped={striped ? "true" : undefined}
+            data-hover={hover ? "true" : undefined}
+            data-bordered={bordered ? "true" : undefined}
             data-size={tableDensity}
           >
             <thead>
               <tr>
-                <th style={{ width: '40px', textAlign: 'center' }}>
+                <th className="aar-w-40px aar-text-align-center">
                   <input
                     type="checkbox"
                     className="aar-checkbox"
@@ -677,15 +1104,15 @@ function PureHtmlUiSuiteSpecimen() {
                 <th>Status</th>
                 <th>Resolution</th>
                 <th data-align="end">Compute Latency</th>
-                <th style={{ textAlign: 'center' }}>Actions</th>
+                <th className="aar-text-align-center">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {artifacts.map(art => {
-                const isSelected = selectedArtifacts.includes(art.id)
+              {artifacts.map((art) => {
+                const isSelected = selectedArtifacts.includes(art.id);
                 return (
                   <tr key={art.id} aria-selected={isSelected}>
-                    <td style={{ textAlign: 'center' }}>
+                    <td className="aar-text-align-center">
                       <input
                         type="checkbox"
                         className="aar-checkbox"
@@ -695,43 +1122,74 @@ function PureHtmlUiSuiteSpecimen() {
                       />
                     </td>
                     <td>
-                      <div style={{ fontWeight: 600 }}>{art.name}</div>
-                      <div className="aar-hint" style={{ fontSize: '0.75rem' }}>ID: {art.id}</div>
+                      <div className="aar-weight-600">{art.name}</div>
+                      <div className="aar-hint aar-text-0-875rem">
+                        ID: {art.id}
+                      </div>
                     </td>
                     <td>
-                      <span className="aar-badge" data-size="xs">{art.realm}</span>
+                      <span className="aar-badge" data-size="xs">
+                        {art.realm}
+                      </span>
                     </td>
                     <td>
-                      <span className="aar-badge" data-tone={art.tone} data-size="xs" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                        {art.tone === 'success' ? <Check size={11} /> : art.tone === 'warning' ? <AlertTriangle size={11} /> : <Sparkles size={11} />}
+                      <span
+                        className="aar-badge aar-display-inline-flex aar-items-center aar-gap-1"
+                        data-tone={art.tone}
+                        data-size="xs"
+                      >
+                        {art.tone === "success" ? (
+                          <Check size={11} />
+                        ) : art.tone === "warning" ? (
+                          <AlertTriangle size={11} />
+                        ) : (
+                          <Sparkles size={11} />
+                        )}
                         {art.status}
                       </span>
                     </td>
-                    <td><code>{art.res}</code></td>
+                    <td>
+                      <code>{art.res}</code>
+                    </td>
                     <td className="aar-num" data-align="end">
                       <strong>{art.latency}</strong>
                     </td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td className="aar-text-align-center">
                       <details className="aar-menu">
-                        <summary className="aar-button" data-size="xs" data-variant="quiet" aria-label="Row actions">
+                        <summary
+                          className="aar-button"
+                          data-size="xs"
+                          data-variant="quiet"
+                          aria-label="Row actions"
+                        >
                           <MoreHorizontal size={14} />
                         </summary>
                         <div className="aar-menu-dropdown" data-align="end">
-                          <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <button
+                            type="button"
+                            className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                          >
                             <Copy size={13} /> Duplicate
                           </button>
-                          <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <button
+                            type="button"
+                            className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                          >
                             <Eye size={13} /> Inspect Altars
                           </button>
                           <hr className="aar-menu-divider" />
-                          <button type="button" className="aar-menu-item" data-danger="true" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <button
+                            type="button"
+                            className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                            data-danger="true"
+                          >
                             <Trash2 size={13} /> Archive
                           </button>
                         </div>
                       </details>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
@@ -739,47 +1197,103 @@ function PureHtmlUiSuiteSpecimen() {
       </div>
 
       {/* 2. Alerts & Status Banners */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>2. Alerts, Callouts &amp; Status Banners (.aar-alert)</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>Tone variants for contextual feedback: info, success, warning, and danger with icons and actions.</p>
-        
+      <div className="aar-mt-10">
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+          2. Alerts, Callouts &amp; Status Banners (.aar-alert)
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Tone variants for contextual feedback: info, success, warning, and
+          danger with icons and actions.
+        </p>
+
         <div className="aar-stack" data-gap="3">
           <div className="aar-alert" data-tone="info">
-            <span className="aar-alert-icon"><Info size={18} /></span>
+            <span className="aar-alert-icon">
+              <Info size={18} />
+            </span>
             <div className="aar-alert-content">
-              <div className="aar-alert-title">Atelier Synchronization Active</div>
-              <div className="aar-alert-description">Changes are continuously persisted to local IndexedDB storage. Network sync resumes on reconnection.</div>
+              <div className="aar-alert-title">
+                Atelier Synchronization Active
+              </div>
+              <div className="aar-alert-description">
+                Changes are continuously persisted to local IndexedDB storage.
+                Network sync resumes on reconnection.
+              </div>
             </div>
-            <button type="button" className="aar-button" data-size="xs" data-variant="quiet">Dismiss</button>
+            <button
+              type="button"
+              className="aar-button"
+              data-size="xs"
+              data-variant="quiet"
+            >
+              Dismiss
+            </button>
           </div>
 
           <div className="aar-alert" data-tone="success">
-            <span className="aar-alert-icon"><CheckCircle2 size={18} /></span>
+            <span className="aar-alert-icon">
+              <CheckCircle2 size={18} />
+            </span>
             <div className="aar-alert-content">
-              <div className="aar-alert-title">Transmutation Sealed Successfully</div>
-              <div className="aar-alert-description">Vector artifact exported at 2× Retina scale. 128 assets generated without raster blur.</div>
+              <div className="aar-alert-title">
+                Transmutation Sealed Successfully
+              </div>
+              <div className="aar-alert-description">
+                Vector artifact exported at 2× Retina scale. 128 assets
+                generated without raster blur.
+              </div>
               <div className="aar-alert-actions">
-                <button type="button" className="aar-button" data-variant="primary" data-size="xs">Download Archive</button>
-                <button type="button" className="aar-button" data-size="xs">View in Altar</button>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="primary"
+                  data-size="xs"
+                >
+                  Download Archive
+                </button>
+                <button type="button" className="aar-button" data-size="xs">
+                  View in Altar
+                </button>
               </div>
             </div>
           </div>
 
           <div className="aar-alert" data-tone="warning">
-            <span className="aar-alert-icon"><AlertTriangle size={18} /></span>
+            <span className="aar-alert-icon">
+              <AlertTriangle size={18} />
+            </span>
             <div className="aar-alert-content">
-              <div className="aar-alert-title">High Density Canvas Memory Threshold</div>
-              <div className="aar-alert-description">The active composition contains over 4,000 algorithmic nodes. Hardware acceleration is recommended.</div>
+              <div className="aar-alert-title">
+                High Density Canvas Memory Threshold
+              </div>
+              <div className="aar-alert-description">
+                The active composition contains over 4,000 algorithmic nodes.
+                Hardware acceleration is recommended.
+              </div>
             </div>
           </div>
 
           <div className="aar-alert" data-tone="danger">
-            <span className="aar-alert-icon"><AlertCircle size={18} /></span>
+            <span className="aar-alert-icon">
+              <AlertCircle size={18} />
+            </span>
             <div className="aar-alert-content">
-              <div className="aar-alert-title">Rift Encountered: Invalid Shader Syntax</div>
-              <div className="aar-alert-description">Line 42: Variable 'u_luminescence' is undefined. Falling back to default Obsidian shader.</div>
+              <div className="aar-alert-title">
+                Rift Encountered: Invalid Shader Syntax
+              </div>
+              <div className="aar-alert-description">
+                Line 42: Variable 'u_luminescence' is undefined. Falling back to
+                default appearance.
+              </div>
               <div className="aar-alert-actions">
-                <button type="button" className="aar-button" data-variant="danger" data-size="xs">Revert to Sealed</button>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="danger"
+                  data-size="xs"
+                >
+                  Revert to Sealed
+                </button>
               </div>
             </div>
           </div>
@@ -787,72 +1301,123 @@ function PureHtmlUiSuiteSpecimen() {
       </div>
 
       {/* 3. Disclosures & Accordions */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>3. Disclosures &amp; Accordions (Pure HTML &lt;details&gt;)</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>Zero JavaScript required. Fully accessible, keyboard-navigable expand/collapse with CSS-animated chevron.</p>
+      <div className="aar-mt-10">
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+          3. Disclosures &amp; Accordions (Pure HTML &lt;details&gt;)
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Zero JavaScript required. Fully accessible, keyboard-navigable
+          expand/collapse with CSS-animated chevron.
+        </p>
 
         <div className="aar-accordion-group">
           <details className="aar-accordion" open>
             <summary className="aar-accordion-summary">
-              <span>Why choose pure HTML + aar-loom over heavy component libraries?</span>
-              <span className="aar-accordion-chevron"><ChevronDown size={14} /></span>
+              <span>
+                Why choose pure HTML + aar-loom over heavy component libraries?
+              </span>
+              <span className="aar-accordion-chevron">
+                <ChevronDown size={14} />
+              </span>
             </summary>
             <div className="aar-accordion-body">
-              Pure HTML + aar-loom gives you 100% decoupling from framework lock-in. You can use standard HTML in React, Vue, Svelte, Astro, plain PHP, or static files. There are zero megabytes of JS dependencies, zero hydration mismatches, and instant initial paint.
+              Pure HTML + aar-loom gives you 100% decoupling from framework
+              lock-in. You can use standard HTML in React, Vue, Svelte, Astro,
+              plain PHP, or static files. There are zero megabytes of JS
+              dependencies, zero hydration mismatches, and instant initial
+              paint.
             </div>
           </details>
 
           <details className="aar-accordion">
             <summary className="aar-accordion-summary">
-              <span>How do native &lt;details&gt; menus and accordions stay accessible?</span>
-              <span className="aar-accordion-chevron"><ChevronDown size={14} /></span>
+              <span>
+                How do native &lt;details&gt; menus and accordions stay
+                accessible?
+              </span>
+              <span className="aar-accordion-chevron">
+                <ChevronDown size={14} />
+              </span>
             </summary>
             <div className="aar-accordion-body">
-              HTML5 &lt;details&gt; and &lt;summary&gt; have browser-native ARIA roles built in. Screen readers announce them as collapsible regions, the Space and Enter keys toggle them out of the box, and no polyfill is needed.
+              HTML5 &lt;details&gt; and &lt;summary&gt; have browser-native ARIA
+              roles built in. Screen readers announce them as collapsible
+              regions, the Space and Enter keys toggle them out of the box, and
+              no polyfill is needed.
             </div>
           </details>
 
           <details className="aar-accordion">
             <summary className="aar-accordion-summary">
               <span>How does Magic-Art integrate with clean applications?</span>
-              <span className="aar-accordion-chevron"><ChevronDown size={14} /></span>
+              <span className="aar-accordion-chevron">
+                <ChevronDown size={14} />
+              </span>
             </summary>
             <div className="aar-accordion-body">
-              Magic-Art is strictly opt-in via <code>data-magic-art=&quot;true&quot;</code> or dedicated classes. Clean SaaS apps run with zero sparkle animations by default, keeping designs crisp, fast, and professional.
+              Magic-Art is strictly opt-in via{" "}
+              <code>data-magic-art=&quot;true&quot;</code> or dedicated classes.
+              Clean SaaS apps run with zero sparkle animations by default,
+              keeping designs crisp, fast, and professional.
             </div>
           </details>
         </div>
       </div>
 
       {/* 4. Pure HTML Dropdown Menus & CSS Tooltips */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>4. Pure HTML Dropdown Menus &amp; CSS Tooltips (Zero JS)</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>Interactive click-to-open dropdowns using HTML5 &lt;details class=&quot;aar-menu&quot;&gt; and pure CSS hover tooltips with [data-tooltip].</p>
+      <div className="aar-mt-10">
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+          4. Pure HTML Dropdown Menus &amp; CSS Tooltips (Zero JS)
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Interactive click-to-open dropdowns using HTML5 &lt;details
+          class=&quot;aar-menu&quot;&gt; and pure CSS hover tooltips with
+          [data-tooltip].
+        </p>
 
-        <div className="aar-cluster" style={{ gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="aar-cluster aar-gap-6 aar-items-center aar-flex-wrap-wrap">
           {/* Dropdown Menu */}
           <details className="aar-menu">
-            <summary className="aar-button" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+            <summary
+              className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+              data-variant="primary"
+            >
               <span>Export Artifacts</span>
               <ChevronDown size={14} />
             </summary>
             <div className="aar-menu-dropdown">
               <span className="aar-menu-header">Vector Formats</span>
-              <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <button
+                type="button"
+                className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+              >
                 <FileDown size={13} /> Export as SVG
               </button>
-              <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <button
+                type="button"
+                className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+              >
                 <FileDown size={13} /> Export as PDF
               </button>
-              <span className="aar-menu-header" style={{ marginTop: '0.25rem' }}>Raster Formats</span>
-              <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <span className="aar-menu-header aar-mt-1">Raster Formats</span>
+              <button
+                type="button"
+                className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+              >
                 <FileImage size={13} /> Export as PNG (2× Retina)
               </button>
-              <button type="button" className="aar-menu-item" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <button
+                type="button"
+                className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+              >
                 <FileImage size={13} /> Export as WebP
               </button>
               <hr className="aar-menu-divider" />
-              <button type="button" className="aar-menu-item" data-danger="true" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <button
+                type="button"
+                className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                data-danger="true"
+              >
                 <Trash2 size={13} /> Clear Cache
               </button>
             </div>
@@ -860,15 +1425,21 @@ function PureHtmlUiSuiteSpecimen() {
 
           {/* Secondary Menu */}
           <details className="aar-menu">
-            <summary className="aar-button" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+            <summary className="aar-button aar-display-inline-flex aar-items-center aar-gap-2">
               <span>Atelier Settings</span>
               <ChevronDown size={14} />
             </summary>
             <div className="aar-menu-dropdown">
-              <button type="button" className="aar-menu-item">Toggle Grid Snapping</button>
-              <button type="button" className="aar-menu-item">Show Safe Margins</button>
+              <button type="button" className="aar-menu-item">
+                Toggle Grid Snapping
+              </button>
+              <button type="button" className="aar-menu-item">
+                Show Safe Margins
+              </button>
               <hr className="aar-menu-divider" />
-              <button type="button" className="aar-menu-item">Keyboard Shortcuts (<span className="aar-kbd">?</span>)</button>
+              <button type="button" className="aar-menu-item">
+                Keyboard Shortcuts (<span className="aar-kbd">?</span>)
+              </button>
             </div>
           </details>
 
@@ -895,19 +1466,27 @@ function PureHtmlUiSuiteSpecimen() {
       </div>
 
       {/* 5. Navigation Tabs & Breadcrumbs */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>5. Navigation Tabs &amp; Breadcrumbs</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>Pure semantic navigation structures with underline and pill variants.</p>
+      <div className="aar-mt-10">
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+          5. Navigation Tabs &amp; Breadcrumbs
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Pure semantic navigation structures with underline and pill variants.
+        </p>
 
         {/* Breadcrumb */}
-        <nav className="aar-breadcrumb" aria-label="Hierarchy" style={{ marginBottom: '1.25rem' }}>
+        <nav className="aar-breadcrumb aar-mb-5" aria-label="Hierarchy">
           <ol className="aar-breadcrumb-list">
             <li className="aar-breadcrumb-item">
-              <a href="#grimoire" className="aar-breadcrumb-link">Grimoire Atelier</a>
+              <a href="#grimoire" className="aar-breadcrumb-link">
+                Grimoire Atelier
+              </a>
               <span className="aar-breadcrumb-separator">/</span>
             </li>
             <li className="aar-breadcrumb-item">
-              <a href="#projects" className="aar-breadcrumb-link">Yuwbrndr Projects</a>
+              <a href="#projects" className="aar-breadcrumb-link">
+                Yuwbrndr Projects
+              </a>
               <span className="aar-breadcrumb-separator">/</span>
             </li>
             <li className="aar-breadcrumb-item" aria-current="page">
@@ -917,53 +1496,71 @@ function PureHtmlUiSuiteSpecimen() {
         </nav>
 
         {/* Tabs switcher */}
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+        <div className="aar-cluster aar-justify-space-between aar-items-center aar-mb-3">
           <span className="aar-eyebrow">Tab Variant:</span>
           <div className="aar-segmented" role="tablist">
-            <button type="button" aria-selected={tabVariant === 'underline'} onClick={() => setTabVariant('underline')}>Underline</button>
-            <button type="button" aria-selected={tabVariant === 'pills'} onClick={() => setTabVariant('pills')}>Pills</button>
+            <button
+              type="button"
+              aria-selected={tabVariant === "underline"}
+              onClick={() => setTabVariant("underline")}
+            >
+              Underline
+            </button>
+            <button
+              type="button"
+              aria-selected={tabVariant === "pills"}
+              onClick={() => setTabVariant("pills")}
+            >
+              Pills
+            </button>
           </div>
         </div>
 
-        <nav className="aar-tabs" data-variant={tabVariant === 'pills' ? 'pills' : undefined} aria-label="Studio views">
+        <nav
+          className="aar-tabs"
+          data-variant={tabVariant === "pills" ? "pills" : undefined}
+          aria-label="Studio views"
+        >
           <button
             type="button"
             className="aar-tab"
-            aria-selected={activeTab === 'overview'}
-            onClick={() => setActiveTab('overview')}
+            aria-selected={activeTab === "overview"}
+            onClick={() => setActiveTab("overview")}
           >
-            <span className="aar-cluster" style={{ gap: '0.4rem', alignItems: 'center' }}>
+            <span className="aar-cluster aar-gap-2 aar-items-center">
               <Sparkles size={14} /> Atelier Overview
             </span>
-            <span className="aar-badge" data-size="xs">12</span>
+            <span className="aar-badge" data-size="xs">
+              12
+            </span>
           </button>
           <button
             type="button"
             className="aar-tab"
-            aria-selected={activeTab === 'parameters'}
-            onClick={() => setActiveTab('parameters')}
+            aria-selected={activeTab === "parameters"}
+            onClick={() => setActiveTab("parameters")}
           >
-            <span className="aar-cluster" style={{ gap: '0.4rem', alignItems: 'center' }}>
+            <span className="aar-cluster aar-gap-2 aar-items-center">
               <Sliders size={14} /> Parameters
             </span>
           </button>
           <button
             type="button"
             className="aar-tab"
-            aria-selected={activeTab === 'transmutations'}
-            onClick={() => setActiveTab('transmutations')}
+            aria-selected={activeTab === "transmutations"}
+            onClick={() => setActiveTab("transmutations")}
           >
-            <span className="aar-cluster" style={{ gap: '0.4rem', alignItems: 'center' }}>
+            <span className="aar-cluster aar-gap-2 aar-items-center">
               <Check size={14} /> Transmutations
             </span>
           </button>
           <button
             type="button"
             className="aar-tab"
-            aria-selected={activeTab === 'settings'}
-            onClick={() => setActiveTab('settings')}
+            aria-selected={activeTab === "settings"}
+            onClick={() => setActiveTab("settings")}
           >
-            <span className="aar-cluster" style={{ gap: '0.4rem', alignItems: 'center' }}>
+            <span className="aar-cluster aar-gap-2 aar-items-center">
               <Settings size={14} /> Settings
             </span>
           </button>
@@ -971,37 +1568,54 @@ function PureHtmlUiSuiteSpecimen() {
       </div>
 
       {/* 6. Avatars, Progress & Metric Stat Cards */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>6. Avatars, Progress Bars &amp; Metric Cards</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>Essential primitives for SaaS portals, user dashboards, and collaborative studio workspaces.</p>
+      <div className="aar-mt-10">
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+          6. Avatars, Progress Bars &amp; Metric Cards
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Essential primitives for SaaS portals, user dashboards, and
+          collaborative studio workspaces.
+        </p>
 
-        <div className="aar-grid" style={{ '--aar-grid-min': '16rem', gap: '1.25rem' } as CSSProperties}>
+        <div
+          className="aar-grid aar-gap-5"
+          style={{ "--aar-grid-min": "16rem" } as React.CSSProperties}
+        >
           {/* Stat Card 1 */}
           <div className="aar-stat-card">
             <div className="aar-stat-label">Active Canvas Renderers</div>
             <div className="aar-stat-value">1,429</div>
             <div className="aar-stat-meta">
-              <span className="aar-stat-delta" data-trend="up" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+              <span
+                className="aar-stat-delta aar-display-inline-flex aar-items-center aar-gap-1"
+                data-trend="up"
+              >
                 <TrendingUp size={12} /> +18.4%
               </span>
-              <span className="aar-hint" style={{ fontSize: '0.75rem' }}>vs last epoch</span>
+              <span className="aar-hint aar-text-0-875rem">vs last epoch</span>
             </div>
           </div>
 
           {/* Stat Card 2 */}
           <div className="aar-stat-card">
             <div className="aar-stat-label">Frame Latency (p99)</div>
-            <div className="aar-stat-value">14.2<span style={{ fontSize: '1.125rem', fontWeight: 500 }}>ms</span></div>
+            <div className="aar-stat-value">
+              14.2<span className="aar-text-1-125rem aar-weight-500">ms</span>
+            </div>
             <div className="aar-stat-meta">
-              <span className="aar-stat-delta" data-trend="down">↓ -4.1ms</span>
-              <span className="aar-hint" style={{ fontSize: '0.75rem' }}>60 FPS locked</span>
+              <span className="aar-stat-delta" data-trend="down">
+                ↓ -4.1ms
+              </span>
+              <span className="aar-hint aar-text-0-875rem">60 FPS locked</span>
             </div>
           </div>
 
           {/* Avatars & Progress Block */}
-          <div className="aar-card" style={{ padding: '1.25rem' }}>
-            <div className="aar-eyebrow" style={{ marginBottom: '0.5rem' }}>Collaborators &amp; Quota</div>
-            <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <div className="aar-card aar-p-5">
+            <div className="aar-eyebrow aar-mb-2">
+              Collaborators &amp; Quota
+            </div>
+            <div className="aar-cluster aar-justify-space-between aar-items-center aar-mb-4">
               <div className="aar-avatar-group">
                 <div className="aar-avatar" data-size="sm" title="Jana">
                   <span>JA</span>
@@ -1015,30 +1629,45 @@ function PureHtmlUiSuiteSpecimen() {
                   <span>YW</span>
                   <span className="aar-avatar-status" data-status="away" />
                 </div>
-                <div className="aar-avatar" data-size="sm" style={{ background: 'var(--aar-primary)', color: 'var(--aar-on-primary)' }}>
+                <div
+                  className="aar-avatar aar-bg-primary aar-ink-on-primary"
+                  data-size="sm"
+                >
                   <span>+4</span>
                 </div>
               </div>
-              <span className="aar-badge" data-size="xs" data-tone="success">4 Online</span>
+              <span className="aar-badge" data-size="xs" data-tone="success">
+                4 Online
+              </span>
             </div>
 
             <div className="aar-stack" data-gap="1">
-              <div className="aar-cluster" style={{ justifyContent: 'space-between', fontSize: '0.75rem' }}>
+              <div className="aar-cluster aar-justify-space-between aar-text-0-875rem">
                 <span className="aar-hint">Storage Quota</span>
                 <strong>72% (7.2 / 10 GB)</strong>
               </div>
-              <progress className="aar-progress" value={72} max={100} data-tone="success" />
+              <progress
+                className="aar-progress"
+                value={72}
+                max={100}
+                data-tone="success"
+              />
             </div>
           </div>
         </div>
       </div>
 
       {/* 7. Pagination */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <div className="aar-mt-10">
+        <div className="aar-cluster aar-justify-space-between aar-items-center aar-flex-wrap-wrap aar-gap-4">
           <div>
-            <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.25rem' }}>7. Pagination (nav.aar-pagination)</h3>
-            <p className="aar-hint" style={{ margin: 0 }}>Clean accessible pagination for large data tables and search catalogs.</p>
+            <h3 className="aar-heading aar-text-1-125rem aar-mb-1">
+              7. Pagination (nav.aar-pagination)
+            </h3>
+            <p className="aar-hint aar-m-0px">
+              Clean accessible pagination for large data tables and search
+              catalogs.
+            </p>
           </div>
 
           <nav className="aar-pagination" aria-label="Table pagination">
@@ -1054,12 +1683,12 @@ function PureHtmlUiSuiteSpecimen() {
                   ←
                 </button>
               </li>
-              {[1, 2, 3, 4, 5].map(p => (
+              {[1, 2, 3, 4, 5].map((p) => (
                 <li key={p}>
                   <button
                     type="button"
                     className="aar-pagination-btn"
-                    aria-current={page === p ? 'page' : undefined}
+                    aria-current={page === p ? "page" : undefined}
                     onClick={() => setPage(p)}
                   >
                     {p}
@@ -1083,11 +1712,14 @@ function PureHtmlUiSuiteSpecimen() {
       </div>
 
       {/* 8. Pure HTML Code Example Block */}
-      <div style={{ marginTop: '2.5rem' }}>
+      <div className="aar-mt-10">
         <p className="aar-eyebrow">Zero Framework Lock-in</p>
-        <h3 className="aar-heading" style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>Pure Semantic HTML Snippets</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>
-          Copy directly into any HTML, JSX, Vue, Svelte, or Astro file without importing a single React component:
+        <h3 className="aar-heading aar-text-1-125rem aar-mb-2">
+          Pure Semantic HTML Snippets
+        </h3>
+        <p className="aar-hint aar-mb-4">
+          Copy directly into any HTML, JSX, Vue, Svelte, or Astro file without
+          importing a single React component:
         </p>
 
         <CodeBlock
@@ -1142,365 +1774,249 @@ function PureHtmlUiSuiteSpecimen() {
         />
       </div>
     </section>
-  )
+  );
 }
-
-const PALETTE_DEFINITIONS = [
-  {
-    id: 'obsidian',
-    name: 'Obsidian',
-    subtitle: 'Night Atelier · Deep Focus',
-    description: 'Deep cosmic slate and starlight typography. Engineered for dark-mode creative studios, reducing eye fatigue during extended composition.',
-    swatches: [
-      { name: 'Void Background', hex: '#0f111a' },
-      { name: 'Midnight Surface', hex: '#161826' },
-      { name: 'Raised Surface', hex: '#1c2032' },
-      { name: 'Hairline Border', hex: '#2e354f' },
-      { name: 'Radiant Violet', hex: '#a78bfa' },
-      { name: 'Starlight Text', hex: '#f0f3fa' },
-    ],
-  },
-  {
-    id: 'parchment',
-    name: 'Parchment',
-    subtitle: 'Ancient Vellum · Tactile Script',
-    description: 'Warm hand-pressed vellum and crisp paper surfaces with iron-gall ink. Provides high contrast and tactile editorial clarity.',
-    swatches: [
-      { name: 'Vellum Background', hex: '#f5f2eb' },
-      { name: 'Paper Surface', hex: '#fffdf9' },
-      { name: 'Subtle Well', hex: '#eee9dd' },
-      { name: 'Sepia Hairline', hex: '#dcd4c3' },
-      { name: 'Royal Violet', hex: '#6d28d9' },
-      { name: 'Charcoal Ink', hex: '#26212b' },
-    ],
-  },
-  {
-    id: 'jade',
-    name: 'Celestial Jade',
-    subtitle: 'Algorithmic Precision · Mint Halo',
-    description: 'Emerald depths paired with glowing mint runes. Perfect for generative tools, algorithmic graphs, and data visualization ateliers.',
-    swatches: [
-      { name: 'Void Jade', hex: '#0a1612' },
-      { name: 'Deep Surface', hex: '#112920' },
-      { name: 'Deep Emerald', hex: '#1f6b52' },
-      { name: 'Celestial Mint', hex: '#6ee7b7' },
-      { name: 'Mint Halo', hex: '#a7f3d0' },
-      { name: 'Dark Sage', hex: '#064e3b' },
-    ],
-  },
-  {
-    id: 'forest',
-    name: 'Forest',
-    subtitle: 'Botanical Calm · Organic Harmony',
-    description: 'Natural olive hues and calm botanical accents. Grounded and quiet for documentation, editorial reading, and content organization.',
-    swatches: [
-      { name: 'Deep Grove', hex: '#162114' },
-      { name: 'Olive Green', hex: '#365c29' },
-      { name: 'Forest Moss', hex: '#587a45' },
-      { name: 'Meadow Light', hex: '#b7dc9b' },
-      { name: 'Sage Surface', hex: '#eceee7' },
-      { name: 'Dark Ink', hex: '#20271e' },
-    ],
-  },
-  {
-    id: 'iris',
-    name: 'Iris',
-    subtitle: 'Mystic Spectrum · Expressive Studio',
-    description: 'Classic royal iris and lavender glow. Expressive and punchy for creative showcases and interactive demonstrations.',
-    swatches: [
-      { name: 'Deep Amethyst', hex: '#170f26' },
-      { name: 'Night Purple', hex: '#30204c' },
-      { name: 'Royal Iris', hex: '#6546a3' },
-      { name: 'Orchid Veil', hex: '#9d76e8' },
-      { name: 'Lavender Glow', hex: '#d1bbff' },
-      { name: 'Starlight Iris', hex: '#f7f4fe' },
-    ],
-  },
-]
 
 const TOKEN_CATEGORIES = [
   {
-    category: 'Surfaces & Elevation',
+    category: "Surfaces & Elevation",
     tokens: [
-      { name: '--aar-background', role: 'Viewport / Atelier canvas backdrop' },
-      { name: '--aar-surface', role: 'Default panel and card base surface' },
-      { name: '--aar-surface-subtle', role: 'Muted wells, hover fills, secondary groups' },
-      { name: '--aar-surface-raised', role: 'Modals, dropdown menus, elevated altars' },
-      { name: '--aar-surface-overlay', role: 'Topmost floating tooltips and popovers' },
+      { name: "--aar-background", role: "Viewport / Atelier canvas backdrop" },
+      { name: "--aar-surface", role: "Default panel and card base surface" },
+      {
+        name: "--aar-surface-subtle",
+        role: "Muted wells, hover fills, secondary groups",
+      },
+      {
+        name: "--aar-surface-raised",
+        role: "Modals, dropdown menus, elevated altars",
+      },
+      {
+        name: "--aar-surface-overlay",
+        role: "Topmost floating tooltips and popovers",
+      },
     ],
   },
   {
-    category: 'Hairline Structure & Ink',
+    category: "Hairline Structure & Ink",
     tokens: [
-      { name: '--aar-border', role: '1px etched structural boundary' },
-      { name: '--aar-border-strong', role: 'Active selection and highlighted edges' },
-      { name: '--aar-text', role: 'High-contrast primary typography' },
-      { name: '--aar-text-muted', role: 'Secondary metadata, captions, inactive runes' },
+      { name: "--aar-border", role: "1px etched structural boundary" },
+      {
+        name: "--aar-border-strong",
+        role: "Active selection and highlighted edges",
+      },
+      { name: "--aar-text", role: "High-contrast primary typography" },
+      {
+        name: "--aar-text-muted",
+        role: "Secondary metadata, captions, inactive runes",
+      },
     ],
   },
   {
-    category: 'Interaction & Luminous Intent',
+    category: "Interaction & Luminous Intent",
     tokens: [
-      { name: '--aar-primary', role: 'Primary command buttons, active star runes (✦)' },
-      { name: '--aar-on-primary', role: 'High-contrast label on primary fills' },
-      { name: '--aar-focus', role: 'Keyboard navigation focus indicator' },
-      { name: '--aar-glow', role: 'Atmospheric halo cast upon focused controls' },
+      {
+        name: "--aar-primary",
+        role: "Primary command buttons, active star runes (✦)",
+      },
+      {
+        name: "--aar-on-primary",
+        role: "High-contrast label on primary fills",
+      },
+      { name: "--aar-focus", role: "Keyboard navigation focus indicator" },
+      {
+        name: "--aar-glow",
+        role: "Atmospheric halo cast upon focused controls",
+      },
     ],
   },
   {
-    category: 'Operational States',
+    category: "Operational States",
     tokens: [
-      { name: '--aar-success', role: 'The Seal (✓), verified export, valid state' },
-      { name: '--aar-success-surface', role: 'Success confirmation badge & toast surface' },
-      { name: '--aar-danger', role: 'Rift warning (!), quota breach, syntax error' },
-      { name: '--aar-danger-surface', role: 'Critical alert badge & error message surface' },
+      {
+        name: "--aar-success",
+        role: "The Seal (✓), verified export, valid state",
+      },
+      {
+        name: "--aar-success-surface",
+        role: "Success confirmation badge & toast surface",
+      },
+      {
+        name: "--aar-danger",
+        role: "Rift warning (!), quota breach, syntax error",
+      },
+      {
+        name: "--aar-danger-surface",
+        role: "Critical alert badge & error message surface",
+      },
     ],
   },
-]
+];
 
-function PalettesAndColors({ currentPalette, onSelectPalette }: { currentPalette: string; onSelectPalette: (p: string) => void }) {
+function PalettesAndColors({
+  currentPalette,
+  onSelectPalette,
+}: {
+  currentPalette: string;
+  onSelectPalette: (value: string) => void;
+}) {
   return (
-    <div className="aar-stack" data-gap="4">
-      {/* Active Theme Tokens Matrix */}
-      <section className="aar-panel">
-        <p className="aar-eyebrow">Aar Loom / Design System Tokens</p>
-        <h2 className="aar-heading">Active Token Roles in Viewport</h2>
-        <p className="aar-hint">Live CSS variables rendered by your currently selected theme and palette.</p>
-        
-        <div className="aar-grid" style={{ '--aar-grid-min': '18rem', gap: '1.25rem', marginTop: '1.5rem' } as CSSProperties}>
-          {TOKEN_CATEGORIES.map((cat) => (
-            <div key={cat.category} className="aar-card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column' }}>
-              <h3 style={{ margin: '0 0 1rem', fontSize: '1rem', fontWeight: 600 }}>{cat.category}</h3>
-              <div className="aar-stack" data-gap="2" style={{ flex: 1 }}>
-                {cat.tokens.map((token) => (
-                  <div key={token.name} className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div className="aar-cluster" style={{ gap: '0.75rem' }}>
-                      <span
-                        style={{
-                          width: '1.75rem',
-                          height: '1.75rem',
-                          borderRadius: 'var(--aar-radius-sm)',
-                          border: '1px solid var(--aar-border)',
-                          background: `var(${token.name})`,
-                          boxShadow: 'var(--aar-shadow-sm)',
-                          flexShrink: 0,
-                        }}
-                      />
-                      <div>
-                        <code style={{ fontSize: '0.8rem', fontWeight: 600 }}>{token.name}</code>
-                        <p style={{ margin: '0.1rem 0 0', fontSize: '0.75rem', color: 'var(--aar-text-muted)' }}>{token.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+    <section className="aar-panel aar-stack" data-gap="4">
+      <p className="aar-eyebrow">Appearance, identity, expression</p>
+      <h2 className="aar-heading">One theme model. Your own brand.</h2>
+      <p>
+        Light, Dark, and System choose appearance. Default or Custom chooses
+        brand colors. Magic Art is an independent visual expression; density
+        controls spacing. Components are optional: use these tokens and layout
+        classes with ordinary HTML or your own framework.
+      </p>
+      <div className="aar-cluster">
+        <button
+          className="aar-button"
+          aria-pressed={currentPalette === "default"}
+          onClick={() => onSelectPalette("default")}
+        >
+          Default accent
+        </button>
+        <button
+          className="aar-button"
+          aria-pressed={currentPalette === "custom"}
+          onClick={() => onSelectPalette("custom")}
+        >
+          Use custom colors
+        </button>
+      </div>
+      <div className="aar-grid" data-min="18">
+        {TOKEN_CATEGORIES.map((category) => (
+          <section key={category.category} className="aar-card aar-stack">
+            <h3 className="aar-heading">{category.category}</h3>
+            {category.tokens.map((token) => (
+              <div key={token.name} className="aar-stack" data-gap="1">
+                <code>{token.name}</code>
+                <p className="aar-hint">{token.role}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* The 5 Signature Arcane Palettes */}
-      <section className="aar-panel">
-        <p className="aar-eyebrow">The Arcane Atelier Palettes</p>
-        <h2 className="aar-heading">Five Curated Atmospheric Realities</h2>
-        <p className="aar-hint">Aar Loom does not use plain generic colors. Each palette is tuned for contrast, harmony, and creative stamina.</p>
-
-        <div className="aar-grid" style={{ '--aar-grid-min': '20rem', gap: '1.25rem', marginTop: '1.5rem' } as CSSProperties}>
-          {PALETTE_DEFINITIONS.map((pal) => (
-            <article
-              key={pal.id}
-              className="aar-card"
-              data-selected={currentPalette === pal.id}
-              style={{
-                padding: '1.5rem',
-                border: currentPalette === pal.id ? '2px solid var(--aar-primary)' : '1px solid var(--aar-border)',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-              }}
-            >
-              <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', minHeight: '1.75rem' }}>
-                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 600 }}>{pal.name}</h3>
-                {currentPalette === pal.id ? (
-                  <span className="aar-badge" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                    <Sparkles size={11} /> Active
-                  </span>
-                ) : (
-                  <span style={{ width: '4.5rem', height: '1.25rem', visibility: 'hidden' }} aria-hidden="true" />
-                )}
-              </div>
-              <p className="aar-eyebrow" style={{ margin: '0.35rem 0 0.5rem', fontSize: '0.75rem' }}>{pal.subtitle}</p>
-              <p style={{ fontSize: '0.875rem', color: 'var(--aar-text-muted)', lineHeight: 1.5, margin: '0 0 1.25rem', minHeight: '4rem' }}>
-                {pal.description}
-              </p>
-              
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(6, 1fr)',
-                  gap: '0.35rem',
-                  marginBottom: '1.5rem',
-                  width: '100%',
-                }}
-              >
-                {pal.swatches.map((sw) => (
-                  <div key={sw.name} title={`${sw.name}: ${sw.hex}`} style={{ textAlign: 'center', minWidth: 0 }}>
-                    <span
-                      style={{
-                        display: 'block',
-                        width: '100%',
-                        aspectRatio: '1 / 1',
-                        borderRadius: 'var(--aar-radius-sm)',
-                        background: sw.hex,
-                        border: '1px solid var(--aar-border)',
-                        boxShadow: 'var(--aar-shadow-sm)',
-                      }}
-                    />
-                    <code
-                      style={{
-                        fontSize: '0.625rem',
-                        display: 'block',
-                        marginTop: '0.3rem',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {sw.hex}
-                    </code>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                className="aar-button"
-                data-variant={currentPalette === pal.id ? 'primary' : undefined}
-                style={{ width: '100%', marginTop: 'auto' }}
-                onClick={() => onSelectPalette(pal.id)}
-              >
-                {currentPalette === pal.id ? (
-                  <span className="aar-cluster" style={{ gap: '0.4rem', justifyContent: 'center' }}>
-                    <Check size={14} /> Currently Active
-                  </span>
-                ) : (
-                  `Activate ${pal.name}`
-                )}
-              </button>
-            </article>
-          ))}
-        </div>
-      </section>
+            ))}
+          </section>
+        ))}
+      </div>
+      <CodeBlock
+        title="Plain HTML, no components required"
+        language="html"
+        code={`<main class="aar-root aar-page-reset" data-theme="system" data-density="comfortable">
+  <section class="aar-container aar-stack" data-gap="6">
+    <h1 class="aar-title">Your application</h1>
+    <div class="aar-grid" data-min="18">
+      <article class="aar-panel">Main task</article>
+      <aside class="aar-panel">Supporting tools</aside>
     </div>
-  )
+  </section>
+</main>`}
+      />
+      <CodeBlock
+        title="Your brand colors (optional token overrides)"
+        language="css"
+        code={`/* Supply a readable foreground for each primary color. */
+[data-brand="your-brand"][data-theme="light"] {
+  --aar-primary: #326954;
+  --aar-on-primary: #ffffff;
+  --aar-focus: #326954;
+}
+[data-brand="your-brand"][data-theme="dark"] {
+  --aar-primary: #a8d6c4;
+  --aar-on-primary: #142d25;
+  --aar-focus: #a8d6c4;
+}`}
+      />
+    </section>
+  );
 }
 
 interface AarLoomDropdownSelectProps {
-  label: string
-  value: string
-  options: { value: string; label: string }[]
-  onChange: (val: string) => void
+  label: string;
+  value: string;
+  options: { value: string; label: string }[];
+  onChange: (val: string) => void;
 }
 
 function AarLoomDropdownSelect({
   label,
   value,
-  options,
   onChange,
+  options,
 }: AarLoomDropdownSelectProps) {
-  const [open, setOpen] = useState(false)
-  const selectedOption = options.find((o) => o.value === value) || options[0]
-
   return (
-    <div className="aar-field">
-      <span className="aar-field-label">{label}</span>
-      <div className="aar-dropdown" data-open={open}>
-        <button
-          type="button"
-          className="aar-dropdown-trigger"
-          aria-haspopup="listbox"
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-          onBlur={(e) => {
-            if (!e.currentTarget.parentElement?.contains(e.relatedTarget)) {
-              setOpen(false)
-            }
-          }}
-        >
-          <span>{selectedOption?.label}</span>
-          <span className="aar-dropdown-arrow" aria-hidden="true">
-            <ChevronDown size={13} strokeWidth={2.4} />
-          </span>
-        </button>
-
-        {open && (
-          <div className="aar-dropdown-menu" role="listbox">
-            {options.map((opt) => (
-              <button
-                key={opt.value}
-                type="button"
-                className="aar-dropdown-item"
-                role="option"
-                aria-selected={opt.value === value}
-                onMouseDown={(e) => {
-                  e.preventDefault()
-                  onChange(opt.value)
-                  setOpen(false)
-                }}
-              >
-                <span>{opt.label}</span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  )
+    <AarSelect
+      label={label}
+      value={value}
+      onChange={onChange}
+      options={options}
+    />
+  );
 }
-
-// --- Dedicated Component Documentation Sections (Open Source Standards & AI-Friendly) ---
 
 function IntroDocSection() {
   return (
-    <section className="aar-doc-section" id="intro">
+    <section className="aar-guide-section" id="aar-intro">
       <div className="aar-panel">
-        <div className="aar-cluster" style={{ gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-          <span className="aar-badge" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-            <Sparkles size={11} /> v0.1.0 Alpha
+        <div className="aar-cluster aar-gap-2 aar-mb-2 aar-flex-wrap-wrap">
+          <span
+            className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+            data-variant="primary"
+          >
+            <Sparkles size={11} /> {loomPackage.version}
           </span>
-          <span className="aar-badge" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+          <span
+            className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+            data-tone="success"
+          >
             <Check size={11} /> Zero Dependencies
           </span>
           <span className="aar-badge">Pure CSS</span>
           <span className="aar-badge">MIT License</span>
-          <span className="aar-badge" data-tone="warning">AI-Friendly HTML</span>
+          <span className="aar-badge" data-tone="warning">
+            AI-Friendly HTML
+          </span>
         </div>
-        <h2 className="aar-title" style={{ fontSize: '2.25rem', margin: '0.5rem 0' }}>
+        <h2 className="aar-title aar-text-2-25rem aar-m-0-5rem-0">
           Aar Loom Architecture
         </h2>
-        <p style={{ fontSize: '1.125rem', color: 'var(--aar-text-muted)', lineHeight: 1.6, maxWidth: '52rem' }}>
-          A standalone, framework-agnostic CSS design system built for creative engineering tools, dashboards, and ateliers.
-          Engineered with 1px etched hairlines, dual Obsidian &amp; Parchment atmospheric realms, corner-bracket altars, and honest functional runes.
+        <p className="aar-text-1-125rem aar-ink-text-muted aar-line-height-1-6 aar-max-w-52rem">
+          A standalone, framework-agnostic CSS design system built for creative
+          engineering tools, dashboards, and ateliers. Engineered with 1px
+          etched hairlines, Light, Dark, and System appearance, corner-bracket
+          altars, and honest functional runes.
         </p>
 
-        <div className="aar-grid" style={{ '--aar-grid-min': '15rem', gap: '1rem', marginTop: '1.5rem' } as CSSProperties}>
-          <div className="aar-card" style={{ padding: '1rem' }}>
-            <h4 style={{ margin: '0 0 0.25rem', fontSize: '0.9375rem' }}>Zero Runtime Lock-in</h4>
-            <p className="aar-hint" style={{ margin: 0 }}>
-              Use directly with static HTML, React, Vue, Svelte, Astro, Angular, or backend templating. No JavaScript bundle required.
+        <div
+          className="aar-grid aar-gap-4 aar-mt-6"
+          style={{ "--aar-grid-min": "15rem" } as React.CSSProperties}
+        >
+          <div className="aar-card aar-p-4">
+            <h4 className="aar-m-0-0-0-25rem aar-text-0-9375rem">
+              Zero Runtime Lock-in
+            </h4>
+            <p className="aar-hint aar-m-0px">
+              Use directly with static HTML, React, Vue, Svelte, Astro, Angular,
+              or backend templating. No JavaScript bundle required.
             </p>
           </div>
-          <div className="aar-card" style={{ padding: '1rem' }}>
-            <h4 style={{ margin: '0 0 0.25rem', fontSize: '0.9375rem' }}>Semantic HTML &amp; AI-Ready</h4>
-            <p className="aar-hint" style={{ margin: 0 }}>
-              Structured with native HTML5 tags, standard <code>.aar-*</code> classes, and clean data attributes that AI models and screen readers parse effortlessly.
+          <div className="aar-card aar-p-4">
+            <h4 className="aar-m-0-0-0-25rem aar-text-0-9375rem">
+              Semantic HTML &amp; AI-Ready
+            </h4>
+            <p className="aar-hint aar-m-0px">
+              Structured with native HTML5 tags, standard <code>.aar-*</code>{" "}
+              classes, and clean data attributes that AI models and screen
+              readers parse effortlessly.
             </p>
           </div>
-          <div className="aar-card" style={{ padding: '1rem' }}>
-            <h4 style={{ margin: '0 0 0.25rem', fontSize: '0.9375rem' }}>Contrast &amp; Accessibility</h4>
-            <p className="aar-hint" style={{ margin: 0 }}>
-              WCAG AAA contrast compliant in both dark (Obsidian) and light (Parchment) realms, with full keyboard focus indicators.
+          <div className="aar-card aar-p-4">
+            <h4 className="aar-m-0-0-0-25rem aar-text-0-9375rem">
+              Contrast &amp; Accessibility
+            </h4>
+            <p className="aar-hint aar-m-0px">
+              Readable default text pairs in light and dark appearance, with
+              visible keyboard focus. Validate custom brand colors for contrast.
             </p>
           </div>
         </div>
@@ -1509,7 +2025,7 @@ function IntroDocSection() {
       <div className="aar-panel">
         <p className="aar-eyebrow">Installation &amp; Setup</p>
         <h3 className="aar-heading">How to Use in Any Web Application</h3>
-        <p className="aar-hint" style={{ marginBottom: '1rem' }}>
+        <p className="aar-hint aar-mb-4">
           Choose between npm package import or direct CDN link.
         </p>
 
@@ -1520,7 +2036,7 @@ function IntroDocSection() {
 npm install @techaaroorian-ui/aar-loom`}
         />
 
-        <div style={{ marginTop: '1.25rem' }}>
+        <div className="aar-mt-5">
           <CodeBlock
             title="main.js / index.ts (ESM / Bundler)"
             language="javascript"
@@ -1529,44 +2045,55 @@ import '@techaaroorian-ui/aar-loom/index.css';`}
           />
         </div>
 
-        <div style={{ marginTop: '1.25rem' }}>
+        <div className="aar-mt-5">
           <CodeBlock
             title="index.html (Direct CDN)"
             language="html"
             code={`<!-- Add to the <head> of your HTML file -->
 <link rel="stylesheet" href="https://unpkg.com/@techaaroorian-ui/aar-loom/index.css" />
 
-<!-- Apply .aar-root to your container with desired theme and palette -->
-<body class="aar-root" data-theme="dark" data-palette="obsidian">
+<!-- Apply .aar-root to your container with desired appearance and brand colors -->
+<body class="aar-root" data-theme="dark" >
   <button class="aar-button" data-variant="primary">✦ Hello Atelier</button>
 </body>`}
           />
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function ButtonsDocSection() {
-  const [selected, setSelected] = useState(false)
-  const [btnSize, setBtnSize] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md')
+  const [selected, setSelected] = useState(false);
+  const [btnSize, setBtnSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
+    "md",
+  );
 
   return (
-    <section className="aar-doc-section" id="buttons">
+    <section className="aar-guide-section" id="buttons">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 01</p>
         <h2 className="aar-heading">Buttons &amp; Action Triggers</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Clear action hierarchy. Hover lifts controls by 1px (<code>--aar-hover-offset</code>), press scales gently (<code>--aar-press-scale</code>), and focus projects an atmospheric aura.
+        <p className="aar-hint aar-mb-6">
+          Clear action hierarchy. Hover lifts controls by 1px (
+          <code>--aar-hover-offset</code>), press scales gently (
+          <code>--aar-press-scale</code>), and focus projects an atmospheric
+          aura.
         </p>
 
         {/* Live Interactive Specimen */}
         <div className="aar-specimen-box">
-          <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <div className="aar-cluster aar-justify-space-between aar-items-center aar-mb-4">
             <span className="aar-eyebrow">Live Interactive Specimen</span>
             <div className="aar-segmented" role="tablist">
-              {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((s) => (
-                <button key={s} type="button" role="tab" aria-selected={btnSize === s} onClick={() => setBtnSize(s)}>
+              {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  role="tab"
+                  aria-selected={btnSize === s}
+                  onClick={() => setBtnSize(s)}
+                >
                   {s.toUpperCase()}
                 </button>
               ))}
@@ -1575,20 +2102,44 @@ function ButtonsDocSection() {
 
           <div className="aar-specimen-preview">
             <div className="aar-stack" data-gap="3">
-              <div className="aar-cluster" style={{ gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                <button type="button" className="aar-button" data-variant="primary" data-size={btnSize} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <div className="aar-cluster aar-gap-3 aar-flex-wrap-wrap aar-items-center">
+                <button
+                  type="button"
+                  className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-variant="primary"
+                  data-size={btnSize}
+                >
                   <Sparkles size={14} /> Primary Action
                 </button>
-                <button type="button" className="aar-button" data-size={btnSize}>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-size={btnSize}
+                >
                   Secondary Action
                 </button>
-                <button type="button" className="aar-button" data-variant="quiet" data-size={btnSize}>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="quiet"
+                  data-size={btnSize}
+                >
                   Quiet Action
                 </button>
-                <button type="button" className="aar-button" data-variant="danger" data-size={btnSize}>
+                <button
+                  type="button"
+                  className="aar-button"
+                  data-variant="danger"
+                  data-size={btnSize}
+                >
                   Delete Artifact
                 </button>
-                <button type="button" className="aar-button" disabled data-size={btnSize}>
+                <button
+                  type="button"
+                  className="aar-button"
+                  disabled
+                  data-size={btnSize}
+                >
                   Unavailable
                 </button>
                 <button
@@ -1599,27 +2150,53 @@ function ButtonsDocSection() {
                   onClick={() => setSelected(!selected)}
                 >
                   {selected ? (
-                    <span className="aar-cluster" style={{ gap: '0.35rem', alignItems: 'center' }}>
+                    <span className="aar-cluster aar-gap-2 aar-items-center">
                       <Check size={14} /> Selected
                     </span>
                   ) : (
-                    'Toggle Press'
+                    "Toggle Press"
                   )}
                 </button>
               </div>
 
-              <div className="aar-cluster" style={{ gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="aar-cluster aar-gap-3 aar-items-center aar-flex-wrap-wrap">
                 <span className="aar-hint">Icon Controls:</span>
-                <button type="button" className="aar-icon-button" data-size={btnSize} aria-label="Add project" title="Add project">
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-size={btnSize}
+                  aria-label="Add project"
+                  title="Add project"
+                >
                   <Plus size={16} />
                 </button>
-                <button type="button" className="aar-icon-button" data-size={btnSize} aria-label="Remove item" title="Remove item">
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-size={btnSize}
+                  aria-label="Remove item"
+                  title="Remove item"
+                >
                   <Minus size={16} />
                 </button>
-                <button type="button" className="aar-icon-button" data-variant="quiet" data-size={btnSize} aria-label="Refresh" title="Refresh">
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-variant="quiet"
+                  data-size={btnSize}
+                  aria-label="Refresh"
+                  title="Refresh"
+                >
                   <RotateCcw size={16} />
                 </button>
-                <button type="button" className="aar-icon-button" data-variant="primary" data-size={btnSize} aria-label="Magic action" title="Magic action">
+                <button
+                  type="button"
+                  className="aar-icon-button"
+                  data-variant="primary"
+                  data-size={btnSize}
+                  aria-label="Magic action"
+                  title="Magic action"
+                >
                   <Sparkles size={16} />
                 </button>
               </div>
@@ -1627,8 +2204,8 @@ function ButtonsDocSection() {
           </div>
 
           {/* Reference Table */}
-          <div className="table-scroll" style={{ marginBottom: '1.5rem' }}>
-            <table className="docs-table">
+          <div className="aar-table-scroll aar-mb-6">
+            <table className="aar-reference-table">
               <thead>
                 <tr>
                   <th>Class / Attribute</th>
@@ -1638,29 +2215,51 @@ function ButtonsDocSection() {
               </thead>
               <tbody>
                 <tr>
-                  <td><code>.aar-button</code></td>
+                  <td>
+                    <code>.aar-button</code>
+                  </td>
                   <td>Base button styling with standard padding and font</td>
                   <td>Default secondary styling</td>
                 </tr>
                 <tr>
-                  <td><code>data-variant</code></td>
+                  <td>
+                    <code>data-variant</code>
+                  </td>
                   <td>Action hierarchy and color intent</td>
-                  <td><code>primary</code> | <code>quiet</code> | <code>danger</code></td>
+                  <td>
+                    <code>primary</code> | <code>quiet</code> |{" "}
+                    <code>danger</code>
+                  </td>
                 </tr>
                 <tr>
-                  <td><code>data-size</code></td>
+                  <td>
+                    <code>data-size</code>
+                  </td>
                   <td>Standardized size scaling</td>
-                  <td><code>xs</code> (28px) | <code>sm</code> (36px) | <code>md</code> (44px) | <code>lg</code> (52px) | <code>xl</code> (60px)</td>
+                  <td>
+                    <code>xs</code> (28px) | <code>sm</code> (36px) |{" "}
+                    <code>md</code> (44px) | <code>lg</code> (52px) |{" "}
+                    <code>xl</code> (60px)
+                  </td>
                 </tr>
                 <tr>
-                  <td><code>.aar-icon-button</code></td>
+                  <td>
+                    <code>.aar-icon-button</code>
+                  </td>
                   <td>Square 1:1 icon control container</td>
-                  <td>Supports same <code>data-variant</code> and <code>data-size</code></td>
+                  <td>
+                    Supports same <code>data-variant</code> and{" "}
+                    <code>data-size</code>
+                  </td>
                 </tr>
                 <tr>
-                  <td><code>aria-pressed</code></td>
+                  <td>
+                    <code>aria-pressed</code>
+                  </td>
                   <td>Toggleable pressed state feedback</td>
-                  <td><code>true</code> | <code>false</code></td>
+                  <td>
+                    <code>true</code> | <code>false</code>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -1698,29 +2297,38 @@ function ButtonsDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function InputsDocSection() {
-  const [emailVal, setEmailVal] = useState('hello@atelier')
-  const [showPassword, setShowPassword] = useState(false)
-  const [inputSize, setInputSize] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md')
+  const [emailVal, setEmailVal] = useState("hello@atelier");
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputSize, setInputSize] = useState<"xs" | "sm" | "md" | "lg" | "xl">(
+    "md",
+  );
 
   return (
-    <section className="aar-doc-section" id="inputs">
+    <section className="aar-guide-section" id="inputs">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 02</p>
         <h2 className="aar-heading">Inputs &amp; Form Controls</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Accessible form intake wrapped with <code>.aar-field</code>, distinct labels, validation hints, checkboxes, radios, and range sliders.
+        <p className="aar-hint aar-mb-6">
+          Accessible form intake wrapped with <code>.aar-field</code>, distinct
+          labels, validation hints, checkboxes, radios, and range sliders.
         </p>
 
         <div className="aar-specimen-box">
-          <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <div className="aar-cluster aar-justify-space-between aar-items-center aar-mb-4">
             <span className="aar-eyebrow">Live Interactive Specimen</span>
             <div className="aar-segmented" role="tablist">
-              {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((s) => (
-                <button key={s} type="button" role="tab" aria-selected={inputSize === s} onClick={() => setInputSize(s)}>
+              {(["xs", "sm", "md", "lg", "xl"] as const).map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  role="tab"
+                  aria-selected={inputSize === s}
+                  onClick={() => setInputSize(s)}
+                >
                   {s.toUpperCase()}
                 </button>
               ))}
@@ -1729,36 +2337,54 @@ function InputsDocSection() {
 
           <div className="aar-specimen-preview">
             {/* Synchronized 3-Column Form Row (Subgrid Alignment: 0px CLS & Baseline Aligned) */}
-            <div className="aar-form-row" style={{ gap: '0 1.25rem', marginBottom: '1.25rem' }}>
+            <div className="aar-form-row aar-gap-0-1-25rem aar-mb-5">
               {/* Text Input */}
               <label className="aar-field">
                 <span className="aar-field-label">Project Name</span>
-                <input className="aar-input" data-size={inputSize} type="text" placeholder="e.g. Algorithmic Grimoire" />
+                <input
+                  className="aar-input"
+                  data-size={inputSize}
+                  type="text"
+                  placeholder="e.g. Algorithmic Grimoire"
+                />
                 <div className="aar-field-feedback">
-                  <span className="aar-hint">Unique name for your creative workspace.</span>
+                  <span className="aar-hint">
+                    Unique name for your creative workspace.
+                  </span>
                 </div>
               </label>
 
               {/* Email with Validation */}
-              <label className="aar-field" data-tone={!emailVal.includes('.') ? 'danger' : 'success'}>
+              <label
+                className="aar-field"
+                data-tone={!emailVal.includes(".") ? "danger" : "success"}
+              >
                 <span className="aar-field-label">Atelier Email</span>
                 <input
                   className="aar-input"
                   data-size={inputSize}
-                  data-tone={!emailVal.includes('.') ? 'danger' : 'success'}
+                  data-tone={!emailVal.includes(".") ? "danger" : "success"}
                   type="email"
                   value={emailVal}
                   onChange={(e) => setEmailVal(e.target.value)}
-                  aria-invalid={!emailVal.includes('.')}
+                  aria-invalid={!emailVal.includes(".")}
                   aria-describedby="email-spec-error"
                 />
                 <div className="aar-field-feedback">
-                  {!emailVal.includes('.') ? (
-                    <span className="aar-hint" data-tone="danger" id="email-spec-error" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <AlertCircle size={13} /> Enter a complete domain, e.g. hello@example.com
+                  {!emailVal.includes(".") ? (
+                    <span
+                      className="aar-hint aar-display-inline-flex aar-items-center aar-gap-2"
+                      data-tone="danger"
+                      id="email-spec-error"
+                    >
+                      <AlertCircle size={13} /> Enter a complete domain, e.g.
+                      hello@example.com
                     </span>
                   ) : (
-                    <span className="aar-hint" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                    <span
+                      className="aar-hint aar-display-inline-flex aar-items-center aar-gap-2"
+                      data-tone="success"
+                    >
                       <Check size={13} /> Valid email syntax
                     </span>
                   )}
@@ -1768,38 +2394,49 @@ function InputsDocSection() {
               {/* Password with peek */}
               <label className="aar-field">
                 <span className="aar-field-label">Passphrase</span>
-                <div style={{ position: 'relative' }}>
+                <div className="aar-position-relative">
                   <input
-                    className="aar-input"
+                    className="aar-input aar-pr-10 aar-w-100"
                     data-size={inputSize}
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     defaultValue="arcane-spell-123"
-                    style={{ paddingRight: '2.5rem', width: '100%' }}
                   />
                   <button
                     type="button"
-                    className="aar-icon-button"
+                    className="aar-icon-button aar-position-absolute aar-right-0-25rem aar-top-50 aar-transform-translatey-50 aar-border-none aar-bg-transparent"
                     data-variant="quiet"
                     onClick={() => setShowPassword(!showPassword)}
-                    style={{ position: 'absolute', right: '0.25rem', top: '50%', transform: 'translateY(-50%)', border: 'none', background: 'transparent' }}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
                   >
                     {showPassword ? <Eye size={15} /> : <EyeOff size={15} />}
                   </button>
                 </div>
                 <div className="aar-field-feedback">
-                  <span className="aar-hint">Encrypted studio master passphrase.</span>
+                  <span className="aar-hint">
+                    Encrypted studio master passphrase.
+                  </span>
                 </div>
               </label>
             </div>
 
             {/* Range Slider */}
             <label className="aar-field">
-              <span className="aar-field-label">Canvas Viewport Scale (100%)</span>
-              <input type="range" className="aar-range" min="50" max="200" defaultValue="100" />
+              <span className="aar-field-label">
+                Canvas Viewport Scale (100%)
+              </span>
+              <input
+                type="range"
+                className="aar-range"
+                min="50"
+                max="200"
+                defaultValue="100"
+              />
             </label>
 
-            <div className="aar-cluster" style={{ gap: '1.5rem', marginTop: '1.25rem', flexWrap: 'wrap' }}>
+            <div className="aar-cluster aar-gap-6 aar-mt-5 aar-flex-wrap-wrap">
               <label className="aar-checkbox">
                 <input type="checkbox" defaultChecked />
                 <span>Auto-seal generated artifacts</span>
@@ -1869,60 +2506,97 @@ function InputsDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function SelectsDocSection() {
-  const [selectedVal, setSelectedVal] = useState('social')
+  const [selectedVal, setSelectedVal] = useState("social");
 
   return (
-    <section className="aar-doc-section" id="selects">
+    <section className="aar-guide-section" id="selects">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 03</p>
         <h2 className="aar-heading">Selects, Menus &amp; Dropdowns</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Three tiers of selection: native styled <code>.aar-select</code>, zero-JS click-to-open <code>details.aar-menu</code>, and custom animated <code>.aar-dropdown</code>.
+        <p className="aar-hint aar-mb-6">
+          Three tiers of selection: native styled <code>.aar-select</code>,
+          zero-JS click-to-open <code>details.aar-menu</code>, and custom
+          animated <code>.aar-dropdown</code>.
         </p>
 
         <div className="aar-specimen-box">
           <div className="aar-specimen-preview">
-            <div className="aar-grid" style={{ '--aar-grid-min': '16rem', gap: '1.5rem' } as CSSProperties}>
+            <div
+              className="aar-grid aar-gap-6"
+              style={{ "--aar-grid-min": "16rem" } as React.CSSProperties}
+            >
               {/* Native Select */}
               <label className="aar-field">
-                <span className="aar-field-label">1. Native Styled Select (.aar-select)</span>
-                <select className="aar-select" value={selectedVal} onChange={(e) => setSelectedVal(e.target.value)}>
+                <span className="aar-field-label">
+                  1. Native Styled Select (.aar-select)
+                </span>
+                <select
+                  className="aar-select"
+                  value={selectedVal}
+                  onChange={(e) => setSelectedVal(e.target.value)}
+                >
                   <option value="social">Social Banner (1200×627)</option>
                   <option value="post">Square Post (1080×1080)</option>
                   <option value="story">Story Deck (1080×1920)</option>
                 </select>
-                <span className="aar-hint">Uses native browser picker with custom etched arrow.</span>
+                <span className="aar-hint">
+                  Uses native browser picker with custom etched arrow.
+                </span>
               </label>
 
               {/* Zero-JS Details Menu */}
               <div className="aar-stack" data-gap="1">
-                <span className="aar-field-label">2. Zero-JS Menu (details.aar-menu)</span>
+                <span className="aar-field-label">
+                  2. Zero-JS Menu (details.aar-menu)
+                </span>
                 <details className="aar-menu">
-                  <summary className="aar-button" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <summary
+                    className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+                    data-variant="primary"
+                  >
                     <span>Actions Menu</span>
                     <ChevronDown size={14} />
                   </summary>
                   <div className="aar-menu-dropdown">
-                    <button type="button" className="aar-menu-item" onClick={() => setSelectedVal('social')} style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <button
+                      type="button"
+                      className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                      onClick={() => setSelectedVal("social")}
+                    >
                       <Sparkles size={13} /> Social Banner
                     </button>
-                    <button type="button" className="aar-menu-item" onClick={() => setSelectedVal('post')} style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <button
+                      type="button"
+                      className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                      onClick={() => setSelectedVal("post")}
+                    >
                       <Sparkles size={13} /> Square Post
                     </button>
-                    <button type="button" className="aar-menu-item" onClick={() => setSelectedVal('story')} style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <button
+                      type="button"
+                      className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                      onClick={() => setSelectedVal("story")}
+                    >
                       <Sparkles size={13} /> Story Deck
                     </button>
                     <hr className="aar-menu-divider" />
-                    <button type="button" className="aar-menu-item" data-danger="true" onClick={() => setSelectedVal('social')} style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <button
+                      type="button"
+                      className="aar-menu-item aar-display-flex aar-items-center aar-gap-2"
+                      data-danger="true"
+                      onClick={() => setSelectedVal("social")}
+                    >
                       <RotateCcw size={13} /> Reset Selection
                     </button>
                   </div>
                 </details>
-                <span className="aar-hint">Natively toggled by the browser without JavaScript.</span>
+                <span className="aar-hint">
+                  Natively toggled by the browser without JavaScript.
+                </span>
               </div>
 
               {/* Custom Animated Dropdown */}
@@ -1931,9 +2605,9 @@ function SelectsDocSection() {
                 value={selectedVal}
                 onChange={setSelectedVal}
                 options={[
-                  { value: 'social', label: 'Social Banner (1200×627)' },
-                  { value: 'post', label: 'Square Post (1080×1080)' },
-                  { value: 'story', label: 'Story Deck (1080×1920)' },
+                  { value: "social", label: "Social Banner (1200×627)" },
+                  { value: "post", label: "Square Post (1080×1080)" },
+                  { value: "story", label: "Story Deck (1080×1920)" },
                 ]}
               />
             </div>
@@ -1978,17 +2652,18 @@ function SelectsDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function SurfacesDocSection() {
   return (
-    <section className="aar-doc-section" id="surfaces">
+    <section className="aar-guide-section" id="surfaces">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 04</p>
         <h2 className="aar-heading">Cards, Panels &amp; Canvas Altar</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Boundary definition without heavy clutter. Cards support selection rings, compact density, and etched corner brackets.
+        <p className="aar-hint aar-mb-6">
+          Boundary definition without heavy clutter. Cards support selection
+          rings, compact density, and etched corner brackets.
         </p>
 
         <div className="aar-specimen-box">
@@ -1996,51 +2671,63 @@ function SurfacesDocSection() {
             <div className="aar-stack" data-gap="3">
               {/* Altar with Corner Brackets */}
               <div
-                className="aar-altar"
+                className="aar-altar aar-min-h-140px aar-display-flex aar-items-center aar-justify-center aar-bg-surface-subtle aar-radius-radius-md"
                 data-corner-brackets="true"
-                style={{
-                  minHeight: '140px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'var(--aar-surface-subtle)',
-                  borderRadius: 'var(--aar-radius-md)',
-                }}
               >
-                <div style={{ textAlign: 'center' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.5rem', color: 'var(--aar-primary)' }}>
+                <div className="aar-text-align-center">
+                  <span className="aar-display-inline-flex aar-items-center aar-justify-center aar-m-0-auto-0-5rem aar-ink-primary">
                     <Sparkles size={28} />
                   </span>
-                  <h4 style={{ margin: '0.25rem 0', fontSize: '1.1rem' }}>The Canvas Altar (.aar-altar)</h4>
-                  <p className="aar-hint" style={{ margin: 0 }}>
-                    Framed with etched corner brackets (<code>data-corner-brackets=&quot;true&quot;</code>). Artwork rendered with zero chrome distortion.
+                  <h4 className="aar-m-0-25rem-0 aar-text-1-1rem">
+                    The Canvas Altar (.aar-altar)
+                  </h4>
+                  <p className="aar-hint aar-m-0px">
+                    Framed with etched corner brackets (
+                    <code>data-corner-brackets=&quot;true&quot;</code>). Artwork
+                    rendered with zero chrome distortion.
                   </p>
                 </div>
               </div>
 
               {/* Grid of Cards */}
-              <div className="aar-grid" style={{ '--aar-grid-min': '14rem', gap: '1rem' } as CSSProperties}>
-                <div className="aar-card" data-selected="true" style={{ padding: '1.25rem' }}>
-                  <div className="aar-cluster" style={{ justifyContent: 'space-between' }}>
+              <div
+                className="aar-grid aar-gap-4"
+                style={{ "--aar-grid-min": "14rem" } as React.CSSProperties}
+              >
+                <div className="aar-card aar-p-5" data-selected="true">
+                  <div className="aar-cluster aar-justify-space-between">
                     <span className="aar-eyebrow">Active Preset</span>
-                    <span className="aar-badge" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                    <span
+                      className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                      data-variant="primary"
+                    >
                       <Check size={11} /> Selected
                     </span>
                   </div>
-                  <h4 style={{ margin: '0.5rem 0 0.25rem', fontSize: '1.1rem' }}>Social Banner</h4>
-                  <p className="aar-hint">1200×627 · Optimized for LinkedIn and Twitter feeds.</p>
+                  <h4 className="aar-m-0-5rem-0-0-25rem aar-text-1-1rem">
+                    Social Banner
+                  </h4>
+                  <p className="aar-hint">
+                    1200×627 · Optimized for LinkedIn and Twitter feeds.
+                  </p>
                 </div>
 
-                <div className="aar-card" style={{ padding: '1.25rem' }}>
+                <div className="aar-card aar-p-5">
                   <span className="aar-eyebrow">Available Preset</span>
-                  <h4 style={{ margin: '0.5rem 0 0.25rem', fontSize: '1.1rem' }}>Square Post</h4>
-                  <p className="aar-hint">1080×1080 · High-contrast 1:1 Instagram frame.</p>
+                  <h4 className="aar-m-0-5rem-0-0-25rem aar-text-1-1rem">
+                    Square Post
+                  </h4>
+                  <p className="aar-hint">
+                    1080×1080 · High-contrast 1:1 Instagram frame.
+                  </p>
                 </div>
 
-                <div className="aar-card" data-compact="true" style={{ padding: '1rem' }}>
+                <div className="aar-card aar-p-4" data-compact="true">
                   <span className="aar-eyebrow">Compact Card</span>
-                  <h4 style={{ margin: '0.25rem 0', fontSize: '0.95rem' }}>Story Deck</h4>
-                  <p className="aar-hint" style={{ margin: 0 }}>1080×1920 · 6 Slides</p>
+                  <h4 className="aar-m-0-25rem-0 aar-text-0-95rem">
+                    Story Deck
+                  </h4>
+                  <p className="aar-hint aar-m-0px">1080×1920 · 6 Slides</p>
                 </div>
               </div>
             </div>
@@ -2058,7 +2745,7 @@ function SurfacesDocSection() {
 
 <!-- Selected Card with Active Halo Ring -->
 <div class="aar-card" data-selected="true">
-  <div class="aar-cluster" style="justify-content: space-between;">
+  <div class="aar-cluster aar-justify-space-between">
     <span class="aar-eyebrow">Active Preset</span>
     <span class="aar-badge" data-variant="primary">✦ Selected</span>
   </div>
@@ -2082,48 +2769,85 @@ function SurfacesDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function BadgesDocSection() {
   return (
-    <section className="aar-doc-section" id="badges">
+    <section className="aar-guide-section" id="badges">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 05</p>
         <h2 className="aar-heading">Badges, Runes &amp; Status Indicators</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Functional runes carry meaning beyond color alone: Active selection, Sealed artifact, Live transmutation, Rift alert.
+        <p className="aar-hint aar-mb-6">
+          Functional runes carry meaning beyond color alone: Active selection,
+          Sealed artifact, Live transmutation, Rift alert.
         </p>
 
         <div className="aar-specimen-box">
           <div className="aar-specimen-preview">
             <div className="aar-stack" data-gap="2">
-              <div className="aar-cluster" style={{ gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                <span className="aar-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+              <div className="aar-cluster aar-gap-3 aar-flex-wrap-wrap aar-items-center">
+                <span className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2">
                   <FileText size={11} /> Inactive Draft
                 </span>
-                <span className="aar-badge" data-variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-variant="primary"
+                >
                   <Sparkles size={11} /> Active Selection
                 </span>
-                <span className="aar-badge" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-tone="success"
+                >
                   <Check size={11} /> Sealed Artifact
                 </span>
-                <span className="aar-badge" data-tone="danger" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-tone="danger"
+                >
                   <AlertCircle size={11} /> Rift Warning
                 </span>
-                <span className="aar-badge" data-tone="warning" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-tone="warning"
+                >
                   <Clock size={11} /> Transmuting (14ms)
                 </span>
                 <span className="aar-kbd">⌘K</span>
                 <span className="aar-kbd">Ctrl+S</span>
               </div>
 
-              <div className="aar-cluster" style={{ gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', marginTop: '0.75rem' }}>
+              <div className="aar-cluster aar-gap-3 aar-flex-wrap-wrap aar-items-center aar-mt-3">
                 <span className="aar-hint">Size Tiers:</span>
-                <span className="aar-badge" data-size="xs" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Check size={10} /> XS</span>
-                <span className="aar-badge" data-size="sm" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Check size={11} /> SM</span>
-                <span className="aar-badge" data-size="md" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Check size={12} /> MD (Default)</span>
-                <span className="aar-badge" data-size="lg" data-tone="success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Check size={14} /> LG</span>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-1"
+                  data-size="xs"
+                  data-tone="success"
+                >
+                  <Check size={10} /> XS
+                </span>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-1"
+                  data-size="sm"
+                  data-tone="success"
+                >
+                  <Check size={11} /> SM
+                </span>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-size="md"
+                  data-tone="success"
+                >
+                  <Check size={12} /> MD (Default)
+                </span>
+                <span
+                  className="aar-badge aar-display-inline-flex aar-items-center aar-gap-2"
+                  data-size="lg"
+                  data-tone="success"
+                >
+                  <Check size={14} /> LG
+                </span>
               </div>
             </div>
           </div>
@@ -2156,31 +2880,40 @@ function BadgesDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function DialogsDocSection() {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <section className="aar-doc-section" id="dialogs">
+    <section className="aar-guide-section" id="dialogs">
       <div className="aar-panel">
         <p className="aar-eyebrow">Core Instruments / 06</p>
         <h2 className="aar-heading">Dialogs, Modals &amp; Sheets</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          HTML5 native <code>&lt;dialog&gt;</code> element with semi-transparent atmospheric backdrop and wave reveal animations.
+        <p className="aar-hint aar-mb-6">
+          HTML5 native <code>&lt;dialog&gt;</code> element with semi-transparent
+          atmospheric backdrop and wave reveal animations.
         </p>
 
         <div className="aar-specimen-box">
           <div className="aar-specimen-preview">
-            <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <div className="aar-cluster aar-justify-space-between aar-items-center aar-flex-wrap-wrap aar-gap-4">
               <div>
-                <h4 style={{ margin: '0 0 0.25rem', fontSize: '1.1rem' }}>HTML5 Native &lt;dialog class=&quot;aar-dialog&quot;&gt;</h4>
-                <p className="aar-hint" style={{ margin: 0 }}>
-                  Supports native Escape key handling, backdrop click closure, and accessible focus traps.
+                <h4 className="aar-m-0-0-0-25rem aar-text-1-1rem">
+                  HTML5 Native &lt;dialog class=&quot;aar-dialog&quot;&gt;
+                </h4>
+                <p className="aar-hint aar-m-0px">
+                  Supports native Escape key handling, backdrop click closure,
+                  and accessible focus traps.
                 </p>
               </div>
-              <button type="button" className="aar-button" data-variant="primary" onClick={() => setModalOpen(true)}>
+              <button
+                type="button"
+                className="aar-button"
+                data-variant="primary"
+                onClick={() => setModalOpen(true)}
+              >
                 ✦ Open Modal Specimen
               </button>
             </div>
@@ -2188,40 +2921,50 @@ function DialogsDocSection() {
             {/* Specimen Dialog Modal */}
             {modalOpen && (
               <div
-                style={{
-                  position: 'fixed',
-                  inset: 0,
-                  zIndex: 9999,
-                  display: 'grid',
-                  placeItems: 'center',
-                  background: 'rgba(10, 14, 23, 0.72)',
-                  backdropFilter: 'blur(6px)',
-                  padding: '1rem',
-                }}
+                className="aar-position-fixed aar-inset-0px aar-z-index-9999 aar-display-grid aar-place-items-center aar-bg-rgba-10-14-23-0-72 aar-backdrop-filter-blur-6px aar-p-4"
                 onClick={() => setModalOpen(false)}
               >
                 <div
-                  className="aar-dialog aar-dialog-wave"
+                  className="aar-dialog aar-dialog-wave aar-w-min-500px-95vw aar-bg-surface-raised aar-radius-radius-md aar-border-1px-solid-border aar-p-6 aar-box-shadow-shadow-lg"
                   data-size="md"
-                  style={{ width: 'min(500px, 95vw)', background: 'var(--aar-surface-raised)', borderRadius: 'var(--aar-radius-md)', border: '1px solid var(--aar-border)', padding: '1.5rem', boxShadow: 'var(--aar-shadow-lg)' }}
+
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="aar-dialog-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                    <h3 style={{ margin: 0, fontSize: '1.25rem' }}>Seal Creative Artifact</h3>
-                    <button type="button" className="aar-icon-button" data-variant="quiet" onClick={() => setModalOpen(false)} aria-label="Close dialog">
+                  <div className="aar-dialog-header aar-display-flex aar-justify-space-between aar-items-center aar-mb-4">
+                    <h3 className="aar-m-0px aar-text-1-25rem">
+                      Seal Creative Artifact
+                    </h3>
+                    <button
+                      type="button"
+                      className="aar-icon-button"
+                      data-variant="quiet"
+                      onClick={() => setModalOpen(false)}
+                      aria-label="Close dialog"
+                    >
                       <X size={15} />
                     </button>
                   </div>
-                  <div className="aar-dialog-body" style={{ marginBottom: '1.5rem' }}>
-                    <p style={{ color: 'var(--aar-text-muted)', lineHeight: 1.6, margin: 0 }}>
-                      You are about to export this canvas incantation at 2× Retina resolution. Color profiles and artwork isolation will be preserved in the resulting PNG.
+                  <div className="aar-dialog-body aar-mb-6">
+                    <p className="aar-ink-text-muted aar-line-height-1-6 aar-m-0px">
+                      You are about to export this canvas incantation at 2×
+                      Retina resolution. Color profiles and artwork isolation
+                      will be preserved in the resulting PNG.
                     </p>
                   </div>
-                  <div className="aar-dialog-footer" style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-                    <button type="button" className="aar-button" onClick={() => setModalOpen(false)}>
+                  <div className="aar-dialog-footer aar-display-flex aar-justify-flex-end aar-gap-3">
+                    <button
+                      type="button"
+                      className="aar-button"
+                      onClick={() => setModalOpen(false)}
+                    >
                       Cancel
                     </button>
-                    <button type="button" className="aar-button" data-variant="primary" onClick={() => setModalOpen(false)} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <button
+                      type="button"
+                      className="aar-button aar-display-inline-flex aar-items-center aar-gap-2"
+                      data-variant="primary"
+                      onClick={() => setModalOpen(false)}
+                    >
                       <Check size={14} /> Confirm Seal
                     </button>
                   </div>
@@ -2259,94 +3002,276 @@ function DialogsDocSection() {
         </div>
       </div>
     </section>
-  )
+  );
+}
+
+function LayoutDocSection() {
+  return (
+    <section className="aar-panel aar-stack" data-gap="6">
+      <p className="aar-eyebrow">Framework-independent foundations</p>
+      <h2 className="aar-heading">Layouts without framework components</h2>
+      <p>
+        Use ordinary HTML, your own components, or another library. Aar Loom
+        supplies spacing, typography, surfaces, responsive compositions, and
+        state styling. Headless behavior packages are optional.
+      </p>
+      <div className="aar-table-scroll">
+        <table className="aar-reference-table">
+          <thead>
+            <tr>
+              <th>Composition</th>
+              <th>Public classes</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              [
+                "Page",
+                "aar-site, aar-site-header, aar-site-footer",
+                "An application or documentation shell",
+              ],
+              [
+                "Content",
+                "aar-container, aar-prose, aar-section",
+                "Bounded reading width and vertical rhythm",
+              ],
+              [
+                "Stack / cluster",
+                'aar-stack, aar-cluster; data-gap="4"',
+                "Related content in a column or wrapping row",
+              ],
+              [
+                "Grid / split",
+                'aar-grid data-min="18", aar-split',
+                "Collections and supporting work regions",
+              ],
+              [
+                "Guide",
+                "aar-guide-shell, aar-guide-sidebar, aar-guide-main",
+                "Navigation beside content, stacked on narrow screens",
+              ],
+              [
+                "Code",
+                "aar-code, aar-code-toolbar",
+                "Scrollable highlighted source with an expandable reading area",
+              ],
+              [
+                "Spacing",
+                "aar-p-4, aar-gap-4, aar-mt-6",
+                "Spacing scale in quarter-rem steps",
+              ],
+            ].map(([name, classes, purpose]) => (
+              <tr key={name}>
+                <th scope="row">{name}</th>
+                <td>
+                  <code>{classes}</code>
+                </td>
+                <td>{purpose}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="aar-grid" data-min="18">
+        <article className="aar-panel aar-stack">
+          <h3 className="aar-heading">Main work</h3>
+          <p>The strongest region holds the task.</p>
+        </article>
+        <aside className="aar-panel aar-stack">
+          <h3 className="aar-heading">Supporting tools</h3>
+          <p>This region stacks naturally when space is limited.</p>
+        </aside>
+      </div>
+      <CodeBlock
+        title="Plain HTML layout"
+        language="html"
+        code={`<main class="aar-root aar-page-reset" data-theme="system">
+  <section class="aar-container aar-stack aar-p-4" data-gap="6">
+    <h1 class="aar-title">Your application</h1>
+    <div class="aar-grid" data-min="18">
+      <article class="aar-panel">Main work</article>
+      <aside class="aar-panel">Supporting tools</aside>
+    </div>
+  </section>
+</main>`}
+      />
+      <p className="aar-hint">
+        Import @techaaroorian-ui/aar-loom/index.css. No extra layout stylesheet
+        is needed. Custom properties are reserved for brand colors and
+        content-driven dimensions such as canvas zoom.
+      </p>
+    </section>
+  );
 }
 
 function QuickstartDocSection() {
   return (
-    <section className="aar-doc-section" id="quickstart">
+    <section className="aar-guide-section" id="quickstart">
       <div className="aar-panel">
         <p className="aar-eyebrow">Getting Started / Template</p>
         <h2 className="aar-heading">Complete Starter Template</h2>
-        <p className="aar-hint" style={{ marginBottom: '1.5rem' }}>
-          Copy these complete <code>index.html</code> and <code>styles.css</code> files into any web project.
+        <p className="aar-hint aar-mb-6">
+          Copy these complete <code>index.html</code> and{" "}
+          <code>styles.css</code> files into any web project.
         </p>
 
         <CodeBlock title="index.html" language="html" code={quickstartHtml} />
-        <div style={{ marginTop: '1.5rem' }}>
+        <div className="aar-mt-6">
           <CodeBlock title="styles.css" language="css" code={quickstartCss} />
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export interface DocNavItem {
-  id: string
-  label: string
-  icon: ReactNode
-  badge?: string
+  id: string;
+  label: string;
+  icon: ReactNode;
+  badge?: string;
 }
 
 export interface DocNavGroup {
-  title: string
-  items: DocNavItem[]
+  title: string;
+  items: DocNavItem[];
 }
 
 // Side Navigation Groupings (Open Source Standards)
 const DOC_NAV_GROUPS: DocNavGroup[] = [
   {
-    title: 'Getting Started',
+    title: "Getting Started",
     items: [
-      { id: 'intro', label: 'Overview & Install', icon: <Rocket size={15} />, badge: 'Start' },
-      { id: 'quickstart', label: 'Starter Template', icon: <FileCode size={15} />, badge: 'HTML' },
+      {
+        id: "aar-intro",
+        label: "Overview & Install",
+        icon: <Rocket size={15} />,
+        badge: "Start",
+      },
+      {
+        id: "quickstart",
+        label: "Starter Template",
+        icon: <FileCode size={15} />,
+        badge: "HTML",
+      },
     ],
   },
   {
-    title: 'Design Tokens',
+    title: "Design Tokens",
     items: [
-      { id: 'colors', label: 'Palettes & Variables', icon: <Palette size={15} />, badge: '5 Realms' },
+      {
+        id: "colors",
+        label: "Theme & Tokens",
+        icon: <Palette size={15} />,
+        badge: "Tokens",
+      },
     ],
   },
   {
-    title: 'Core Components',
+    title: "Core Components",
     items: [
-      { id: 'buttons', label: 'Buttons & Triggers', icon: <Zap size={15} />, badge: 'CSS' },
-      { id: 'inputs', label: 'Inputs & Form Controls', icon: <FormInput size={15} />, badge: 'Forms' },
-      { id: 'selects', label: 'Selects & Menus', icon: <ChevronDown size={15} />, badge: 'Menus' },
-      { id: 'surfaces', label: 'Cards & Canvas Altar', icon: <Layout size={15} />, badge: 'Cards' },
-      { id: 'badges', label: 'Badges & Runes', icon: <Tag size={15} />, badge: 'Tags' },
-      { id: 'dialogs', label: 'Dialogs & Modals', icon: <MessageSquare size={15} />, badge: 'Modals' },
+      {
+        id: "buttons",
+        label: "Buttons & Triggers",
+        icon: <Zap size={15} />,
+        badge: "CSS",
+      },
+      {
+        id: "inputs",
+        label: "Inputs & Form Controls",
+        icon: <FormInput size={15} />,
+        badge: "Forms",
+      },
+      {
+        id: "selects",
+        label: "Selects & Menus",
+        icon: <ChevronDown size={15} />,
+        badge: "Menus",
+      },
+      {
+        id: "surfaces",
+        label: "Cards & Canvas Altar",
+        icon: <Layout size={15} />,
+        badge: "Cards",
+      },
+      {
+        id: "badges",
+        label: "Badges & Runes",
+        icon: <Tag size={15} />,
+        badge: "Tags",
+      },
+      {
+        id: "dialogs",
+        label: "Dialogs & Modals",
+        icon: <MessageSquare size={15} />,
+        badge: "Modals",
+      },
     ],
   },
   {
-    title: 'UI Patterns',
+    title: "UI Patterns",
     items: [
-      { id: 'scale', label: 'Universal Size Scale', icon: <Ruler size={15} />, badge: 'xs-xl' },
-      { id: 'forms', label: 'Advanced Form Patterns', icon: <ClipboardList size={15} />, badge: 'Demo' },
-      { id: 'html-suite', label: 'Extended UI Suite', icon: <Layers size={15} />, badge: 'Tables/Tabs' },
+      {
+        id: "layout",
+        label: "Layout primitives",
+        icon: <Layout size={15} />,
+        badge: "HTML",
+      },
+      {
+        id: "scale",
+        label: "Universal Size Scale",
+        icon: <Ruler size={15} />,
+        badge: "xs-xl",
+      },
+      {
+        id: "forms",
+        label: "Advanced Form Patterns",
+        icon: <ClipboardList size={15} />,
+        badge: "Demo",
+      },
+      {
+        id: "html-suite",
+        label: "Extended UI Suite",
+        icon: <Layers size={15} />,
+        badge: "Tables/Tabs",
+      },
     ],
   },
   {
-    title: 'Laboratory',
+    title: "Laboratory",
     items: [
-      { id: 'workbench', label: 'Studio Workbench', icon: <FlaskConical size={15} />, badge: 'Interactive' },
-      { id: 'learn', label: 'Design Lessons', icon: <BookOpen size={15} />, badge: 'Principles' },
+      {
+        id: "aar-workbench",
+        label: "Studio Workbench",
+        icon: <FlaskConical size={15} />,
+        badge: "Interactive",
+      },
+      {
+        id: "learn",
+        label: "Design Lessons",
+        icon: <BookOpen size={15} />,
+        badge: "Principles",
+      },
     ],
   },
   {
-    title: 'Full View',
+    title: "Full View",
     items: [
-      { id: 'all', label: 'View All Components', icon: <Globe size={15} />, badge: 'Full' },
+      {
+        id: "all",
+        label: "View All Components",
+        icon: <Globe size={15} />,
+        badge: "Full",
+      },
     ],
   },
-]
+];
 
 export interface AarLoomDocsProps {
-  theme?: string
-  palette?: string
-  onThemeChange?: (theme: string) => void
-  onPaletteChange?: (palette: string) => void
+  theme?: string;
+  palette?: string;
+  onThemeChange?: (theme: string) => void;
+  onPaletteChange?: (palette: string) => void;
 }
 
 function AarLoomDocs({
@@ -2355,70 +3280,93 @@ function AarLoomDocs({
   onThemeChange,
   onPaletteChange,
 }: AarLoomDocsProps = {}) {
-  const [internalTheme, setInternalTheme] = useState('light')
-  const [internalPalette, setInternalPalette] = useState('obsidian')
-  const theme = externalTheme ?? internalTheme
-  const palette = externalPalette ?? internalPalette
-  const setTheme = onThemeChange ?? setInternalTheme
-  const setPalette = onPaletteChange ?? setInternalPalette
-  const [density, setDensity] = useState('comfortable')
-  const [view, setView] = useState('intro')
-  const [navSearch, setNavSearch] = useState('')
-  const [primary, setPrimary] = useState('#2458a6')
-  const [onPrimary, setOnPrimary] = useState('#ffffff')
-  const [compare, setCompare] = useState(false)
-  const colors = palette === 'custom' ? { '--aar-primary': primary, '--aar-on-primary': onPrimary, '--aar-focus': primary } as CSSProperties : undefined
+  const [internalTheme, setInternalTheme] = useState("light");
+  const [internalPalette, setInternalPalette] = useState("default");
+  const theme = externalTheme ?? internalTheme;
+  const palette = externalPalette ?? internalPalette;
+  const setTheme = onThemeChange ?? setInternalTheme;
+  const setPalette = onPaletteChange ?? setInternalPalette;
+  const [density, setDensity] = useState("comfortable");
+  const [view, setView] = useState("aar-intro");
+  const [navSearch, setNavSearch] = useState("");
+  const [primary, setPrimary] = useState("#2458a6");
+  const [onPrimary, setOnPrimary] = useState("#ffffff");
+  const [compare, setCompare] = useState(false);
+  const colors =
+    palette === "custom"
+      ? ({
+          "--aar-primary": primary,
+          "--aar-on-primary": onPrimary,
+          "--aar-focus": primary,
+        } as CSSProperties)
+      : undefined;
 
   // Active section title lookup for breadcrumb
-  const allNavItems = DOC_NAV_GROUPS.flatMap(g => g.items)
-  const activeItem = allNavItems.find(i => i.id === view) || { label: 'Documentation', icon: <Sparkles size={15} /> }
+  const allNavItems = DOC_NAV_GROUPS.flatMap((g) => g.items);
+  const activeItem = allNavItems.find((i) => i.id === view) || {
+    label: "Documentation",
+    icon: <Sparkles size={15} />,
+  };
 
   return (
-    <div className="aar-root lab package-lab" data-theme={theme} data-palette={palette} data-density={density} style={colors}>
-      <section className="lab-content">
+    <div
+      className="aar-root aar-page aar-page-body"
+      data-theme={theme}
+      data-density={density}
+      style={colors}
+    >
+      <section className="aar-container">
         {/* Arcane Atelier Hero Header */}
-        <section className="intro">
+        <section className="aar-intro">
           <div>
-            <div className="package-logo">
-              <img src={`${import.meta.env.BASE_URL}brand/aar-loom.svg`} alt="Aar Loom" />
+            <div className="aar-wordmark">
+              <img
+                src={`${import.meta.env.BASE_URL}brand/aar-loom.svg`}
+                alt="Aar Loom"
+              />
             </div>
             <p className="aar-eyebrow">Aar Loom · Pure CSS Design System</p>
             <h1 className="aar-title">
-              The Arcane Atelier.<br />
+              The Arcane Atelier.
+              <br />
               <span>Precision over ornament.</span>
             </h1>
           </div>
-          <div className="intro-copy">
+          <div className="aar-intro-copy">
             <p>
-              A CSS-only language for creative engineering tools. 1px etched hairlines, dual Obsidian &amp; Parchment realms, corner-bracket altars, and honest functional runes.
+              A CSS-only language for creative engineering tools. 1px etched
+              hairlines, Light, Dark, and System appearance, corner-bracket
+              altars, and honest functional runes.
             </p>
-            <p className="aar-hint">Zero runtime dependencies. Works with React, Vue, Svelte, or static HTML.</p>
+            <p className="aar-hint">
+              Zero runtime dependencies. Works with React, Vue, Svelte, or
+              static HTML.
+            </p>
           </div>
         </section>
 
         {/* Live Visual Testing Controls */}
-        <section className="aar-panel controls" aria-label="Visual testing controls">
+        <section
+          className="aar-panel aar-control-bar"
+          aria-label="Visual testing controls"
+        >
           <AarLoomDropdownSelect
             label="Appearance"
             value={theme}
             onChange={(val) => setTheme(val)}
             options={[
-              { value: 'light', label: 'Light' },
-              { value: 'dark', label: 'Dark' },
-              { value: 'system', label: 'System' },
+              { value: "light", label: "Light" },
+              { value: "dark", label: "Dark" },
+              { value: "system", label: "System" },
             ]}
           />
           <AarLoomDropdownSelect
-            label="Palette"
+            label="Accent"
             value={palette}
             onChange={(val) => setPalette(val)}
             options={[
-              { value: 'obsidian', label: 'Obsidian (Night Atelier)' },
-              { value: 'parchment', label: 'Parchment (Ancient Vellum)' },
-              { value: 'jade', label: 'Celestial Jade' },
-              { value: 'forest', label: 'Forest' },
-              { value: 'iris', label: 'Iris' },
-              { value: 'custom', label: 'Your colors' },
+              { value: "default", label: "Default accent" },
+              { value: "custom", label: "Your colors" },
             ]}
           />
           <AarLoomDropdownSelect
@@ -2426,73 +3374,98 @@ function AarLoomDocs({
             value={density}
             onChange={(val) => setDensity(val)}
             options={[
-              { value: 'comfortable', label: 'Comfortable' },
-              { value: 'compact', label: 'Compact' },
+              { value: "comfortable", label: "Comfortable" },
+              { value: "compact", label: "Compact" },
             ]}
           />
-          {palette === 'custom' && (
+          {palette === "custom" && (
             <>
               <label className="aar-field">
                 <span className="aar-field-label">Primary</span>
-                <input className="aar-input color-input" type="color" value={primary} onChange={e => setPrimary(e.target.value)} />
+                <input
+                  className="aar-input aar-color-input"
+                  type="color"
+                  value={primary}
+                  onChange={(e) => setPrimary(e.target.value)}
+                />
               </label>
               <label className="aar-field">
                 <span className="aar-field-label">On primary</span>
-                <input className="aar-input color-input" type="color" value={onPrimary} onChange={e => setOnPrimary(e.target.value)} />
+                <input
+                  className="aar-input aar-color-input"
+                  type="color"
+                  value={onPrimary}
+                  onChange={(e) => setOnPrimary(e.target.value)}
+                />
               </label>
             </>
           )}
-          <label className="compare-control">
-            <input type="checkbox" checked={compare} onChange={e => setCompare(e.target.checked)} />
+          <label className="aar-compare-control">
+            <input
+              type="checkbox"
+              checked={compare}
+              onChange={(e) => setCompare(e.target.checked)}
+            />
             Compare light &amp; dark
           </label>
         </section>
-        {palette === 'custom' && (
-          <p className="aar-hint color-note">
-            Choose a readable primary / on-primary pair. Custom colors apply to both appearances and are not automatically contrast-safe.
+        {palette === "custom" && (
+          <p className="aar-hint aar-color-note">
+            Choose a readable primary / on-primary pair. Custom colors apply to
+            both appearances and are not automatically contrast-safe.
           </p>
         )}
 
         {/* Documentation Shell: Sticky Side Nav + Main Content */}
-        <div className="aar-docs-shell">
+        <div className="aar-guide-shell">
           {/* Side Navigation */}
-          <aside className="aar-docs-sidebar" aria-label="Aar Loom Documentation Navigation">
-            <div className="aar-docs-sidebar-header">
+          <aside
+            className="aar-guide-sidebar"
+            aria-label="Aar Loom Documentation Navigation"
+          >
+            <div className="aar-guide-sidebar-header">
               <input
                 type="search"
-                className="aar-input"
-                style={{ width: '100%', fontSize: '0.8125rem', height: '2.1rem' }}
+                className="aar-input aar-w-100 aar-text-0-875rem aar-h-2-1rem"
+
                 placeholder="Filter components…"
                 value={navSearch}
                 onChange={(e) => setNavSearch(e.target.value)}
               />
             </div>
 
-            <div className="aar-docs-sidebar-content">
+            <div className="aar-guide-sidebar-content">
               {DOC_NAV_GROUPS.map((group) => {
                 const filteredItems = group.items.filter(
-                  (item) => !navSearch || item.label.toLowerCase().includes(navSearch.toLowerCase())
-                )
-                if (filteredItems.length === 0) return null
+                  (item) =>
+                    !navSearch ||
+                    item.label.toLowerCase().includes(navSearch.toLowerCase()),
+                );
+                if (filteredItems.length === 0) return null;
                 return (
-                  <div key={group.title} style={{ marginBottom: '0.5rem' }}>
-                    <p className="aar-docs-sidebar-group">{group.title}</p>
+                  <div key={group.title} className="aar-mb-2">
+                    <p className="aar-guide-sidebar-group">{group.title}</p>
                     {filteredItems.map((item) => (
                       <button
                         key={item.id}
                         type="button"
-                        className="aar-docs-nav-item"
+                        className="aar-guide-nav-item"
                         data-active={view === item.id}
                         onClick={() => {
-                          setView(item.id)
-                          const main = document.getElementById('aar-docs-main-content')
+                          setView(item.id);
+                          const main = document.getElementById(
+                            "aar-docs-main-content",
+                          );
                           if (main) {
-                            const top = main.getBoundingClientRect().top + window.scrollY - 80
-                            window.scrollTo({ top, behavior: 'smooth' })
+                            const top =
+                              main.getBoundingClientRect().top +
+                              window.scrollY -
+                              80;
+                            window.scrollTo({ top, behavior: "smooth" });
                           }
                         }}
                       >
-                        <span style={{ fontSize: '0.95rem', width: '1.25rem', textAlign: 'center', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <span className="aar-text-0-95rem aar-w-1-25rem aar-text-align-center aar-display-inline-flex aar-items-center aar-justify-center aar-flex-shrink-0">
                           {item.icon}
                         </span>
                         <span>{item.label}</span>
@@ -2504,27 +3477,27 @@ function AarLoomDocs({
                       </button>
                     ))}
                   </div>
-                )
+                );
               })}
             </div>
           </aside>
 
           {/* Main Content Area */}
-          <main className="aar-docs-main" id="aar-docs-main-content">
+          <section className="aar-guide-main" id="aar-docs-main-content">
             {/* Breadcrumb Header */}
-            <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--aar-border)', paddingBottom: '0.75rem' }}>
-              <div className="aar-cluster" style={{ gap: '0.5rem', fontSize: '0.875rem' }}>
+            <div className="aar-cluster aar-justify-space-between aar-items-center aar-border-bottom-1px-solid-border aar-pb-3">
+              <div className="aar-cluster aar-gap-2 aar-text-0-875rem">
                 <span className="aar-hint">Aar Loom</span>
-                <span style={{ color: 'var(--aar-text-muted)' }}>/</span>
-                <strong style={{ color: 'var(--aar-primary)' }}>{activeItem.label}</strong>
+                <span className="aar-ink-text-muted">/</span>
+                <strong className="aar-ink-primary">{activeItem.label}</strong>
               </div>
-              {view !== 'all' && (
+              {view !== "all" && (
                 <button
                   type="button"
-                  className="aar-button"
+                  className="aar-button aar-text-0-875rem aar-p-0-25rem-0-5rem aar-display-inline-flex aar-items-center aar-gap-2"
                   data-variant="quiet"
-                  style={{ fontSize: '0.8125rem', padding: '0.25rem 0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
-                  onClick={() => setView('all')}
+
+                  onClick={() => setView("all")}
                 >
                   <Globe size={13} /> View all sections
                 </button>
@@ -2532,41 +3505,49 @@ function AarLoomDocs({
             </div>
 
             {/* Light / Dark Dual Realm Comparison Wrapper */}
-            <div className={compare ? 'comparison' : ''}>
-              {(compare ? ['light', 'dark'] : [theme]).map((appearance) => (
+            <div className={compare ? "aar-comparison" : ""}>
+              {(compare ? ["light", "dark"] : [theme]).map((appearance) => (
                 <div
                   key={appearance}
                   className="aar-root"
                   data-theme={appearance}
-                  data-palette={palette}
-                  data-density={density}
+                              data-density={density}
                   style={colors}
                 >
                   {compare && (
-                    <div style={{ padding: '0.5rem 1rem', background: 'var(--aar-surface-subtle)', borderRadius: 'var(--aar-radius-sm)', marginBottom: '1rem', fontWeight: 600, fontSize: '0.8125rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Sparkles size={13} /> Realm Preview: {appearance.toUpperCase()} / {palette.toUpperCase()}
+                    <div className="aar-p-0-5rem-1rem aar-bg-surface-subtle aar-radius-radius-sm aar-mb-4 aar-weight-600 aar-text-0-875rem aar-display-inline-flex aar-items-center aar-gap-2">
+                      <Sparkles size={13} /> Appearance Preview:{" "}
+                      {appearance.toUpperCase()} / {palette.toUpperCase()}
                     </div>
                   )}
 
                   {/* Section Views */}
-                  {view === 'intro' && <IntroDocSection />}
-                  {view === 'quickstart' && <QuickstartDocSection />}
-                  {view === 'buttons' && <ButtonsDocSection />}
-                  {view === 'inputs' && <InputsDocSection />}
-                  {view === 'selects' && <SelectsDocSection />}
-                  {view === 'surfaces' && <SurfacesDocSection />}
-                  {view === 'badges' && <BadgesDocSection />}
-                  {view === 'dialogs' && <DialogsDocSection />}
-                  {view === 'scale' && <SizeScaleSpecimen />}
-                  {view === 'forms' && <FormVariantsSpecimen />}
-                  {view === 'html-suite' && <PureHtmlUiSuiteSpecimen />}
-                  {view === 'colors' && <PalettesAndColors currentPalette={palette} onSelectPalette={setPalette} />}
-                  {view === 'workbench' && <Workbench />}
-                  {view === 'learn' && (
-                    <section className="lessons">
+                  {view === "aar-intro" && <IntroDocSection />}
+                  {view === "quickstart" && <QuickstartDocSection />}
+                  {view === "layout" && <LayoutDocSection />}
+                  {view === "buttons" && <ButtonsDocSection />}
+                  {view === "inputs" && <InputsDocSection />}
+                  {view === "selects" && <SelectsDocSection />}
+                  {view === "surfaces" && <SurfacesDocSection />}
+                  {view === "badges" && <BadgesDocSection />}
+                  {view === "dialogs" && <DialogsDocSection />}
+                  {view === "scale" && <SizeScaleSpecimen />}
+                  {view === "forms" && <FormVariantsSpecimen />}
+                  {view === "html-suite" && <PureHtmlUiSuiteSpecimen />}
+                  {view === "colors" && (
+                    <PalettesAndColors
+                      currentPalette={palette}
+                      onSelectPalette={setPalette}
+                    />
+                  )}
+                  {view === "aar-workbench" && <Workbench />}
+                  {view === "learn" && (
+                    <section className="aar-lessons">
                       {lessons.map(([concept, title, text], index) => (
-                        <article className="aar-panel lesson" key={concept}>
-                          <span className="lesson-number">0{index + 1}</span>
+                        <article className="aar-panel aar-lesson" key={concept}>
+                          <span className="aar-lesson-number">
+                            0{index + 1}
+                          </span>
                           <p className="aar-eyebrow">{concept}</p>
                           <h2 className="aar-heading">{title}</h2>
                           <p>{text}</p>
@@ -2576,7 +3557,7 @@ function AarLoomDocs({
                   )}
 
                   {/* All Sections Sequentially */}
-                  {view === 'all' && (
+                  {view === "all" && (
                     <div className="aar-stack" data-gap="4">
                       <IntroDocSection />
                       <QuickstartDocSection />
@@ -2589,12 +3570,20 @@ function AarLoomDocs({
                       <SizeScaleSpecimen />
                       <FormVariantsSpecimen />
                       <PureHtmlUiSuiteSpecimen />
-                      <PalettesAndColors currentPalette={palette} onSelectPalette={setPalette} />
+                      <PalettesAndColors
+                        currentPalette={palette}
+                        onSelectPalette={setPalette}
+                      />
                       <Workbench />
-                      <section className="lessons">
+                      <section className="aar-lessons">
                         {lessons.map(([concept, title, text], index) => (
-                          <article className="aar-panel lesson" key={concept}>
-                            <span className="lesson-number">0{index + 1}</span>
+                          <article
+                            className="aar-panel aar-lesson"
+                            key={concept}
+                          >
+                            <span className="aar-lesson-number">
+                              0{index + 1}
+                            </span>
                             <p className="aar-eyebrow">{concept}</p>
                             <h2 className="aar-heading">{title}</h2>
                             <p>{text}</p>
@@ -2606,29 +3595,42 @@ function AarLoomDocs({
                 </div>
               ))}
             </div>
-          </main>
+          </section>
         </div>
 
         {/* Quality Review Guidelines */}
-        <section className="review" style={{ marginTop: '3rem' }}>
+        <section className="aar-review aar-mt-12">
           <div>
             <p className="aar-eyebrow">Quality Criteria</p>
             <h2 className="aar-heading">Test the rules, then the details.</h2>
           </div>
           <ol>
-            <li><b>Hierarchy</b> — Can you identify the main action at a glance?</li>
-            <li><b>Theme</b> — Compare surfaces, text, and controls in both appearances.</li>
-            <li><b>Interaction</b> — Tab through controls; inspect focus, hover, pressed, and disabled.</li>
-            <li><b>Resilience</b> — Resize to mobile, zoom to 200%, and try longer text.</li>
+            <li>
+              <b>Hierarchy</b> — Can you identify the main action at a glance?
+            </li>
+            <li>
+              <b>Theme</b> — Compare surfaces, text, and controls in both
+              appearances.
+            </li>
+            <li>
+              <b>Interaction</b> — Tab through controls; inspect focus, hover,
+              pressed, and disabled.
+            </li>
+            <li>
+              <b>Resilience</b> — Resize to mobile, zoom to 200%, and try longer
+              text.
+            </li>
           </ol>
         </section>
 
-        <footer className="lab-footer">
+        <footer className="aar-lab-footer">
           <span>Aar Loom / Pure CSS Open Source Design System</span>
-          <span>Zero runtime dependencies · MIT License · Machine-Readable HTML</span>
+          <span>
+            Zero runtime dependencies · MIT License · Machine-Readable HTML
+          </span>
         </footer>
       </section>
     </div>
-  )
+  );
 }
-export default AarLoomDocs
+export default AarLoomDocs;

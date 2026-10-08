@@ -7,7 +7,7 @@ import pickerSource from "./CollectionPickerExample.tsx?raw";
 export default function InteractionExamples() {
   return (
     <>
-      <section className="aar-panel package-setup">
+      <section className="aar-panel aar-section">
         <h2 className="aar-heading">Dialog and Sheet</h2>
         <code>@techaaroorian-ui/dialog</code>
         <p>
@@ -19,7 +19,7 @@ export default function InteractionExamples() {
         <DialogExample />
         <CodeBlock title="DialogExample.tsx" code={dialogSource} />
       </section>
-      <section className="aar-panel package-setup">
+      <section className="aar-panel aar-section">
         <h2 className="aar-heading">Collection Picker</h2>
         <code>@techaaroorian-ui/collection-picker</code>
         <p>

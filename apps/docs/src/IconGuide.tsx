@@ -4,13 +4,13 @@ import exampleSource from "./IconsExample.tsx?raw";
 
 export default function IconGuide() {
   return (
-    <section className="lab-content package-docs">
-      <div className="intro">
+    <section className="aar-container aar-content">
+      <div className="aar-intro">
         <div>
           <p className="aar-eyebrow">Collection guide / Icons</p>
           <h1 className="aar-title">Lucide icons</h1>
         </div>
-        <div className="intro-copy">
+        <div className="aar-intro-copy">
           <p>One consistent icon family for your application.</p>
           <p className="aar-hint">
             Recommended integration, independent of Aar Loom. Logos remain
@@ -18,7 +18,7 @@ export default function IconGuide() {
           </p>
         </div>
       </div>
-      <section className="aar-panel package-setup">
+      <section className="aar-panel aar-section">
         <h2 className="aar-heading">Install in your application</h2>
         <CodeBlock
           title="Install Lucide"
@@ -37,12 +37,13 @@ export default function IconGuide() {
           Lucide.
         </p>
       </section>
-      <section className="aar-panel package-setup">
+      <section className="aar-panel aar-section">
         <h2 className="aar-heading">Actions, status, and empty states</h2>
         <IconsExample />
         <CodeBlock title="IconsExample.tsx" code={exampleSource} />
         <p>
-          Save this complete component in src, then import and render IconsExample in your React application using Aar Loom styles.
+          Save this complete component in src, then import and render
+          IconsExample in your React application using Aar Loom styles.
         </p>
         <p>
           Put the accessible name on an icon-only button. Hide decorative icons
@@ -58,13 +59,18 @@ export default function IconGuide() {
           icon prop.
         </p>
       </section>
-      <section className="aar-panel package-setup">
-        <h2 className="aar-heading">Functional State Runes &amp; Icon Pairing</h2>
+      <section className="aar-panel aar-section">
+        <h2 className="aar-heading">
+          Functional State Runes &amp; Icon Pairing
+        </h2>
         <p>
-          In the Arcane Atelier philosophy, Lucide icons represent <strong>nouns and actions</strong> (e.g. download, layers, settings), while minimal astronomical runes represent <strong>operational runtime states</strong>:
+          In the Arcane Atelier philosophy, Lucide icons represent{" "}
+          <strong>nouns and actions</strong> (e.g. download, layers, settings),
+          while minimal astronomical runes represent{" "}
+          <strong>operational runtime states</strong>:
         </p>
-        <div className="table-scroll">
-          <table className="docs-table">
+        <div className="aar-table-scroll">
+          <table className="aar-reference-table">
             <thead>
               <tr>
                 <th>Rune</th>
@@ -74,35 +80,66 @@ export default function IconGuide() {
             </thead>
             <tbody>
               <tr>
-                <td><code style={{ fontSize: '1.25rem' }}>✧</code></td>
-                <td><strong>Idle Potential</strong></td>
-                <td>Available actions, dormant capabilities, secondary layers</td>
+                <td>
+                  <code className="aar-text-1-25rem">✧</code>
+                </td>
+                <td>
+                  <strong>Idle Potential</strong>
+                </td>
+                <td>
+                  Available actions, dormant capabilities, secondary layers
+                </td>
               </tr>
               <tr>
-                <td><code style={{ fontSize: '1.25rem', color: 'var(--aar-primary)' }}>✦</code></td>
-                <td><strong>Active Selection</strong></td>
-                <td>Current illuminated tab, active preset, focused artboard</td>
+                <td>
+                  <code className="aar-text-1-25rem aar-ink-primary">✦</code>
+                </td>
+                <td>
+                  <strong>Active Selection</strong>
+                </td>
+                <td>
+                  Current illuminated tab, active preset, focused artboard
+                </td>
               </tr>
               <tr>
-                <td><code style={{ fontSize: '1.25rem', color: 'var(--aar-accent, #6366f1)' }}>⟡</code></td>
-                <td><strong>Live Transmutation</strong></td>
-                <td>Reactive computation, canvas re-render, processing state</td>
+                <td>
+                  <code className="aar-text-1-25rem aar-ink-var-aar-accent-6366f1">
+                    ⟡
+                  </code>
+                </td>
+                <td>
+                  <strong>Live Transmutation</strong>
+                </td>
+                <td>
+                  Reactive computation, canvas re-render, processing state
+                </td>
               </tr>
               <tr>
-                <td><code style={{ fontSize: '1.25rem', color: '#10b981' }}>✓</code></td>
-                <td><strong>The Seal (Resolved)</strong></td>
+                <td>
+                  <code className="aar-text-1-25rem aar-ink-primary">✓</code>
+                </td>
+                <td>
+                  <strong>The Seal (Resolved)</strong>
+                </td>
                 <td>Export complete, URL state encoded, verified artifact</td>
               </tr>
               <tr>
-                <td><code style={{ fontSize: '1.25rem', color: '#ef4444' }}>!</code></td>
-                <td><strong>Rift Warning</strong></td>
-                <td>Validation discrepancy, file intake quota exceeded, syntax error</td>
+                <td>
+                  <code className="aar-text-1-25rem aar-ink-primary">!</code>
+                </td>
+                <td>
+                  <strong>Rift Warning</strong>
+                </td>
+                <td>
+                  Validation discrepancy, file intake quota exceeded, syntax
+                  error
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
-      <section className="aar-panel package-setup">
+      <section className="aar-panel aar-section">
         <h2 className="aar-heading">Our recommended conventions</h2>
         <ul>
           <li>

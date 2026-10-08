@@ -1,0 +1,224 @@
+@layer components {
+  .aar-example-stack {
+    display: grid;
+    gap: 1rem;
+  }
+  .aar-expression .aar-heading {
+    font-family: var(--aar-font-sans);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--aar-text);
+  }
+
+  .aar-expression .aar-hint {
+    font-size: 0.875rem;
+    color: var(--aar-text-muted);
+  }
+
+  .aar-expression .aar-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--aar-text-muted);
+  }
+
+  /* Studio Contextual Empty State */
+  .aar-expression .aar-contextual-empty {
+    background: var(--aar-surface);
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-lg);
+    padding: 3rem 2rem;
+    display: grid;
+    justify-items: center;
+    gap: var(--aar-space-4);
+    text-align: center;
+    box-shadow: var(--aar-shadow-sm);
+    transition:
+      border-color var(--aar-duration) var(--aar-ease),
+      background-color var(--aar-duration) var(--aar-ease);
+  }
+
+  .aar-expression .aar-contextual-empty:hover {
+    border-color: var(--aar-border-strong);
+  }
+
+  .aar-expression .contextual-empty-icon {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin-inline: auto;
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-md);
+    background: var(--aar-surface-raised);
+    color: var(--aar-primary);
+    box-shadow: var(--aar-shadow-sm);
+  }
+
+  .aar-expression .contextual-empty-content {
+    display: grid;
+    gap: var(--aar-space-2);
+    max-width: 32rem;
+  }
+
+  .aar-expression .contextual-empty-content h3 {
+    font-family: var(--aar-font-sans);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--aar-text);
+    margin: 0;
+  }
+
+  .aar-expression .contextual-empty-content p {
+    color: var(--aar-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .aar-expression .contextual-empty-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .aar-expression .contextual-empty-actions > button {
+    min-height: var(--aar-control-height);
+    padding: 0 var(--aar-control-padding);
+    border-radius: var(--aar-radius-md);
+    font-family: var(--aar-font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    background: var(--aar-primary);
+    color: var(--aar-on-primary);
+    border: 1px solid var(--aar-primary);
+    cursor: pointer;
+    transition:
+      transform var(--aar-duration) var(--aar-ease),
+      background-color var(--aar-duration) var(--aar-ease),
+      box-shadow var(--aar-duration) var(--aar-ease);
+  }
+
+  .aar-expression .contextual-empty-actions > button:hover {
+    transform: translateY(var(--aar-hover-offset));
+    box-shadow: var(--aar-glow);
+  }
+
+  /* Studio Dropzone / File Intake */
+  .aar-expression .aar-dropzone {
+    position: relative;
+    background: var(--aar-surface);
+    border: 1.5px dashed var(--aar-border);
+    border-radius: var(--aar-radius-lg);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+    cursor: pointer;
+    transition:
+      background-color var(--aar-duration) var(--aar-ease),
+      border-color var(--aar-duration) var(--aar-ease);
+  }
+
+  .aar-expression .aar-dropzone > svg {
+    color: var(--aar-primary);
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.5rem;
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-md);
+    background: var(--aar-surface-raised);
+  }
+
+  .aar-expression .aar-dropzone[data-drag-active="true"] {
+    background: var(--aar-surface-subtle);
+    border-color: var(--aar-primary);
+    box-shadow: var(--aar-glow);
+  }
+
+  .aar-expression .aar-file-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--aar-surface);
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-md);
+    gap: 1rem;
+    animation: aar-subtle-in var(--aar-duration-enter) ease-out;
+  }
+
+  /* Studio Dialog */
+  .aar-expression .aar-dialog {
+    background: var(--aar-surface);
+    border: 1px solid var(--aar-border-strong);
+    border-radius: var(--aar-radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--aar-shadow-lg);
+    color: var(--aar-text);
+    max-width: 32rem;
+  }
+
+  .aar-expression .aar-dialog[open] {
+    animation: aar-subtle-in var(--aar-duration-enter)
+      cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Studio Picker */
+  .aar-expression .aar-picker {
+    padding: 0.5rem;
+    border-radius: var(--aar-radius-md);
+    border: 1px solid var(--aar-border);
+    background: var(--aar-surface);
+  }
+
+  .aar-expression .aar-picker-option {
+    min-height: var(--aar-control-height);
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--aar-radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--aar-text);
+    transition:
+      background-color var(--aar-duration) var(--aar-ease),
+      color var(--aar-duration) var(--aar-ease);
+  }
+
+  .aar-expression .aar-picker-option:hover {
+    background: var(--aar-surface-subtle);
+  }
+
+  .aar-expression .aar-picker-option[aria-selected="true"] {
+    background: var(--aar-surface-subtle);
+    color: var(--aar-primary);
+    font-weight: 500;
+  }
+
+  @keyframes aar-subtle-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aar-expression *,
+    .aar-expression *::before,
+    .aar-expression *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

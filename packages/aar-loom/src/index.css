@@ -2,3 +2,10 @@
 @layer theme, base, components, utilities;
 @import "./tokens.css";
 @import "./components.css";
+
+@import "./layouts.css";
+@import "./compositions.css";
+@import "./expression.css";
+@import "./code.css";
+@import "./magic-art.css";
+@import "./utilities.css";

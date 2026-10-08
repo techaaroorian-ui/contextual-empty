@@ -1,15 +1,1 @@
 @import "@techaaroorian-ui/aar-loom/index.css";
-
-body {
-  margin: 0;
-}
-.aar-root {
-  min-height: 100dvh;
-  padding: clamp(1rem, 4vw, 3rem);
-}
-.aar-panel {
-  display: grid;
-  gap: 1rem;
-  max-width: 42rem;
-  margin-inline: auto;
-}

@@ -6,7 +6,7 @@ Headless, Contextual Empty, and Lucide previews render standalone example module
 
 Every code block has syntax highlighting, a filename/language label, a Copy button, and an expandable reading area. Copy writes plain source text, not highlighted HTML. Clipboard denial uses a text-selection fallback; if both paths fail, the block provides an explicit manual-copy message. Long code scrolls inside its own frame on narrow screens.
 
-The headless page includes installation instructions, a React entry file, and the small shared example-layout stylesheet. Aar Loom's getting-started guide provides complete plain HTML and CSS files. Highlight.js and Prettier are docs-only dependencies; public packages remain independent of them.
+The headless page includes installation instructions, a React entry file, and a single Aar Loom CSS import. Aar Loom's getting-started guide provides complete plain HTML and an import-only CSS entry. All layout and presentation classes come from Aar Loom; no private documentation CSS is used. Highlight.js and Prettier are docs-only dependencies; public packages remain independent of them.
 
 One collection site with independent package pages:
 
@@ -21,3 +21,7 @@ From the repository root run `npm run dev --workspace apps/docs`. Build with `np
 Run `npm run test:visual --workspace apps/docs` with the server running to exercise navigation, direct-link reloads, mobile overflow, live examples, and Aar Loom theme/motion checks. Screenshots are saved under `visual-artifacts/` for human review.
 
 Routes use hashes, so static hosts do not need history-fallback rewrites. Collection branding stays in the shared shell; package branding lives within each package page. Contextual Empty is independent of Aar Loom even though the docs host uses Aar Loom for presentation.
+
+## Framework-only styling
+
+`npm run check:styles --workspace docs` verifies CSS imports and JSX style inputs. `npm run build --workspace docs` runs this check before compilation. Theme controls expose Light/Dark/System, Default/Custom accent, Comfortable/Compact density, and an independent Magic Art toggle. There are no named palette themes.

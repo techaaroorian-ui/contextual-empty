@@ -1,20 +1,23 @@
 @layer theme {
-  :root, [data-theme] {
-    --aar-font-sans: "Inter", "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* One appearance model. Brand colors are ordinary semantic token overrides. */
+  :root {
+    --aar-font-sans:
+      "Inter", "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system,
+      sans-serif;
     --aar-font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
-    --aar-space-1: .25rem;
-    --aar-space-2: .5rem;
-    --aar-space-3: .75rem;
+    --aar-space-1: 0.25rem;
+    --aar-space-2: 0.5rem;
+    --aar-space-3: 0.75rem;
     --aar-space-4: 1rem;
     --aar-space-6: 1.5rem;
     --aar-space-8: 2rem;
-    --aar-radius-sm: .375rem;
-    --aar-radius-md: .75rem;
+    --aar-radius-sm: 0.375rem;
+    --aar-radius-md: 0.75rem;
     --aar-radius-lg: 1.25rem;
     --aar-control-height-xs: 1.75rem;
-    --aar-control-padding-xs: .5rem;
+    --aar-control-padding-xs: 0.5rem;
     --aar-control-height-sm: 2.25rem;
-    --aar-control-padding-sm: .75rem;
+    --aar-control-padding-sm: 0.75rem;
     --aar-control-height: 2.75rem;
     --aar-control-padding: 1rem;
     --aar-control-height-lg: 3.25rem;
@@ -25,283 +28,110 @@
     --aar-duration: 140ms;
     --aar-duration-enter: 220ms;
     --aar-stagger-step: 35ms;
-    --aar-ease: cubic-bezier(.2, .8, .2, 1);
+    --aar-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
     --aar-hover-offset: -1px;
-    --aar-press-scale: .98;
+    --aar-press-scale: 0.98;
     --aar-enter-offset: 6px;
 
-    /* Base Surfaces (Forest / Default Light) */
-    --aar-background: #f3f4ef;
+    --aar-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+    --aar-shadow-md: 0 4px 12px rgb(0 0 0 / 0.14);
+    --aar-shadow-lg: 0 12px 28px rgb(0 0 0 / 0.2);
+    --aar-glow: 0 0 0 3px color-mix(in srgb, var(--aar-focus) 18%, transparent);
+  }
+  :root,
+  [data-theme="light"],
+  [data-theme="system"] {
+    --aar-background: #f4f3ef;
     --aar-surface: #ffffff;
-    --aar-surface-subtle: #eceee7;
+    --aar-surface-subtle: #eceaf0;
     --aar-surface-raised: #ffffff;
     --aar-surface-overlay: #ffffff;
-    --aar-text: #20271e;
-    --aar-text-muted: #596153;
-    --aar-border: #d4d9ce;
-    --aar-primary: #365c29;
+    --aar-text: #292630;
+    --aar-text-muted: #625d6d;
+    --aar-border: #d1ccd8;
+    --aar-border-strong: #81788e;
+    --aar-primary: #65468b;
     --aar-on-primary: #ffffff;
-    --aar-focus: #365c29;
+    --aar-focus: #65468b;
     --aar-success: #27613d;
     --aar-success-surface: #e8f3e8;
-    --aar-warning: #b45309;
+    --aar-warning: #8b4c08;
     --aar-warning-surface: #fef3c7;
     --aar-danger: #a33030;
     --aar-danger-surface: #fceeee;
-
-    /* Elevation and Aura */
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
-    --aar-glow: 0 0 0 3px color-mix(in srgb, var(--aar-focus) 20%, transparent);
+    --aar-syntax-keyword: #7530a0;
+    --aar-syntax-string: #256438;
+    --aar-syntax-title: #14559b;
+    --aar-syntax-number: #91421e;
+    --aar-syntax-comment: #626a70;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme]), [data-theme="system"] {
-      --aar-background: #171d18;
-      --aar-surface: #202821;
-      --aar-surface-subtle: #29322a;
-      --aar-surface-raised: #252f26;
-      --aar-surface-overlay: #2a352b;
-      --aar-text: #eef3e9;
-      --aar-text-muted: #b0bcab;
-      --aar-border: #3b473b;
-      --aar-primary: #b7dc9b;
-      --aar-on-primary: #20321a;
-      --aar-focus: #b7dc9b;
-      --aar-success: #a4d9b2;
-      --aar-success-surface: #253b2d;
-      --aar-warning: #fde047;
-      --aar-warning-surface: #422006;
-      --aar-danger: #ffb4ab;
-      --aar-danger-surface: #422b29;
-      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-      --aar-glow: 0 0 14px color-mix(in srgb, var(--aar-focus) 35%, transparent);
-    }
-  }
-
   [data-theme="dark"] {
-    --aar-background: #171d18;
-    --aar-surface: #202821;
-    --aar-surface-subtle: #29322a;
-    --aar-surface-raised: #252f26;
-    --aar-surface-overlay: #2a352b;
-    --aar-text: #eef3e9;
-    --aar-text-muted: #b0bcab;
-    --aar-border: #3b473b;
-    --aar-primary: #b7dc9b;
-    --aar-on-primary: #20321a;
-    --aar-focus: #b7dc9b;
+    --aar-background: #15151d;
+    --aar-surface: #1d1d28;
+    --aar-surface-subtle: #30283f;
+    --aar-surface-raised: #252432;
+    --aar-surface-overlay: #292736;
+    --aar-text: #f0ede8;
+    --aar-text-muted: #b1abbf;
+    --aar-border: #44404f;
+    --aar-border-strong: #958aab;
+    --aar-primary: #c9b6fb;
+    --aar-on-primary: #211932;
+    --aar-focus: #c9b6fb;
     --aar-success: #a4d9b2;
     --aar-success-surface: #253b2d;
     --aar-warning: #fde047;
     --aar-warning-surface: #422006;
     --aar-danger: #ffb4ab;
     --aar-danger-surface: #422b29;
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-    --aar-glow: 0 0 14px color-mix(in srgb, var(--aar-focus) 35%, transparent);
-  }
-
-  /* --------------------------------------------------------------------------
-     The Arcane Atelier Palettes: Obsidian & Parchment
-     Both adapt faithfully to data-theme="light" and data-theme="dark"
-     -------------------------------------------------------------------------- */
-  
-  /* Obsidian in Light Theme (Slate & Midnight Ink) */
-  [data-palette="obsidian"],
-  [data-theme="light"][data-palette="obsidian"] {
-    --aar-background: #f1f3f8;
-    --aar-surface: #ffffff;
-    --aar-surface-subtle: #e5e8f0;
-    --aar-surface-raised: #ffffff;
-    --aar-surface-overlay: #ffffff;
-    --aar-text: #131722;
-    --aar-text-muted: #58627a;
-    --aar-border: #ccd3e2;
-    --aar-primary: #5b46a8;
-    --aar-on-primary: #ffffff;
-    --aar-focus: #7c3aed;
-    --aar-success: #15803d;
-    --aar-success-surface: #f0fdf4;
-    --aar-danger: #b91c1c;
-    --aar-danger-surface: #fef2f2;
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
-    --aar-glow: 0 0 0 3px rgba(124, 58, 237, 0.2);
-  }
-
-  /* Obsidian in Dark Theme (Deep Void & Starlight) */
-  [data-theme="dark"][data-palette="obsidian"] {
-    --aar-background: #0f111a;
-    --aar-surface: #161826;
-    --aar-surface-subtle: #202438;
-    --aar-surface-raised: #1c2032;
-    --aar-surface-overlay: #252a42;
-    --aar-text: #f0f3fa;
-    --aar-text-muted: #8b96b5;
-    --aar-border: #2e354f;
-    --aar-primary: #a78bfa;
-    --aar-on-primary: #1e113a;
-    --aar-focus: #c4b5fd;
-    --aar-success: #34d399;
-    --aar-success-surface: #064e3b;
-    --aar-danger: #f87171;
-    --aar-danger-surface: #450a0a;
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-    --aar-glow: 0 0 14px rgba(167, 139, 250, 0.35);
+    --aar-syntax-keyword: #d8adfa;
+    --aar-syntax-string: #a8dba2;
+    --aar-syntax-title: #93c9ff;
+    --aar-syntax-number: #ffbe92;
+    --aar-syntax-comment: #b1bbb8;
   }
   @media (prefers-color-scheme: dark) {
-    [data-theme="system"][data-palette="obsidian"],
-    :root:not([data-theme])[data-palette="obsidian"] {
-      --aar-background: #0f111a;
-      --aar-surface: #161826;
-      --aar-surface-subtle: #202438;
-      --aar-surface-raised: #1c2032;
-      --aar-surface-overlay: #252a42;
-      --aar-text: #f0f3fa;
-      --aar-text-muted: #8b96b5;
-      --aar-border: #2e354f;
-      --aar-primary: #a78bfa;
-      --aar-on-primary: #1e113a;
-      --aar-focus: #c4b5fd;
-      --aar-success: #34d399;
-      --aar-success-surface: #064e3b;
-      --aar-danger: #f87171;
-      --aar-danger-surface: #450a0a;
-      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-      --aar-glow: 0 0 14px rgba(167, 139, 250, 0.35);
-    }
-  }
-
-  /* Parchment in Light Theme (Ancient Vellum & Iron-Gall Ink) */
-  [data-palette="parchment"],
-  [data-theme="light"][data-palette="parchment"] {
-    --aar-background: #f5f2eb;
-    --aar-surface: #fffdf9;
-    --aar-surface-subtle: #eee9dd;
-    --aar-surface-raised: #ffffff;
-    --aar-surface-overlay: #ffffff;
-    --aar-text: #26212b;
-    --aar-text-muted: #6f6578;
-    --aar-border: #dcd4c3;
-    --aar-primary: #6d28d9;
-    --aar-on-primary: #ffffff;
-    --aar-focus: #7c3aed;
-    --aar-success: #059669;
-    --aar-success-surface: #ecfdf5;
-    --aar-danger: #dc2626;
-    --aar-danger-surface: #fef2f2;
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --aar-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-    --aar-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
-    --aar-glow: 0 0 12px rgba(109, 40, 217, 0.25);
-  }
-
-  /* Parchment in Dark Theme (Burnished Night Vellum) */
-  [data-theme="dark"][data-palette="parchment"] {
-    --aar-background: #1c1b18;
-    --aar-surface: #24221f;
-    --aar-surface-subtle: #2e2c28;
-    --aar-surface-raised: #2a2824;
-    --aar-surface-overlay: #32302b;
-    --aar-text: #f4efe6;
-    --aar-text-muted: #aca396;
-    --aar-border: #444038;
-    --aar-primary: #c4b5fd;
-    --aar-on-primary: #2e1065;
-    --aar-focus: #c4b5fd;
-    --aar-success: #34d399;
-    --aar-success-surface: #064e3b;
-    --aar-danger: #f87171;
-    --aar-danger-surface: #450a0a;
-    --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-    --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-    --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-    --aar-glow: 0 0 14px rgba(196, 181, 253, 0.35);
-  }
-  @media (prefers-color-scheme: dark) {
-    [data-theme="system"][data-palette="parchment"],
-    :root:not([data-theme])[data-palette="parchment"] {
-      --aar-background: #1c1b18;
-      --aar-surface: #24221f;
-      --aar-surface-subtle: #2e2c28;
-      --aar-surface-raised: #2a2824;
-      --aar-surface-overlay: #32302b;
-      --aar-text: #f4efe6;
-      --aar-text-muted: #aca396;
-      --aar-border: #444038;
-      --aar-primary: #c4b5fd;
-      --aar-on-primary: #2e1065;
-      --aar-focus: #c4b5fd;
-      --aar-success: #34d399;
-      --aar-success-surface: #064e3b;
-      --aar-danger: #f87171;
-      --aar-danger-surface: #450a0a;
-      --aar-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-      --aar-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-      --aar-shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.6), 0 6px 16px -2px rgba(0, 0, 0, 0.4);
-      --aar-glow: 0 0 14px rgba(196, 181, 253, 0.35);
-    }
-  }
-
-  /* Iris Palette */
-  [data-palette="iris"] {
-    --aar-primary: #6546a3;
-    --aar-on-primary: #ffffff;
-    --aar-focus: #6546a3;
-  }
-  [data-theme="dark"][data-palette="iris"] {
-    --aar-primary: #d1bbff;
-    --aar-on-primary: #30204c;
-    --aar-focus: #d1bbff;
-  }
-  @media (prefers-color-scheme: dark) {
-    [data-theme="system"][data-palette="iris"] {
-      --aar-primary: #d1bbff;
-      --aar-on-primary: #30204c;
-      --aar-focus: #d1bbff;
-    }
-  }
-
-  /* Celestial Jade Palette */
-  [data-palette="jade"] {
-    --aar-primary: #1f6b52;
-    --aar-on-primary: #ffffff;
-    --aar-focus: #1f6b52;
-  }
-  [data-theme="dark"][data-palette="jade"],
-  [data-palette="obsidian"][data-accent="jade"] {
-    --aar-primary: #6ee7b7;
-    --aar-on-primary: #064e3b;
-    --aar-focus: #a7f3d0;
-    --aar-glow: 0 0 14px rgba(110, 231, 183, 0.35);
-  }
-  @media (prefers-color-scheme: dark) {
-    [data-theme="system"][data-palette="jade"] {
-      --aar-primary: #6ee7b7;
-      --aar-on-primary: #064e3b;
-      --aar-focus: #a7f3d0;
-      --aar-glow: 0 0 14px rgba(110, 231, 183, 0.35);
+    :root:not([data-theme]),
+    [data-theme="system"] {
+      --aar-background: #15151d;
+      --aar-surface: #1d1d28;
+      --aar-surface-subtle: #30283f;
+      --aar-surface-raised: #252432;
+      --aar-surface-overlay: #292736;
+      --aar-text: #f0ede8;
+      --aar-text-muted: #b1abbf;
+      --aar-border: #44404f;
+      --aar-border-strong: #958aab;
+      --aar-primary: #c9b6fb;
+      --aar-on-primary: #211932;
+      --aar-focus: #c9b6fb;
+      --aar-success: #a4d9b2;
+      --aar-success-surface: #253b2d;
+      --aar-warning: #fde047;
+      --aar-warning-surface: #422006;
+      --aar-danger: #ffb4ab;
+      --aar-danger-surface: #422b29;
+      --aar-syntax-keyword: #d8adfa;
+      --aar-syntax-string: #a8dba2;
+      --aar-syntax-title: #93c9ff;
+      --aar-syntax-number: #ffbe92;
+      --aar-syntax-comment: #b1bbb8;
     }
   }
 
   [data-density="compact"] {
     --aar-control-height: 2.25rem;
-    --aar-control-padding: .75rem;
+    --aar-control-padding: 0.75rem;
     --aar-panel-padding: 1rem;
   }
-
+  @media (pointer: coarse) {
+    [data-density="compact"] {
+      --aar-control-height: 2.75rem;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
-    :root, [data-theme] {
+    :root,
+    [data-theme] {
       --aar-duration: 0ms;
       --aar-duration-enter: 0ms;
       --aar-stagger-step: 0ms;

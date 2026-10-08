@@ -6,7 +6,7 @@ import {
   ErrorEmpty,
 } from "@techaaroorian-ui/contextual-empty";
 // Import the compiled CSS
-import "@techaaroorian-ui/contextual-empty/dist/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 function App() {
   const [view, setView] = useState<"first-use" | "search" | "error">(
@@ -15,56 +15,40 @@ function App() {
 
   return (
     <div
-      style={{
-        maxWidth: "800px",
-        margin: "0 auto",
-        padding: "2rem",
-        fontFamily: "system-ui, sans-serif",
-      }}
+      data-theme="system"
+      className="aar-root aar-container aar-p-8"
     >
-      <header
-        style={{
-          marginBottom: "2rem",
-          paddingBottom: "1rem",
-          borderBottom: "1px solid #e5e7eb",
-        }}
-      >
-        <h1 style={{ margin: "0 0 1rem 0" }}>Techaaroorian UI - Playground</h1>
-        <div style={{ display: "flex", gap: "1rem" }}>
+      <header className="aar-mb-8 aar-pb-4 aar-border-bottom-1px-solid-e5e7eb">
+        <h1 className="aar-m-0-0-1rem-0">Techaaroorian UI - Playground</h1>
+        <div className="aar-display-flex aar-gap-4">
           <button
             onClick={() => setView("first-use")}
-            style={btnStyle(view === "first-use")}
+            className="aar-button"
+            aria-pressed={view === "first-use"}
           >
             First Use
           </button>
           <button
             onClick={() => setView("search")}
-            style={btnStyle(view === "search")}
+            className="aar-button"
+            aria-pressed={view === "search"}
           >
             Search
           </button>
           <button
             onClick={() => setView("error")}
-            style={btnStyle(view === "error")}
+            className="aar-button"
+            aria-pressed={view === "error"}
           >
             Error
           </button>
         </div>
       </header>
 
-      <main
-        style={{
-          padding: "4rem",
-          backgroundColor: "#f9fafb",
-          borderRadius: "12px",
-          minHeight: "400px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <main className="aar-p-16 aar-bg-f9fafb aar-radius-12px aar-min-h-400px aar-display-flex aar-items-center aar-justify-center">
         {view === "first-use" && (
           <FirstUseEmpty
+            className="aar-contextual-empty"
             itemName="Dashboard widget"
             onCreate={() => alert("Create action clicked!")}
             icon={
@@ -87,6 +71,7 @@ function App() {
 
         {view === "search" && (
           <SearchEmpty
+            className="aar-contextual-empty"
             query="quantum metrics"
             onClear={() => alert("Filters cleared!")}
             icon={
@@ -109,6 +94,7 @@ function App() {
 
         {view === "error" && (
           <ErrorEmpty
+            className="aar-contextual-empty"
             onRetry={() => alert("Retrying fetch...")}
             icon={
               <svg
@@ -131,16 +117,5 @@ function App() {
     </div>
   );
 }
-
-// Simple inline style helper for the playground buttons
-const btnStyle = (isActive: boolean) => ({
-  padding: "0.5rem 1rem",
-  cursor: "pointer",
-  borderRadius: "6px",
-  border: "1px solid #d1d5db",
-  backgroundColor: isActive ? "#111827" : "#ffffff",
-  color: isActive ? "#ffffff" : "#374151",
-  fontWeight: 500,
-});
 
 export default App;
