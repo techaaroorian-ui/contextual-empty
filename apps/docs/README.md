@@ -1,75 +1,27 @@
-# React + TypeScript + Vite
+# TechAaroorian UI documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Complete example sources
 
-Currently, two official plugins are available:
+Headless, Contextual Empty, and Lucide previews render standalone example modules. Their code blocks import those same files with Vite's `?raw` loader, so imports, state, handlers, and markup stay synchronized with the previews. The docs build type-checks the examples.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Every code block has syntax highlighting, a filename/language label, a Copy button, and an expandable reading area. Copy writes plain source text, not highlighted HTML. Clipboard denial uses a text-selection fallback; if both paths fail, the block provides an explicit manual-copy message. Long code scrolls inside its own frame on narrow screens.
 
-## React Compiler
+The headless page includes installation instructions, a React entry file, and a single Aar Loom CSS import. Aar Loom's getting-started guide provides complete plain HTML and an import-only CSS entry. All layout and presentation classes come from Aar Loom; no private documentation CSS is used. Highlight.js and Prettier are docs-only dependencies; public packages remain independent of them.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+One collection site with independent package pages:
 
-## Expanding the ESLint configuration
+- `#/` — collection overview and TechAaroorian UI identity.
+- `#/aar-loom` — CSS setup, themes, component specimens, workbench, motion, and design lessons.
+- `#/contextual-empty` — React setup, presets, compound API, styling, accessibility guidance, and working examples.
+- `#/guides/icons` — optional Lucide integration, labeled buttons, status, and empty-state examples.
+- `#/guides/versioning` — manifest versions, independent package policy, and Changesets workflow.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+From the repository root run `npm run dev --workspace apps/docs`. Build with `npm run build --workspace apps/docs`; lint with `npm run lint --workspace apps/docs`. The existing contextual-empty package must be built before a fresh docs checkout can resolve its dist exports.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Run `npm run test:visual --workspace apps/docs` with the server running to exercise navigation, direct-link reloads, mobile overflow, live examples, and Aar Loom theme/motion checks. Screenshots are saved under `visual-artifacts/` for human review.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Routes use hashes, so static hosts do not need history-fallback rewrites. Collection branding stays in the shared shell; package branding lives within each package page. Contextual Empty is independent of Aar Loom even though the docs host uses Aar Loom for presentation.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Framework-only styling
 
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+`npm run check:styles --workspace docs` verifies CSS imports and JSX style inputs. `npm run build --workspace docs` runs this check before compilation. Theme controls expose Light/Dark/System, Default/Custom accent, Comfortable/Compact density, and an independent Magic Art toggle. There are no named palette themes.

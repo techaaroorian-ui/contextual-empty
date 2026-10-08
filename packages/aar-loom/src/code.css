@@ -1,0 +1,91 @@
+@layer components {
+  .aar-code {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    border: 1px solid var(--aar-border);
+    border-radius: var(--aar-radius-md);
+    overflow: hidden;
+    background: var(--aar-background);
+  }
+  .aar-code-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--aar-border);
+    background: var(--aar-surface-subtle);
+  }
+  .aar-code-toolbar > span {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font: 0.875rem var(--aar-font-mono);
+    overflow-wrap: anywhere;
+  }
+  .aar-code-toolbar small {
+    font-size: 0.8125rem;
+    color: var(--aar-text-muted);
+  }
+  .aar-code-toolbar > div {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .aar-code-toolbar .aar-button {
+    padding-inline: 0.5rem;
+    font-size: 0.875rem;
+  }
+  .aar-code pre {
+    margin: 0;
+    padding: 1rem;
+    max-height: 28rem;
+    overflow: auto;
+    border: 0;
+    border-radius: 0;
+    font: 0.8125rem/1.7 var(--aar-font-mono);
+    white-space: pre;
+    tab-size: 2;
+    color: var(--aar-text);
+    background: var(--aar-background);
+  }
+  .aar-code[data-expanded="true"] pre {
+    max-height: none;
+  }
+  .aar-code pre:focus-visible {
+    outline: 3px solid var(--aar-focus);
+    outline-offset: -3px;
+  }
+  .aar-code-error {
+    padding: 0.75rem;
+    color: var(--aar-danger);
+    font-size: 0.8125rem;
+  }
+  .aar-code .hljs-keyword,
+  .aar-code .hljs-selector-tag,
+  .aar-code .hljs-literal {
+    color: var(--aar-syntax-keyword);
+  }
+  .aar-code .hljs-string,
+  .aar-code .hljs-regexp,
+  .aar-code .hljs-selector-class {
+    color: var(--aar-syntax-string);
+  }
+  .aar-code .hljs-title,
+  .aar-code .hljs-name,
+  .aar-code .hljs-built_in {
+    color: var(--aar-syntax-title);
+  }
+  .aar-code .hljs-attr,
+  .aar-code .hljs-attribute,
+  .aar-code .hljs-number {
+    color: var(--aar-syntax-number);
+  }
+  .aar-code .hljs-comment {
+    color: var(--aar-syntax-comment);
+    font-style: italic;
+  }
+}

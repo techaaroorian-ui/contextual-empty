@@ -1,11 +1,24 @@
 {
   "name": "techaaroorian-ui-workspace",
   "private": true,
+  "scripts": {
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "version:packages": "changeset version && npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
+    "build:packages": "npm run build --workspace packages/aar-loom && npm run build --workspace packages/contextual-empty && npm run build --workspace packages/ordered-collection && npm run build --workspace packages/file-intake && npm run build --workspace packages/dialog && npm run build --workspace packages/collection-picker && npm run build --workspace packages/pan-zoom && npm run build --workspace packages/share-state",
+    "test:packages": "npm run test --workspace packages/contextual-empty && npm run test --workspace packages/ordered-collection && npm run test --workspace packages/file-intake && npm run test --workspace packages/collection-picker && npm run test --workspace packages/pan-zoom && npm run test --workspace packages/share-state",
+    "release:check": "npm run build:packages && npm run test:packages && npm run build --workspace apps/docs && npm run lint --workspace apps/docs && npm pack --workspace packages/aar-loom --dry-run --ignore-scripts && npm pack --workspace packages/contextual-empty --dry-run --ignore-scripts && npm pack --workspace packages/ordered-collection --dry-run --ignore-scripts && npm pack --workspace packages/file-intake --dry-run --ignore-scripts && npm pack --workspace packages/dialog --dry-run --ignore-scripts && npm pack --workspace packages/collection-picker --dry-run --ignore-scripts && npm pack --workspace packages/pan-zoom --dry-run --ignore-scripts && npm pack --workspace packages/share-state --dry-run --ignore-scripts",
+    "release:ready": "node scripts/release-ready.mjs",
+    "release": "npm run release:ready && changeset publish"
+  },
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "allowScripts": {
     "esbuild@0.27.7": true
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3"
   }
 }

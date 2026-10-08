@@ -1,0 +1,32 @@
+{
+  "name": "@techaaroorian-ui/aar-loom",
+  "version": "0.2.0-alpha.2",
+  "description": "Aar Loom: a themeable, CSS-only design language for tools and workspaces.",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "scripts",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs"
+  },
+  "exports": {
+    ".": "./src/index.css",
+    "./index.css": "./src/index.css",
+    "./tokens.css": "./src/tokens.css",
+    "./components.css": "./src/components.css",
+    "./tailwind-v3.css": "./dist/tailwind-v3.css",
+    "./layouts.css": "./src/layouts.css",
+    "./utilities.css": "./src/utilities.css",
+    "./compositions.css": "./src/compositions.css",
+    "./expression.css": "./src/expression.css",
+    "./code.css": "./src/code.css",
+    "./magic-art.css": "./src/magic-art.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ]
+}

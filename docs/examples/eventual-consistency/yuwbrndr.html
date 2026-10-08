@@ -1,0 +1,81 @@
+<article class="ec-post" aria-label="Eventual consistency: payment succeeded, order update pending">
+  <div class="ec-layout">
+    <header class="ec-meta"><span>TECH AAROORIAN</span><span>DISTRIBUTED SYSTEMS / 01</span></header>
+
+    <section class="ec-heading">
+      <p class="ec-eyebrow">THE FRONTEND BETWEEN TWO STATES</p>
+      <h1>Eventual<br>consistency.</h1>
+      <p class="ec-intro">Payment succeeded.<br>The order still says “Awaiting payment.”</p>
+    </section>
+
+    <section class="ec-flow" aria-label="Payment confirmed; order service has not received the update yet">
+      <div class="ec-service"><span class="ec-label">PAYMENT SERVICE</span><strong>Payment received</strong><span class="ec-state ec-success"><span aria-hidden="true">✓</span> Succeeded</span></div>
+      <div class="ec-connection"><span class="ec-line"></span><span class="ec-event">Update in transit →</span><span class="ec-line"></span></div>
+      <div class="ec-service"><span class="ec-label">ORDER SERVICE</span><strong>Awaiting payment</strong><span class="ec-state ec-pending"><span aria-hidden="true">◷</span> Update pending</span></div>
+    </section>
+
+    <p class="ec-explanation">The payment update hasn’t reached the Order service yet.<br><strong>The UI needs to handle this gap.</strong></p>
+
+    <section class="ec-actions" aria-label="Frontend responsibilities">
+      <div class="ec-action"><span class="ec-number">01</span><div><h2>Make pending explicit.</h2><p>“Payment received. Updating your order.”<br>Include pending states in your API contract.</p></div></div>
+      <div class="ec-action"><span class="ec-number">02</span><div><h2>Keep checking for updates.</h2><p>Poll or subscribe, then reconcile the latest state.</p></div></div>
+      <div class="ec-action"><span class="ec-number">03</span><div><h2>A timeout is not a payment failure.</h2><p>Don’t ask the user to pay again just because<br>the order update is taking longer.</p></div></div>
+    </section>
+
+    <aside class="ec-note"><span class="ec-label">WEBSOCKETS</span><p>Faster notification.<br><strong>Not faster backend processing.</strong></p></aside>
+    <footer class="ec-footer"><span>Design for the gap.</span><span>TECH AAROORIAN · ENGINEERING NOTES</span></footer>
+  </div>
+</article>
+
+<style>
+  /* Paste this entire file into Yuwbrndr's HTML editor.
+     Recommended canvas: 1080 × 1350 (4:5), font scale: 1.
+     No framework, external image, script, or package is required.
+     Customize these semantic theme roles together for readable contrast. */
+  .ec-post {
+    --ec-background: #f3f1e9;
+    --ec-ink: #202c28;
+    --ec-muted: #536159;
+    --ec-rule: #c8cec4;
+    --ec-primary: #245b45;
+    --ec-success-bg: #e0eadf;
+    --ec-pending: #775416;
+    --ec-pending-bg: #f4e9ce;
+    --ec-surface: #faf9f4;
+    width: 100%; height: 100%; margin: 0;
+    container-type: inline-size;
+    background: var(--ec-background); color: var(--ec-ink);
+    font-family: Inter, Arial, sans-serif;
+  }
+  .ec-post, .ec-post * { box-sizing: border-box; }
+  .ec-post p, .ec-post h1, .ec-post h2 { margin: 0; }
+  .ec-layout { height: 100%; padding: 5.5cqw 6cqw 4.5cqw; display: flex; flex-direction: column; gap: 2.7cqw; }
+  .ec-meta, .ec-footer { display: flex; justify-content: space-between; align-items: center; gap: 2cqw; }
+  .ec-meta { font-size: 1.25cqw; letter-spacing: .12em; font-weight: 700; padding-bottom: 2cqw; border-bottom: 1px solid var(--ec-rule); }
+  .ec-eyebrow, .ec-label { font-size: 1.3cqw; letter-spacing: .12em; font-weight: 700; color: var(--ec-muted); }
+  .ec-heading { display: grid; gap: 2cqw; }
+  .ec-heading h1 { font-size: 8.7cqw; line-height: .98; letter-spacing: -.065em; font-weight: 800; }
+  .ec-intro { font-size: 2.75cqw; line-height: 1.4; letter-spacing: -.025em; }
+  .ec-flow { display: grid; grid-template-columns: 1fr .66fr 1fr; align-items: center; padding: 2.6cqw 0; border-block: 1px solid var(--ec-rule); }
+  .ec-service { display: grid; gap: 1.3cqw; }
+  .ec-service strong { font-size: 2.25cqw; letter-spacing: -.035em; }
+  .ec-state { width: fit-content; display: flex; gap: .7cqw; align-items: center; padding: .7cqw 1cqw; border-radius: .5cqw; font-size: 1.65cqw; font-weight: 650; }
+  .ec-success { color: var(--ec-primary); background: var(--ec-success-bg); }
+  .ec-pending { color: var(--ec-pending); background: var(--ec-pending-bg); }
+  .ec-connection { display: grid; align-items: center; gap: .8cqw; padding-inline: 1cqw 2.5cqw; }
+  .ec-line { height: 1px; background: var(--ec-rule); }
+  .ec-event { color: var(--ec-muted); font-size: 1.35cqw; white-space: nowrap; text-align: center; }
+  .ec-explanation { font-size: 2.05cqw; line-height: 1.5; color: var(--ec-muted); }
+  .ec-explanation strong { color: var(--ec-ink); font-weight: 650; }
+  .ec-actions { display: grid; gap: 2.1cqw; }
+  .ec-action { display: grid; grid-template-columns: 4cqw 1fr; gap: 1.5cqw; }
+  .ec-number { font-size: 1.6cqw; color: var(--ec-primary); padding-top: .35cqw; font-weight: 700; }
+  .ec-action h2 { font-size: 2.5cqw; line-height: 1.2; letter-spacing: -.03em; font-weight: 750; }
+  .ec-action p { margin-top: .65cqw; font-size: 1.95cqw; line-height: 1.45; color: var(--ec-muted); }
+  .ec-note { background: var(--ec-surface); border-left: .35cqw solid var(--ec-primary); padding: 1.7cqw 2cqw; display: grid; grid-template-columns: 20cqw 1fr; align-items: center; gap: 1cqw; }
+  .ec-note p { font-size: 2.05cqw; line-height: 1.4; }
+  .ec-note strong { font-weight: 650; }
+  .ec-footer { margin-top: auto; padding-top: 1.8cqw; border-top: 1px solid var(--ec-rule); }
+  .ec-footer > :first-child { font-size: 2cqw; font-weight: 750; color: var(--ec-primary); }
+  .ec-footer > :last-child { font-size: 1.1cqw; letter-spacing: .08em; color: var(--ec-muted); }
+</style>

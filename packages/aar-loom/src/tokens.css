@@ -1,0 +1,143 @@
+@layer theme {
+  /* One appearance model. Brand colors are ordinary semantic token overrides. */
+  :root {
+    --aar-font-sans:
+      "Inter", "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system,
+      sans-serif;
+    --aar-font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+    --aar-space-1: 0.25rem;
+    --aar-space-2: 0.5rem;
+    --aar-space-3: 0.75rem;
+    --aar-space-4: 1rem;
+    --aar-space-6: 1.5rem;
+    --aar-space-8: 2rem;
+    --aar-radius-sm: 0.375rem;
+    --aar-radius-md: 0.75rem;
+    --aar-radius-lg: 1.25rem;
+    --aar-control-height-xs: 1.75rem;
+    --aar-control-padding-xs: 0.5rem;
+    --aar-control-height-sm: 2.25rem;
+    --aar-control-padding-sm: 0.75rem;
+    --aar-control-height: 2.75rem;
+    --aar-control-padding: 1rem;
+    --aar-control-height-lg: 3.25rem;
+    --aar-control-padding-lg: 1.25rem;
+    --aar-control-height-xl: 3.75rem;
+    --aar-control-padding-xl: 1.5rem;
+    --aar-panel-padding: 1.5rem;
+    --aar-duration: 140ms;
+    --aar-duration-enter: 220ms;
+    --aar-stagger-step: 35ms;
+    --aar-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --aar-hover-offset: -1px;
+    --aar-press-scale: 0.98;
+    --aar-enter-offset: 6px;
+
+    --aar-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+    --aar-shadow-md: 0 4px 12px rgb(0 0 0 / 0.14);
+    --aar-shadow-lg: 0 12px 28px rgb(0 0 0 / 0.2);
+    --aar-glow: 0 0 0 3px color-mix(in srgb, var(--aar-focus) 18%, transparent);
+  }
+  :root,
+  [data-theme="light"],
+  [data-theme="system"] {
+    --aar-background: #f4f3ef;
+    --aar-surface: #ffffff;
+    --aar-surface-subtle: #eceaf0;
+    --aar-surface-raised: #ffffff;
+    --aar-surface-overlay: #ffffff;
+    --aar-text: #292630;
+    --aar-text-muted: #625d6d;
+    --aar-border: #d1ccd8;
+    --aar-border-strong: #81788e;
+    --aar-primary: #65468b;
+    --aar-on-primary: #ffffff;
+    --aar-focus: #65468b;
+    --aar-success: #27613d;
+    --aar-success-surface: #e8f3e8;
+    --aar-warning: #8b4c08;
+    --aar-warning-surface: #fef3c7;
+    --aar-danger: #a33030;
+    --aar-danger-surface: #fceeee;
+    --aar-syntax-keyword: #7530a0;
+    --aar-syntax-string: #256438;
+    --aar-syntax-title: #14559b;
+    --aar-syntax-number: #91421e;
+    --aar-syntax-comment: #626a70;
+  }
+  [data-theme="dark"] {
+    --aar-background: #15151d;
+    --aar-surface: #1d1d28;
+    --aar-surface-subtle: #30283f;
+    --aar-surface-raised: #252432;
+    --aar-surface-overlay: #292736;
+    --aar-text: #f0ede8;
+    --aar-text-muted: #b1abbf;
+    --aar-border: #44404f;
+    --aar-border-strong: #958aab;
+    --aar-primary: #c9b6fb;
+    --aar-on-primary: #211932;
+    --aar-focus: #c9b6fb;
+    --aar-success: #a4d9b2;
+    --aar-success-surface: #253b2d;
+    --aar-warning: #fde047;
+    --aar-warning-surface: #422006;
+    --aar-danger: #ffb4ab;
+    --aar-danger-surface: #422b29;
+    --aar-syntax-keyword: #d8adfa;
+    --aar-syntax-string: #a8dba2;
+    --aar-syntax-title: #93c9ff;
+    --aar-syntax-number: #ffbe92;
+    --aar-syntax-comment: #b1bbb8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]),
+    [data-theme="system"] {
+      --aar-background: #15151d;
+      --aar-surface: #1d1d28;
+      --aar-surface-subtle: #30283f;
+      --aar-surface-raised: #252432;
+      --aar-surface-overlay: #292736;
+      --aar-text: #f0ede8;
+      --aar-text-muted: #b1abbf;
+      --aar-border: #44404f;
+      --aar-border-strong: #958aab;
+      --aar-primary: #c9b6fb;
+      --aar-on-primary: #211932;
+      --aar-focus: #c9b6fb;
+      --aar-success: #a4d9b2;
+      --aar-success-surface: #253b2d;
+      --aar-warning: #fde047;
+      --aar-warning-surface: #422006;
+      --aar-danger: #ffb4ab;
+      --aar-danger-surface: #422b29;
+      --aar-syntax-keyword: #d8adfa;
+      --aar-syntax-string: #a8dba2;
+      --aar-syntax-title: #93c9ff;
+      --aar-syntax-number: #ffbe92;
+      --aar-syntax-comment: #b1bbb8;
+    }
+  }
+
+  [data-density="compact"] {
+    --aar-control-height: 2.25rem;
+    --aar-control-padding: 0.75rem;
+    --aar-panel-padding: 1rem;
+  }
+  @media (pointer: coarse) {
+    [data-density="compact"] {
+      --aar-control-height: 2.75rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root,
+    [data-theme] {
+      --aar-duration: 0ms;
+      --aar-duration-enter: 0ms;
+      --aar-stagger-step: 0ms;
+      --aar-hover-offset: 0px;
+      --aar-press-scale: 1;
+      --aar-enter-offset: 0px;
+    }
+  }
+}

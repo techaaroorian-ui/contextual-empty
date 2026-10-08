@@ -1,6 +1,6 @@
 {
   "name": "@techaaroorian-ui/contextual-empty",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "A contextual, composable empty-state system for React applications.",
   "author": "Janarthanan Soundararajan (@TechAaroorian)",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "./dist/index.css": "./dist/index.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly",
