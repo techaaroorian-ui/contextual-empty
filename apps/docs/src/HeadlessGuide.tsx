@@ -81,7 +81,7 @@ function OverviewSection() {
               <strong style={{ fontSize: '0.9375rem' }}>Zero-CSS Guarantee</strong>
             </div>
             <p className="aar-hint" style={{ fontSize: '0.8125rem', margin: 0 }}>
-              Zero styling lock-in. Compatible with Aar Craft, Tailwind, Vanilla CSS, or internal corporate design systems.
+              Zero styling lock-in. Compatible with Aar Loom, Tailwind, Vanilla CSS, or internal corporate design systems.
             </p>
           </div>
 
@@ -568,7 +568,7 @@ export default function HeadlessGuide({ initialSection = 'overview' }: HeadlessG
       <section className="aar-panel package-setup" style={{ marginTop: '2.5rem' }}>
         <h2 className="aar-heading">Zero-CSS Architecture &amp; Framework Decoupling</h2>
         <p>
-          These packages ship <strong>zero CSS</strong> and do not depend on Aar Craft, Tailwind, or any design system. You can pair them with Aar Craft, your existing design system, or raw inline styles.
+          These packages ship <strong>zero CSS</strong> and do not depend on Aar Loom, Tailwind, or any design system. You can pair them with Aar Loom, your existing design system, or raw inline styles.
         </p>
         <p className="aar-hint">
           All packages run completely headless with pure state machines and mathematical models, making them rock-solid across web workers, Node.js scripts, and modern browser viewports.

@@ -25,7 +25,7 @@ try {
   assert.equal(await exportButton.evaluate(el => getComputedStyle(el).borderRadius), '8px');
   await exportButton.click();
   assert.equal(await exportButton.getAttribute('aria-expanded'), 'true');
-  await page.getByRole('textbox', { name: 'Export file name' }).fill('aar-craft-study');
+  await page.getByRole('textbox', { name: 'Export file name' }).fill('aar-loom-study');
   await page.keyboard.press('Escape');
   assert.equal(await exportButton.getAttribute('aria-expanded'), 'false');
   assert.equal(await exportButton.evaluate(el => el === document.activeElement), true);

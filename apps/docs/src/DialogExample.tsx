@@ -1,5 +1,5 @@
 import { useDialog } from "@techaaroorian-ui/dialog/react";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 export default function DialogExample() {
   const { dialogRef, open: openDialog, close: closeDialog } = useDialog();
@@ -63,7 +63,7 @@ export default function DialogExample() {
             Document tools
           </h3>
           <p>
-            Sheet placement comes from Aar Craft. The headless package contains
+            Sheet placement comes from Aar Loom. The headless package contains
             no styles.
           </p>
           <button className="aar-button" onClick={() => closeSheet()}>

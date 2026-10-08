@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 import "./PhilosophyExamples.css";
 import "./example-setup.css";
 

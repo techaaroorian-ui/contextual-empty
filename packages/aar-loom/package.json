@@ -1,7 +1,7 @@
 {
-  "name": "@techaaroorian-ui/aar-craft",
+  "name": "@techaaroorian-ui/aar-loom",
   "version": "0.2.0-alpha.2",
-  "description": "Aar Craft: a themeable, CSS-only design language for tools and workspaces.",
+  "description": "Aar Loom: a themeable, CSS-only design language for tools and workspaces.",
   "license": "MIT",
   "files": ["src", "dist", "scripts", "CHANGELOG.md"],
   "scripts": {

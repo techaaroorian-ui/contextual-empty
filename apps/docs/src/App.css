@@ -168,7 +168,7 @@ html {
  .lab-nav .aar-button { font-size:.75rem; padding-inline:.625rem; } .lab-footer { flex-direction:column; }
 }
 
-/* Aar Craft & Headless Documentation Shell & Side Navigation */
+/* Aar Loom & Headless Documentation Shell & Side Navigation */
 .aar-docs-shell {
   display: grid;
   grid-template-columns: 310px minmax(0, 1fr);

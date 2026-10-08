@@ -45,7 +45,7 @@ export default function PhilosophyGuide() {
     <section className="lab-content package-docs">
       {/* Intro Header */}
       <div className="package-setup">
-        <p className="aar-eyebrow">Aar Craft · Design Philosophy &amp; Architecture</p>
+        <p className="aar-eyebrow">Aar Loom · Design Philosophy &amp; Architecture</p>
         <h1 className="aar-title">Clean Foundation, Optional Magic</h1>
         <p
           className="aar-subtitle"
@@ -59,7 +59,7 @@ export default function PhilosophyGuide() {
           &ldquo;Precision design for all applications. Subtle enchantment on demand.&rdquo;
         </p>
         <p>
-          <strong>TechAaroorian UI</strong> and <strong>Aar Craft</strong> provide a proper, clean design and layout
+          <strong>TechAaroorian UI</strong> and <strong>Aar Loom</strong> provide a proper, clean design and layout
           system engineered for <strong>all kinds of applications</strong>—from enterprise SaaS platforms,
           analytics dashboards, and developer consoles, to creative studios like Yuwbrndr.
         </p>
@@ -126,7 +126,7 @@ export default function PhilosophyGuide() {
       <div className="package-setup" style={{ marginTop: '2.5rem' }}>
         <h2 className="aar-heading">1. Proper Clean Layout System for All Applications</h2>
         <p>
-          Aar Craft provides rock-solid application shell primitives: responsive header, collapsible sidebar,
+          Aar Loom provides rock-solid application shell primitives: responsive header, collapsible sidebar,
           flexible content canvas, multi-column split panes, and metric grids. Below is a live application shell:
         </p>
 
@@ -634,7 +634,7 @@ export default function PhilosophyGuide() {
       <CodeBlock
         title="2. React / TypeScript Helper (Zero Runtime Dependencies)"
         language="tsx"
-        code={`import { sparkMagicStars } from '@techaaroorian-ui/aar-craft'
+        code={`import { sparkMagicStars } from '@techaaroorian-ui/aar-loom'
 
 export function MyActionButton() {
   return (

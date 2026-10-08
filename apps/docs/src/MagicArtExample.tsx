@@ -71,7 +71,7 @@ export default function MagicArtExample() {
           ✧
         </span>
         <span>
-          AAR CRAFT <small>INTERACTION ATELIER</small>
+          AAR LOOM <small>INTERACTION ATELIER</small>
         </span>
         <div className="magic-theme">
           <button
@@ -184,7 +184,7 @@ export default function MagicArtExample() {
             </div>
             <div key={intent} className="magic-artifact-copy">
               <p className="magic-kicker">
-                {current.name.toUpperCase()} / AAR CRAFT
+                {current.name.toUpperCase()} / AAR LOOM
               </p>
               <h2 id="magic-stage-title">{current.title}</h2>
               <p>{current.detail}</p>

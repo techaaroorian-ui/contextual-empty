@@ -25,10 +25,10 @@ export default function ContextualEmptyDocs() {
         <CodeBlock
           title="Install dependencies"
           language="bash"
-          code="npm install react react-dom lucide-react @techaaroorian-ui/contextual-empty@alpha @techaaroorian-ui/aar-craft@alpha"
+          code="npm install react react-dom lucide-react @techaaroorian-ui/contextual-empty@alpha @techaaroorian-ui/aar-loom@alpha"
         />
         <p>
-          Requires React 18 or later. With Aar Craft, import its CSS and add the <code>aar-contextual-empty</code> class. Without Aar Craft, import <code>@techaaroorian-ui/contextual-empty/dist/index.css</code> or supply your own tokens.
+          Requires React 18 or later. With Aar Loom, import its CSS and add the <code>aar-contextual-empty</code> class. Without Aar Loom, import <code>@techaaroorian-ui/contextual-empty/dist/index.css</code> or supply your own tokens.
         </p>
       </section>
 
@@ -37,7 +37,7 @@ export default function ContextualEmptyDocs() {
         <ContextualEmptyExample />
         <CodeBlock title="ContextualEmptyExample.tsx" code={exampleSource} />
         <p>
-          Save the component in <code>src</code>. Import and render <code>ContextualEmptyExample</code> in an existing React application with Aar Craft CSS.
+          Save the component in <code>src</code>. Import and render <code>ContextualEmptyExample</code> in an existing React application with Aar Loom CSS.
         </p>
       </section>
 

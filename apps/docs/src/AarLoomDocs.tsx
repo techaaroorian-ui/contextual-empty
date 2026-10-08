@@ -1,9 +1,9 @@
 import CodeBlock from './CodeBlock'
-import quickstartHtml from './examples/aar-craft/index.html?raw'
-import quickstartCss from './examples/aar-craft/styles.css?raw'
+import quickstartHtml from './examples/aar-loom/index.html?raw'
+import quickstartCss from './examples/aar-loom/styles.css?raw'
 import { useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import '../../../packages/aar-craft/src/index.css'
+import '../../../packages/aar-loom/src/index.css'
 import './App.css'
 
 import {
@@ -619,7 +619,7 @@ function PureHtmlUiSuiteSpecimen() {
         <p className="aar-eyebrow">Pure HTML &amp; CSS Component Suite</p>
         <h2 className="aar-heading">Full UI Coverage with Zero JavaScript Dependencies</h2>
         <p className="aar-hint">
-          Every component below is built exclusively using semantic HTML5 elements (<code>&lt;table&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;summary&gt;</code>, <code>&lt;progress&gt;</code>, <code>&lt;nav&gt;</code>) and <code>aar-craft</code> CSS classes. No React components, zero bundle overhead, universal portability.
+          Every component below is built exclusively using semantic HTML5 elements (<code>&lt;table&gt;</code>, <code>&lt;details&gt;</code>, <code>&lt;summary&gt;</code>, <code>&lt;progress&gt;</code>, <code>&lt;nav&gt;</code>) and <code>aar-loom</code> CSS classes. No React components, zero bundle overhead, universal portability.
         </p>
       </div>
 
@@ -794,11 +794,11 @@ function PureHtmlUiSuiteSpecimen() {
         <div className="aar-accordion-group">
           <details className="aar-accordion" open>
             <summary className="aar-accordion-summary">
-              <span>Why choose pure HTML + aar-craft over heavy component libraries?</span>
+              <span>Why choose pure HTML + aar-loom over heavy component libraries?</span>
               <span className="aar-accordion-chevron"><ChevronDown size={14} /></span>
             </summary>
             <div className="aar-accordion-body">
-              Pure HTML + aar-craft gives you 100% decoupling from framework lock-in. You can use standard HTML in React, Vue, Svelte, Astro, plain PHP, or static files. There are zero megabytes of JS dependencies, zero hydration mismatches, and instant initial paint.
+              Pure HTML + aar-loom gives you 100% decoupling from framework lock-in. You can use standard HTML in React, Vue, Svelte, Astro, plain PHP, or static files. There are zero megabytes of JS dependencies, zero hydration mismatches, and instant initial paint.
             </div>
           </details>
 
@@ -1263,7 +1263,7 @@ function PalettesAndColors({ currentPalette, onSelectPalette }: { currentPalette
     <div className="aar-stack" data-gap="4">
       {/* Active Theme Tokens Matrix */}
       <section className="aar-panel">
-        <p className="aar-eyebrow">Aar Craft / Design System Tokens</p>
+        <p className="aar-eyebrow">Aar Loom / Design System Tokens</p>
         <h2 className="aar-heading">Active Token Roles in Viewport</h2>
         <p className="aar-hint">Live CSS variables rendered by your currently selected theme and palette.</p>
         
@@ -1303,7 +1303,7 @@ function PalettesAndColors({ currentPalette, onSelectPalette }: { currentPalette
       <section className="aar-panel">
         <p className="aar-eyebrow">The Arcane Atelier Palettes</p>
         <h2 className="aar-heading">Five Curated Atmospheric Realities</h2>
-        <p className="aar-hint">Aar Craft does not use plain generic colors. Each palette is tuned for contrast, harmony, and creative stamina.</p>
+        <p className="aar-hint">Aar Loom does not use plain generic colors. Each palette is tuned for contrast, harmony, and creative stamina.</p>
 
         <div className="aar-grid" style={{ '--aar-grid-min': '20rem', gap: '1.25rem', marginTop: '1.5rem' } as CSSProperties}>
           {PALETTE_DEFINITIONS.map((pal) => (
@@ -1396,19 +1396,19 @@ function PalettesAndColors({ currentPalette, onSelectPalette }: { currentPalette
   )
 }
 
-interface AarCraftDropdownSelectProps {
+interface AarLoomDropdownSelectProps {
   label: string
   value: string
   options: { value: string; label: string }[]
   onChange: (val: string) => void
 }
 
-function AarCraftDropdownSelect({
+function AarLoomDropdownSelect({
   label,
   value,
   options,
   onChange,
-}: AarCraftDropdownSelectProps) {
+}: AarLoomDropdownSelectProps) {
   const [open, setOpen] = useState(false)
   const selectedOption = options.find((o) => o.value === value) || options[0]
 
@@ -1477,7 +1477,7 @@ function IntroDocSection() {
           <span className="aar-badge" data-tone="warning">AI-Friendly HTML</span>
         </div>
         <h2 className="aar-title" style={{ fontSize: '2.25rem', margin: '0.5rem 0' }}>
-          Aar Craft Architecture
+          Aar Loom Architecture
         </h2>
         <p style={{ fontSize: '1.125rem', color: 'var(--aar-text-muted)', lineHeight: 1.6, maxWidth: '52rem' }}>
           A standalone, framework-agnostic CSS design system built for creative engineering tools, dashboards, and ateliers.
@@ -1517,7 +1517,7 @@ function IntroDocSection() {
           title="Terminal (npm)"
           language="bash"
           code={`# Install via npm or pnpm
-npm install @techaaroorian-ui/aar-craft`}
+npm install @techaaroorian-ui/aar-loom`}
         />
 
         <div style={{ marginTop: '1.25rem' }}>
@@ -1525,7 +1525,7 @@ npm install @techaaroorian-ui/aar-craft`}
             title="main.js / index.ts (ESM / Bundler)"
             language="javascript"
             code={`// Import the complete design system in your application entry
-import '@techaaroorian-ui/aar-craft/index.css';`}
+import '@techaaroorian-ui/aar-loom/index.css';`}
           />
         </div>
 
@@ -1534,7 +1534,7 @@ import '@techaaroorian-ui/aar-craft/index.css';`}
             title="index.html (Direct CDN)"
             language="html"
             code={`<!-- Add to the <head> of your HTML file -->
-<link rel="stylesheet" href="https://unpkg.com/@techaaroorian-ui/aar-craft/index.css" />
+<link rel="stylesheet" href="https://unpkg.com/@techaaroorian-ui/aar-loom/index.css" />
 
 <!-- Apply .aar-root to your container with desired theme and palette -->
 <body class="aar-root" data-theme="dark" data-palette="obsidian">
@@ -1926,7 +1926,7 @@ function SelectsDocSection() {
               </div>
 
               {/* Custom Animated Dropdown */}
-              <AarCraftDropdownSelect
+              <AarLoomDropdownSelect
                 label="3. Animated Dropdown (.aar-dropdown)"
                 value={selectedVal}
                 onChange={setSelectedVal}
@@ -2342,19 +2342,19 @@ const DOC_NAV_GROUPS: DocNavGroup[] = [
   },
 ]
 
-export interface AarCraftDocsProps {
+export interface AarLoomDocsProps {
   theme?: string
   palette?: string
   onThemeChange?: (theme: string) => void
   onPaletteChange?: (palette: string) => void
 }
 
-function AarCraftDocs({
+function AarLoomDocs({
   theme: externalTheme,
   palette: externalPalette,
   onThemeChange,
   onPaletteChange,
-}: AarCraftDocsProps = {}) {
+}: AarLoomDocsProps = {}) {
   const [internalTheme, setInternalTheme] = useState('light')
   const [internalPalette, setInternalPalette] = useState('obsidian')
   const theme = externalTheme ?? internalTheme
@@ -2380,9 +2380,9 @@ function AarCraftDocs({
         <section className="intro">
           <div>
             <div className="package-logo">
-              <img src={`${import.meta.env.BASE_URL}brand/aar-craft.png`} alt="Aar Craft" />
+              <img src={`${import.meta.env.BASE_URL}brand/aar-loom.svg`} alt="Aar Loom" />
             </div>
-            <p className="aar-eyebrow">Aar Craft · Pure CSS Design System</p>
+            <p className="aar-eyebrow">Aar Loom · Pure CSS Design System</p>
             <h1 className="aar-title">
               The Arcane Atelier.<br />
               <span>Precision over ornament.</span>
@@ -2398,7 +2398,7 @@ function AarCraftDocs({
 
         {/* Live Visual Testing Controls */}
         <section className="aar-panel controls" aria-label="Visual testing controls">
-          <AarCraftDropdownSelect
+          <AarLoomDropdownSelect
             label="Appearance"
             value={theme}
             onChange={(val) => setTheme(val)}
@@ -2408,7 +2408,7 @@ function AarCraftDocs({
               { value: 'system', label: 'System' },
             ]}
           />
-          <AarCraftDropdownSelect
+          <AarLoomDropdownSelect
             label="Palette"
             value={palette}
             onChange={(val) => setPalette(val)}
@@ -2421,7 +2421,7 @@ function AarCraftDocs({
               { value: 'custom', label: 'Your colors' },
             ]}
           />
-          <AarCraftDropdownSelect
+          <AarLoomDropdownSelect
             label="Density"
             value={density}
             onChange={(val) => setDensity(val)}
@@ -2456,7 +2456,7 @@ function AarCraftDocs({
         {/* Documentation Shell: Sticky Side Nav + Main Content */}
         <div className="aar-docs-shell">
           {/* Side Navigation */}
-          <aside className="aar-docs-sidebar" aria-label="Aar Craft Documentation Navigation">
+          <aside className="aar-docs-sidebar" aria-label="Aar Loom Documentation Navigation">
             <div className="aar-docs-sidebar-header">
               <input
                 type="search"
@@ -2514,7 +2514,7 @@ function AarCraftDocs({
             {/* Breadcrumb Header */}
             <div className="aar-cluster" style={{ justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--aar-border)', paddingBottom: '0.75rem' }}>
               <div className="aar-cluster" style={{ gap: '0.5rem', fontSize: '0.875rem' }}>
-                <span className="aar-hint">Aar Craft</span>
+                <span className="aar-hint">Aar Loom</span>
                 <span style={{ color: 'var(--aar-text-muted)' }}>/</span>
                 <strong style={{ color: 'var(--aar-primary)' }}>{activeItem.label}</strong>
               </div>
@@ -2624,11 +2624,11 @@ function AarCraftDocs({
         </section>
 
         <footer className="lab-footer">
-          <span>Aar Craft / Pure CSS Open Source Design System</span>
+          <span>Aar Loom / Pure CSS Open Source Design System</span>
           <span>Zero runtime dependencies · MIT License · Machine-Readable HTML</span>
         </footer>
       </section>
     </div>
   )
 }
-export default AarCraftDocs
+export default AarLoomDocs

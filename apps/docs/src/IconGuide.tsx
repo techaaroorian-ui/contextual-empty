@@ -13,7 +13,7 @@ export default function IconGuide() {
         <div className="intro-copy">
           <p>One consistent icon family for your application.</p>
           <p className="aar-hint">
-            Recommended integration, independent of Aar Craft. Logos remain
+            Recommended integration, independent of Aar Loom. Logos remain
             custom brand assets.
           </p>
         </div>
@@ -31,7 +31,7 @@ export default function IconGuide() {
           <a href="https://lucide.dev/guide/react">Official React guide</a>.
         </p>
         <p className="aar-hint">
-          The example below also uses React, Aar Craft, and Contextual Empty.
+          The example below also uses React, Aar Loom, and Contextual Empty.
           Their alpha registry release is pending; the docs currently use
           workspace dependencies. Neither public component package requires
           Lucide.
@@ -42,7 +42,7 @@ export default function IconGuide() {
         <IconsExample />
         <CodeBlock title="IconsExample.tsx" code={exampleSource} />
         <p>
-          Save this complete component in src, then import and render IconsExample in your React application using Aar Craft styles.
+          Save this complete component in src, then import and render IconsExample in your React application using Aar Loom styles.
         </p>
         <p>
           Put the accessible name on an icon-only button. Hide decorative icons

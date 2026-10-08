@@ -1,5 +1,5 @@
 ---
-"@techaaroorian-ui/aar-craft": patch
+"@techaaroorian-ui/aar-loom": patch
 "@techaaroorian-ui/contextual-empty": patch
 ---
 

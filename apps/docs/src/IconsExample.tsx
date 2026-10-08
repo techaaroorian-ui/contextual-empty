@@ -9,7 +9,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { SearchEmpty } from "@techaaroorian-ui/contextual-empty";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 export default function IconsExample() {
   const [message, setMessage] = useState("Try an action below.");

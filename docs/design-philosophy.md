@@ -1,16 +1,16 @@
-# Aar Craft Design Philosophy · The Arcane Atelier
+# Aar Loom Design Philosophy · The Arcane Atelier
 
 > **"Code is modern spellcasting. The workspace is your alchemy bench."**
 
-Aar Craft fuses **modern software ergonomics** with the visual metaphor of the **Arcane Atelier** (Tech-Mage / Digital Alchemy). In digital creation tools like Yuwbrndr, engineers and creators write structured syntax (incantations) that deterministically transmutes in real-time into visual artifacts (graphics, carousels, sketches, documents).
+Aar Loom fuses **modern software ergonomics** with the visual metaphor of the **Arcane Atelier** (Tech-Mage / Digital Alchemy). In digital creation tools like Yuwbrndr, engineers and creators write structured syntax (incantations) that deterministically transmutes in real-time into visual artifacts (graphics, carousels, sketches, documents).
 
-Rather than superficial fantasy ornament or skeuomorphic kitsch, Aar Craft channels the spirit of **astrolabes, sacred geometry, alchemical manuscripts, and precision laboratory instruments**: 1px etched hair-lines, obsidian slate surfaces, crisp parchment vellum, luminous focus auras, and clean celestial glyphs.
+Rather than superficial fantasy ornament or skeuomorphic kitsch, Aar Loom channels the spirit of **astrolabes, sacred geometry, alchemical manuscripts, and precision laboratory instruments**: 1px etched hair-lines, obsidian slate surfaces, crisp parchment vellum, luminous focus auras, and clean celestial glyphs.
 
 ---
 
 ## 1. The Core Lifecycle: The Transmutation Cycle
 
-Every creative tool built with Aar Craft revolves around three stages:
+Every creative tool built with Aar Loom revolves around three stages:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -63,7 +63,7 @@ Minimal geometric and astronomical glyphs are used strictly to communicate **sta
 
 ## 3. Layout Compositions: The Five Instruments
 
-Aar Craft structures tools using five foundational layout compositions:
+Aar Loom structures tools using five foundational layout compositions:
 
 1. **`.aar-workspace` (The Atelier Shell)**:
    The master frame featuring a fixed command bar header, a central canvas viewport, collapsible grimoire docks (left and right), and an optional sequence strip (bottom slide deck).

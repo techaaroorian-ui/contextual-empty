@@ -57,7 +57,7 @@ export default function MagicArtGuide() {
     <section className="lab-content package-docs">
       {/* Eyebrow & Intro */}
       <div className="package-setup">
-        <p className="aar-eyebrow">Aar Craft · Micro-interaction &amp; Wave Mechanics</p>
+        <p className="aar-eyebrow">Aar Loom · Micro-interaction &amp; Wave Mechanics</p>
         <h1 className="aar-title">Magic-Art: Frosted Glass &amp; Perimeter Wave Reveal</h1>
         <p
           className="aar-subtitle"
@@ -71,7 +71,7 @@ export default function MagicArtGuide() {
           &ldquo;Semi-transparent frosted glass on open. Radiating perimeter waves that expand and dissolve.&rdquo;
         </p>
         <p>
-          In <strong>Aar Craft</strong>, standard applications maintain a clean, solid, distraction-free aesthetic.
+          In <strong>Aar Loom</strong>, standard applications maintain a clean, solid, distraction-free aesthetic.
           When you enable <strong>Magic-Art</strong>, reveals gain an ethereal dimension:
         </p>
         <ul style={{ margin: '0.5rem 0 1rem 1.25rem', color: 'var(--aar-text-muted)', lineHeight: 1.7 }}>
@@ -660,7 +660,7 @@ export default function MagicArtGuide() {
       <CodeBlock
         title="Zero-dependency React / TS Helper"
         language="tsx"
-        code={`import { sparkMagicStars } from '@techaaroorian-ui/aar-craft'
+        code={`import { sparkMagicStars } from '@techaaroorian-ui/aar-loom'
 
 export function InteractiveButton() {
   return (

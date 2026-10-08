@@ -1,6 +1,6 @@
 # Collection Picker
 
-Framework-independent single-selection state with filtering and typeahead. Optional React 18+ hook implements a vertical listbox using `aria-activedescendant`. No CSS or dependency on Aar Craft.
+Framework-independent single-selection state with filtering and typeahead. Optional React 18+ hook implements a vertical listbox using `aria-activedescendant`. No CSS or dependency on Aar Loom.
 
 ```js
 import { createPicker, reducePicker, visibleItems } from '@techaaroorian-ui/collection-picker';
@@ -33,6 +33,6 @@ The React adapter handles Up/Down, Home/End, Enter/Space, and character typeahea
 
 Options must not contain interactive buttons, links, or inputs. Cards with several actions require a different pattern. This alpha does not support multiselect, grouped options, virtualization, async loading, or custom filter functions. Native `<select>` remains a simpler choice for ordinary form fields.
 
-With Aar Craft, use `aar-picker` and `aar-picker-option`. Other frameworks can connect the core to their reactive state and implement the same focus and keyboard contract. Browser tests cover the React adapter; core tests run without React or the DOM. Alpha APIs may change. ESM and TypeScript declarations.
+With Aar Loom, use `aar-picker` and `aar-picker-option`. Other frameworks can connect the core to their reactive state and implement the same focus and keyboard contract. Browser tests cover the React adapter; core tests run without React or the DOM. Alpha APIs may change. ESM and TypeScript declarations.
 
 Reference: [WAI-ARIA listbox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/).

@@ -1,4 +1,4 @@
-# Aar Craft adaptive design and Yuwbrndr redesign
+# Aar Loom adaptive design and Yuwbrndr redesign
 
 Status: proposed design direction and implementation sequence. These modes are not yet implemented or validated. Yuwbrndr provides task requirements; its existing appearance and panel arrangement are not the design reference.
 
@@ -12,7 +12,7 @@ Progressive disclosure means exposing detail when it is needed. In Yuwbrndr, bro
 
 ## Derive anatomy, keep behavior boundaries clear
 
-| Yuwbrndr evidence | Reusable Aar Craft candidate | Responsibility outside CSS |
+| Yuwbrndr evidence | Reusable Aar Loom candidate | Responsibility outside CSS |
 | --- | --- | --- |
 | Header and canvas controls | Toolbar, action group, icon button, segmented control | Commands, expanded state, keyboard interaction |
 | Sidebar and editor dock | Panel, panel heading, disclosure, resize handle styling | Dock state, focus, resizing and persistence |
@@ -70,7 +70,7 @@ WebXR DOM overlays offer interactive 2D content in supported immersive sessions;
 ## Build sequence and evidence
 
 1. Create a docs layout laboratory with Focus, Split, Studio, Wide, and low-height examples using the same task content. Compare light/dark, custom palettes, long labels, touch and keyboard. Review composition before standardizing CSS APIs.
-2. Add the proven stack/cluster/grid/split/frame compositions to Aar Craft with a changeset. Define public layout and token contracts; no Yuwbrndr-specific selectors in the package.
+2. Add the proven stack/cluster/grid/split/frame compositions to Aar Loom with a changeset. Define public layout and token contracts; no Yuwbrndr-specific selectors in the package.
 3. Rebuild Yuwbrndr command bar and workspace shell around the new layout. Preserve actions and artwork isolation while changing navigation and panel composition.
 4. Migrate fields, collections, menus, dialogs, notices, and sequence controls. Remove the frozen legacy interface CSS after its final consumer migrates.
 5. Validate 320px narrow windows, phone portrait/landscape, tablet portrait/landscape, 1280px desktop, 2560px ultrawide, short windows, and 200% zoom. Check focus after resize, sheet dismissal, long labels, input ergonomics, reduced motion, and unchanged export dimensions. These are test cases, not device guarantees.

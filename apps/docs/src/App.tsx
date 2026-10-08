@@ -1,8 +1,8 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import './App.css'
 import './CollectionDocs.css'
-import '../../../packages/aar-craft/src/index.css'
-import AarCraftDocs from './AarCraftDocs'
+import '../../../packages/aar-loom/src/index.css'
+import AarLoomDocs from './AarLoomDocs'
 import HeadlessGuide from './HeadlessGuide'
 import IconGuide from './IconGuide'
 import VersioningGuide from './VersioningGuide'
@@ -35,7 +35,7 @@ function subscribe(listener: () => void) {
 const snapshot = () => window.location.hash || '#/'
 const pages = [
   ['#/', 'Overview'],
-  ['#/aar-craft', 'Aar Craft'],
+  ['#/aar-loom', 'Aar Loom'],
   ['#/headless', 'Headless'],
   ['#/guides/philosophy', 'Philosophy'],
   ['#/guides/magic-art', 'Magic Art'],
@@ -189,8 +189,8 @@ export default function App() {
           <IconGuide />
         ) : route === '#/guides/versioning' ? (
           <VersioningGuide />
-        ) : route === '#/aar-craft' ? (
-          <AarCraftDocs
+        ) : route === '#/aar-loom' ? (
+          <AarLoomDocs
             theme={theme}
             palette={palette}
             onThemeChange={handleThemeChange}
@@ -210,7 +210,7 @@ export default function App() {
               </div>
               <div className="intro-copy">
                 <p>
-                  TechAaroorian UI and Aar Craft provide a <strong>proper, clean design and layout system</strong> for all kinds of applications—from enterprise SaaS dashboards to creative engineering tools. Magic-Art is an <strong>optional, extendable layer</strong> of subtle animations: button star sparks, fluid collapsible sidebars, and cascading options.
+                  TechAaroorian UI and Aar Loom provide a <strong>proper, clean design and layout system</strong> for all kinds of applications—from enterprise SaaS dashboards to creative engineering tools. Magic-Art is an <strong>optional, extendable layer</strong> of subtle animations: button star sparks, fluid collapsible sidebars, and cascading options.
                 </p>
                 <p className="aar-hint">
                   Pure CSS foundations, zero runtime dependencies, and accessible ergonomics.
@@ -265,16 +265,16 @@ export default function App() {
             <div className="package-grid">
               <article className="aar-panel package-card" data-corner-brackets="true">
                 <div className="package-logo">
-                  <img src={`${import.meta.env.BASE_URL}brand/aar-craft.png`} alt="Aar Craft logo" />
+                  <img src={`${import.meta.env.BASE_URL}brand/aar-loom.svg`} alt="Aar Loom logo" />
                 </div>
                 <p className="aar-eyebrow">Pure CSS Design Language</p>
-                <h2 className="aar-heading">Aar Craft</h2>
+                <h2 className="aar-heading">Aar Loom</h2>
                 <p>
                   Zero runtime dependencies. Atmospheric Obsidian &amp; Parchment realms, etched hairlines, corner-bracket altars, and animated studio dropdowns.
                 </p>
-                <code>@techaaroorian-ui/aar-craft</code>
-                <a className="aar-button" data-variant="primary" href="#/aar-craft">
-                  Explore Aar Craft →
+                <code>@techaaroorian-ui/aar-loom</code>
+                <a className="aar-button" data-variant="primary" href="#/aar-loom">
+                  Explore Aar Loom →
                 </a>
               </article>
 
@@ -343,7 +343,7 @@ export default function App() {
             <section className="collection-note" style={{ maxWidth: '48rem' }}>
               <h2 className="aar-heading">Built for High-Precision Creative Studios</h2>
               <p>
-                Whether you need a full aesthetic shell with <strong>Aar Craft</strong>, actionable recovery states with <strong>Contextual Empty</strong>, infinite canvas positioning with <strong>Pan &amp; Zoom</strong>, or deterministic layer control with <strong>Ordered Collection</strong>, each engine is modular and production-ready.
+                Whether you need a full aesthetic shell with <strong>Aar Loom</strong>, actionable recovery states with <strong>Contextual Empty</strong>, infinite canvas positioning with <strong>Pan &amp; Zoom</strong>, or deterministic layer control with <strong>Ordered Collection</strong>, each engine is modular and production-ready.
               </p>
             </section>
           </section>

@@ -1,4 +1,4 @@
-# Aar Craft · Study 001
+# Aar Loom · Study 001
 
 A CSS-only foundation for TechAaroorian UI. Working principle: **clarity through layers**.
 
@@ -7,7 +7,7 @@ Matte surfaces group content, typography establishes hierarchy, and strong color
 ## Use
 
 ```css
-@import "@techaaroorian-ui/aar-craft";
+@import "@techaaroorian-ui/aar-loom";
 ```
 
 ```html
@@ -44,7 +44,7 @@ Custom theme names start with light defaults. Override the remaining status toke
 
 The default entry declares `theme, base, components, utilities` layer order. Component rules live in `components`, so normal utilities in `utilities` can override them. No `!important` is used in the package. Declare layer order before either framework import. Tailwind v4 token mapping is not yet shipped or verified.
 
-For optional Tailwind v3 consumers, build the package with `npm run build --workspace packages/aar-craft` and import `@techaaroorian-ui/aar-craft/tailwind-v3.css` from the application entry. This generated CSS uses `aar-theme` and `aar-components` native layers so v3's PostCSS handling does not consume the framework's component rules. Existing unlayered Tailwind v3 utilities take precedence. This entry was initially exercised in Yuwbrndr before its interface moved to standalone CSS; ongoing compatibility fixtures remain roadmap work.
+For optional Tailwind v3 consumers, build the package with `npm run build --workspace packages/aar-loom` and import `@techaaroorian-ui/aar-loom/tailwind-v3.css` from the application entry. This generated CSS uses `aar-theme` and `aar-components` native layers so v3's PostCSS handling does not consume the framework's component rules. Existing unlayered Tailwind v3 utilities take precedence. This entry was initially exercised in Yuwbrndr before its interface moved to standalone CSS; ongoing compatibility fixtures remain roadmap work.
 
 Yuwbrndr now consumes the standard entry with a local file dependency and no Tailwind compiler. A standalone checkout currently needs the sibling techaaroorian-ui repository. Publication will replace this with a versioned dependency.
 
@@ -60,7 +60,7 @@ Customize `--aar-duration`, `--aar-duration-enter`, `--aar-ease`, `--aar-hover-o
 
 ## Layout Primitives
 
-Aar Craft provides clean, responsive layout primitives for all kinds of applications (dashboards, SaaS platforms, developer consoles, and creative studios):
+Aar Loom provides clean, responsive layout primitives for all kinds of applications (dashboards, SaaS platforms, developer consoles, and creative studios):
 
 - Application shell: `.aar-workspace`
 - Collapsible sidebar: `.aar-sidebar`, with support for expanded (`16rem`), compact rail (`4.25rem`, `data-collapsed="rail"`), and closed (`data-collapsed="closed"`)
@@ -81,7 +81,7 @@ All animations strictly observe `prefers-reduced-motion: reduce`.
 
 ## Headless component styling
 
-Import Aar Craft CSS once for the application. It styles headless markup without depending on the JavaScript packages:
+Import Aar Loom CSS once for the application. It styles headless markup without depending on the JavaScript packages:
 
 - Native dialogs: `aar-dialog`; optional `data-placement="end"` or `"bottom"` creates sheet placement.
 - Single-selection lists: `aar-picker` and `aar-picker-option`; `data-active`, `aria-selected`, and `aria-disabled` convey their distinct states.

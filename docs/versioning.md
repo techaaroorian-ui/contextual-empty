@@ -1,6 +1,6 @@
 # Independent package versioning
 
-TechAaroorian UI is a collection, not one synchronized release. Aar Craft and Contextual Empty each have their own package version and changelog. The private docs app is not published. Displayed versions come from package manifests.
+TechAaroorian UI is a collection, not one synchronized release. Aar Loom and Contextual Empty each have their own package version and changelog. The private docs app is not published. Displayed versions come from package manifests.
 
 ## Contract and stability
 
@@ -10,7 +10,7 @@ SemVer treats 0.y.z as initial development: https://semver.org/.
 
 Our pre-1.0 convention is **patch** for compatible additions and fixes, **minor** for breaking changes. Once a package reaches 1.0, use patch for compatible fixes, minor for compatible features, and major for breaking changes. A breaking change must include migration notes.
 
-Aar Craft's public contract includes documented classes, attributes, tokens, exported CSS paths, and interaction/accessibility behavior. Removing tokens, changing component anatomy, or altering theme scope can be breaking even if there is no JavaScript API. Contextual Empty's contract includes exports, props, callbacks, DOM/state attributes, and its documented CSS hooks.
+Aar Loom's public contract includes documented classes, attributes, tokens, exported CSS paths, and interaction/accessibility behavior. Removing tokens, changing component anatomy, or altering theme scope can be breaking even if there is no JavaScript API. Contextual Empty's contract includes exports, props, callbacks, DOM/state attributes, and its documented CSS hooks.
 
 ## Changesets workflow
 

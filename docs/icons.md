@@ -1,6 +1,6 @@
 # Icons across TechAaroorian UI
 
-Lucide is the recommended icon family for consuming applications and the collection docs. It is optional and is not a dependency of either public package. Brand logos remain separate custom assets. Aar Craft defines CSS anatomy; the application supplies icon SVGs.
+Lucide is the recommended icon family for consuming applications and the collection docs. It is optional and is not a dependency of either public package. Brand logos remain separate custom assets. Aar Loom defines CSS anatomy; the application supplies icon SVGs.
 
 Install `lucide-react` in a React consumer and import named icons. Start with 16–20 px for controls and 24–32 px for empty states, using a consistent stroke width. These are collection conventions, not framework requirements.
 

@@ -6,7 +6,7 @@ import {
   SearchEmpty,
   ErrorEmpty,
 } from '@techaaroorian-ui/contextual-empty'
-import '@techaaroorian-ui/aar-craft/index.css'
+import '@techaaroorian-ui/aar-loom/index.css'
 
 export default function ContextualEmptyExample() {
   const [view, setView] = useState('first-use')

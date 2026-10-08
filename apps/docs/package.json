@@ -13,7 +13,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@techaaroorian-ui/aar-craft": "0.2.0-alpha.2",
+    "@techaaroorian-ui/aar-loom": "0.2.0-alpha.2",
     "@techaaroorian-ui/collection-picker": "0.2.0-alpha.0",
     "@techaaroorian-ui/contextual-empty": "0.1.1-alpha.0",
     "@techaaroorian-ui/dialog": "0.2.0-alpha.0",

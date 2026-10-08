@@ -1,5 +1,5 @@
 import { useOrderedCollection } from "@techaaroorian-ui/ordered-collection/react";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 const initialItems = [
   { id: "cover", name: "Cover" },

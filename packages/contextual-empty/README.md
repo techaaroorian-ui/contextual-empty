@@ -22,10 +22,10 @@ npm install @techaaroorian-ui/contextual-empty
 
 ## Usage (The Preset API)
 
-The standalone stylesheet below is optional. With Aar Craft, import Aar Craft CSS once and add `className="aar-contextual-empty"` to the preset or compound root instead. Use one styling owner for a component. The bundled JavaScript does not automatically load the standalone CSS.
+The standalone stylesheet below is optional. With Aar Loom, import Aar Loom CSS once and add `className="aar-contextual-empty"` to the preset or compound root instead. Use one styling owner for a component. The bundled JavaScript does not automatically load the standalone CSS.
 
 ```tsx
-import '@techaaroorian-ui/aar-craft/index.css';
+import '@techaaroorian-ui/aar-loom/index.css';
 import { SearchEmpty } from '@techaaroorian-ui/contextual-empty';
 
 <SearchEmpty className="aar-contextual-empty" query="drafts" onClear={clearSearch} />

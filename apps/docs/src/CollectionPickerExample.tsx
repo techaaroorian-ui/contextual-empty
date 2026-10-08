@@ -1,5 +1,5 @@
 import { useCollectionPicker } from "@techaaroorian-ui/collection-picker/react";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 const choices = [
   { id: "poster", label: "Poster" },

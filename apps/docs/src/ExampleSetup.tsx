@@ -1,6 +1,6 @@
 import CodeBlock from './CodeBlock'
 import layoutCss from './example-setup.css?raw'
-import aarCraft from '../../../packages/aar-craft/package.json'
+import aarCraft from '../../../packages/aar-loom/package.json'
 import panZoom from '../../../packages/pan-zoom/package.json'
 import orderedCollection from '../../../packages/ordered-collection/package.json'
 import fileIntake from '../../../packages/file-intake/package.json'

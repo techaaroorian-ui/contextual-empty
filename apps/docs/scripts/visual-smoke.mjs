@@ -15,7 +15,7 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(url);
   await page.getByRole('heading', { name: 'TechAaroorian UI', exact: true }).waitFor();
-  await page.getByRole('link', { name: 'Explore Aar Craft →' }).click();
+  await page.getByRole('link', { name: 'Explore Aar Loom →' }).click();
   await page.getByRole('heading', { name: 'Good ideas start here.' }).waitFor();
   const primary = page.getByRole('button', { name: '+ New project', exact: true });
   const background = async locator => {

@@ -5,7 +5,7 @@
 ### Patch Changes
 
 - 0551f57: Include the package changelog in published artifacts so consumers can review release history.
-- Introduce framework-independent ordered collections and atomic file intake validation with optional React hooks. Prepare the collection's first alpha release alongside Aar Craft and Contextual Empty.
+- Introduce framework-independent ordered collections and atomic file intake validation with optional React hooks. Prepare the collection's first alpha release alongside Aar Loom and Contextual Empty.
 
 ## Unreleased
 

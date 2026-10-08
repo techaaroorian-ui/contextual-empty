@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useFileDropzone } from "@techaaroorian-ui/file-intake/react";
 import { FileImage, Upload, X } from "lucide-react";
-import "@techaaroorian-ui/aar-craft/index.css";
+import "@techaaroorian-ui/aar-loom/index.css";
 
 function FilePreview({ file }: { file: File }) {
   const imageRef = useRef<HTMLImageElement>(null);

@@ -25,7 +25,7 @@ The hook supplies file-only drop handling, nested drag tracking, a chooser trigg
 
 For other frameworks, `bindFileDropzone(element, options)` supplies the browser behavior. Pass onResult, optional onDragChange, and getter callbacks for existingCount and disabled; call destroy() on unmount. It ignores non-file drags, prevents dropped files navigating the page within the bound target, and skips disabled intake. Provide a separate native input wired to validateFiles. The core validator remains usable without browser globals.
 
-Aar Craft provides compact `aar-file-intake`, `aar-dropzone`, `aar-file-list`, `aar-file-row`, `aar-file-details`, and `aar-file-preview` anatomy. The docs demonstrate retained assets, per-file removal, count limits, and local raster previews. These are consumer-owned composition and resource handling: the package does not allocate preview URLs or store assets. Preview URLs must be revoked on removal/unmount. Do not nest action buttons inside a clickable drop-zone button.
+Aar Loom provides compact `aar-file-intake`, `aar-dropzone`, `aar-file-list`, `aar-file-row`, `aar-file-details`, and `aar-file-preview` anatomy. The docs demonstrate retained assets, per-file removal, count limits, and local raster previews. These are consumer-owned composition and resource handling: the package does not allocate preview URLs or store assets. Preview URLs must be revoked on removal/unmount. Do not nest action buttons inside a clickable drop-zone button.
 
 ```js
 import { validateFiles } from '@techaaroorian-ui/file-intake';

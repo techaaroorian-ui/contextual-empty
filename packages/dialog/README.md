@@ -30,7 +30,7 @@ Backdrop dismissal requires primary-pointer down and up outside the content rect
 
 The browser API does not access globals at module import, but binding requires a mounted native dialog with `showModal` support. No legacy polyfill is included. This package does not implement global scroll locking, animation orchestration, routing, or confirmations. Nested dialogs are supported by the browser and are tested in the docs examples. Device and assistive technology verification is still needed before a stable release.
 
-With Aar Craft, import its CSS once and use `aar-dialog`; add `data-placement="end"` or `"bottom"` for a sheet. Without Aar Craft, provide your own CSS. Do not add `display: block` to a closed dialog.
+With Aar Loom, import its CSS once and use `aar-dialog`; add `data-placement="end"` or `"bottom"` for a sheet. Without Aar Loom, provide your own CSS. Do not add `display: block` to a closed dialog.
 
 Browser interaction tests live in `apps/docs/scripts/visual-smoke.mjs`; run the docs server and `npm run test:visual --workspace apps/docs`. Alpha APIs may change. ESM and TypeScript declarations.
 

@@ -1,4 +1,4 @@
-# Aar Craft roadmap
+# Aar Loom roadmap
 
 The framework earns its value through repeated use, understandable rules, and reliable integration. Attractive specimens are a starting point. Yuwbrndr is the first proving ground.
 
@@ -20,7 +20,7 @@ The framework earns its value through repeated use, understandable rules, and re
 
 Status: the initial local adoption slice was tested, then reverted at the user's request. Develop and publish the reusable alpha packages here before reintroducing them through registry dependencies. See [the extraction scope](./headless-extraction.md). Yuwbrndr's prior interface is the current baseline.
 
-After publication, deliver a versioned registry integration, product-specific theme tokens, a redesigned shell/toolbar, primary export treatment, focus, and reduced-motion handling. Migrate Yuwbrndr's interface to Aar Craft and product CSS, then remove its Tailwind compiler. The previous frozen-stylesheet bridge has been reverted. Keep authored artwork and canvas palettes independent. Preserve existing controls and behavior while changing presentation.
+After publication, deliver a versioned registry integration, product-specific theme tokens, a redesigned shell/toolbar, primary export treatment, focus, and reduced-motion handling. Migrate Yuwbrndr's interface to Aar Loom and product CSS, then remove its Tailwind compiler. The previous frozen-stylesheet bridge has been reverted. Keep authored artwork and canvas palettes independent. Preserve existing controls and behavior while changing presentation.
 
 Exit evidence: production build without Tailwind installed, existing tests, browser checks for both app themes, toolbar actions, mobile overflow, preserved geometry, and artwork isolation.
 
@@ -50,9 +50,9 @@ Verify Tailwind v3 and v4 independently. Document plain HTML use, custom themes,
 
 Exit evidence: reproducible package build, consumer installation examples, compatibility matrix, changelog, and an initial version ready for publication.
 
-## 6. Aar Craft inside authored designs
+## 6. Aar Loom inside authored designs
 
-Add explicit renderer support for Aar Craft HTML, alongside current Tailwind-style design markup. Inject versioned framework CSS into the isolated preview document and include it in export rendering. Provide design theme controls independent of the application theme. Do not expose app stylesheet rules to artwork.
+Add explicit renderer support for Aar Loom HTML, alongside current Tailwind-style design markup. Inject versioned framework CSS into the isolated preview document and include it in export rendering. Provide design theme controls independent of the application theme. Do not expose app stylesheet rules to artwork.
 
 Exit evidence: the same design renders in preview and exported PNG; switching application theme leaves the design unchanged; renderer mode and theme survive sharing. Tailwind interoperability remains an optional framework feature for other consumers, rather than a dependency of Yuwbrndr's interface.
 

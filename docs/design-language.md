@@ -1,4 +1,4 @@
-# Learning Aar Craft while building it
+# Learning Aar Loom while building it
 
 ## 1. Semantic tokens
 
