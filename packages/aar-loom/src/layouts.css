@@ -657,7 +657,7 @@
 
   .aar-site-header {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
     gap: 1.25rem;
     padding: 0.875rem 4vw;
@@ -719,9 +719,33 @@
 
   .aar-site-controls {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 0.5rem;
     flex-wrap: wrap;
+  }
+
+  .aar-site-controls .aar-select-field {
+    min-width: 7rem;
+  }
+  .aar-site-controls .aar-select {
+    min-height: 44px;
+    padding-inline-end: 2.5rem;
+  }
+  .aar-site-controls > .aar-button {
+    min-height: 44px;
+  }
+  .aar-site-header > .aar-brand {
+    min-height: 44px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 769px) and (max-width: 1700px) {
+    .aar-site-header nav {
+      margin-inline-start: auto;
+    }
+    .aar-site-controls {
+      flex-basis: 100%;
+      justify-content: end;
+    }
   }
 
   .aar-site-controls .aar-dropdown-trigger {

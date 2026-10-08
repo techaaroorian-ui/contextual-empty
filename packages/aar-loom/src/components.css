@@ -3580,6 +3580,7 @@
   }
   .aar-select-frame .aar-select {
     appearance: none;
+    background-image: none;
     padding-inline-end: 2.5rem;
     min-height: 44px;
     width: 100%;
@@ -3595,6 +3596,92 @@
   }
   .aar-select-frame:focus-within .aar-select-chevron {
     transform: translateY(calc(-50% + 2px));
+  }
+  /* Progressive enhancement: keep the platform picker on touch devices. */
+  @supports (appearance: base-select) {
+    @media (pointer: fine) {
+      .aar-select,
+      .aar-select::picker(select) {
+        appearance: base-select;
+        background-image: none;
+      }
+      .aar-select-frame .aar-select {
+        appearance: base-select;
+      }
+      .aar-select::picker-icon {
+        color: var(--aar-primary);
+        transition: rotate 180ms var(--aar-ease);
+      }
+      .aar-select:open::picker-icon {
+        rotate: 180deg;
+      }
+      .aar-select-frame .aar-select::picker-icon {
+        display: none;
+      }
+      .aar-select-frame:has(.aar-select:open) .aar-select-chevron {
+        transform: translateY(-50%) rotate(180deg);
+      }
+      .aar-select::picker(select) {
+        padding: 0.375rem;
+        margin-block: 0.375rem;
+        border: 1px solid var(--aar-border-strong);
+        border-radius: var(--aar-radius-md);
+        background: var(--aar-surface);
+        color: var(--aar-text);
+        box-shadow: var(--aar-shadow-lg);
+        max-height: min(22rem, 60vh);
+        overflow-y: auto;
+        opacity: 0;
+        transform: translateY(-4px) scale(0.985);
+        transform-origin: top center;
+        transition:
+          opacity 180ms var(--aar-ease),
+          transform 180ms var(--aar-ease),
+          display 180ms allow-discrete,
+          overlay 180ms allow-discrete;
+      }
+      .aar-select:open::picker(select) {
+        opacity: 1;
+        transform: none;
+      }
+      @starting-style {
+        .aar-select:open::picker(select) {
+          opacity: 0;
+          transform: translateY(-4px) scale(0.985);
+        }
+      }
+      .aar-select option {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-height: 44px;
+        padding: 0.625rem 0.75rem;
+        border-radius: var(--aar-radius-sm);
+        cursor: pointer;
+        transition: background-color 120ms var(--aar-ease);
+      }
+      .aar-select option:is(:hover, :focus-visible) {
+        background: var(--aar-surface-subtle);
+      }
+      .aar-select option:checked {
+        background: color-mix(in srgb, var(--aar-primary) 12%, var(--aar-surface));
+        color: var(--aar-text);
+        font-weight: 600;
+      }
+      .aar-select option::checkmark {
+        color: var(--aar-primary);
+      }
+      [data-magic-art="true"] .aar-select::picker(select) {
+        box-shadow: var(--aar-shadow-lg), var(--aar-glow);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .aar-select::picker(select),
+        .aar-select::picker-icon {
+          transition: none;
+          transform: none;
+        }
+      }
+    }
   }
   @media (forced-colors: active) {
     .aar-select-frame .aar-select {

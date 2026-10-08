@@ -67,7 +67,7 @@ Runtime geometry uses documented CSS inputs rather than a private stylesheet: `-
 
 Component classes are convenient examples, not mandatory APIs. CSS supplies focus, selected-state appearance, responsive composition, and motion. Native HTML supplies button, select, and details behavior. Applications or headless adapters supply dialog dismissal, listbox navigation, uploads, drawing, and viewport state.
 
-`aar-select-frame` wraps a native `select.aar-select` and an optional decorative `aar-select-chevron`. Native selection retains keyboard navigation and mobile pickers. Native option popup animation is controlled by the browser.
+`aar-select-frame` wraps a native `select.aar-select` and an optional decorative `aar-select-chevron`. On fine-pointer devices, browsers supporting `appearance: base-select` get a themed option panel with a short fade and lift, selected checkmark, and rotating arrow. Touch devices and unsupported browsers retain their platform picker. Reduced motion disables the reveal transition.
 
 Magic Art geometry and surface transitions use CSS/SVG. Star particle bursts need an application event handler; CSS classes alone cannot create particles. Respect reduced motion. The docs demonstrate an optional handler; Aar Loom ships no JavaScript runtime.
 

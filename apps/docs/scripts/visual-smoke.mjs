@@ -31,8 +31,20 @@ try {
  await header.getByRole('button',{name:'Magic Art',exact:true}).click();
  assert.equal(await page.locator('.aar-site').getAttribute('data-magic-art'),'true');
  await header.getByRole('button',{name:'Magic Art',exact:true}).click();
- await appearance.focus();await appearance.press('Home');await appearance.press('Enter');
+ await appearance.focus();
+ const enhanced=await appearance.evaluate(el=>getComputedStyle(el).appearance==='base-select');
+ if(enhanced) {
+  await appearance.press('Space');
+  assert.equal(await appearance.evaluate(el=>el.matches(':open')),true);
+  assert.match(await appearance.evaluate(el=>getComputedStyle(el,'::picker(select)').transitionProperty),/opacity/);
+  await page.waitForTimeout(220);
+  await page.screenshot({path:new URL('select-reveal.png',artifacts).pathname.replace(/^\/(\w:)/,'$1')});
+ }
+ if(enhanced) { await page.keyboard.press('ArrowUp');await page.keyboard.press('ArrowUp');await page.keyboard.press('Enter'); }
+ else { await appearance.press('Home');await appearance.press('Enter'); }
  assert.equal(await appearance.inputValue(),'light');
+ const bottoms=await header.locator('.aar-site-controls select, .aar-site-controls > button').evaluateAll(elements=>elements.map(el=>el.getBoundingClientRect().bottom));
+ assert.ok(Math.max(...bottoms)-Math.min(...bottoms)<2,'Header control baseline alignment');
 
  for(const route of ['','aar-loom','headless','contextual-empty','guides/philosophy','guides/magic-art','guides/icons','guides/versioning']) {
   await page.goto(url+'/#/'+route);
